@@ -26,5 +26,15 @@ namespace SEPQuestionAnswer.Controllers
 
             return View();
         }
+        public ActionResult Category()
+        {
+            ViewBag.Message = "Your Category page.";
+            return View();
+        }
+        public ActionResult Search()
+        {
+            ViewBag.Message = "Your Search page.";
+            return View();
+        }
     }
 }
