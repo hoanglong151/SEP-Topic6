@@ -212,6 +212,7 @@
     <Content Include="asset\images\person_4.jpg" />
     <Content Include="asset\images\person_5.jpg" />
     <Content Include="asset\images\person_6.jpg" />
+    <Content Include="asset\images\VL3.mp4" />
     <Content Include="asset\js\aos.js" />
     <Content Include="asset\js\bootstrap.min.js" />
     <Content Include="asset\js\jquery-3.3.1.min.js" />
