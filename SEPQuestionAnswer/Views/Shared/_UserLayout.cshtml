@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="@Url.Content("~/asset/css/aos.css")">
 
     <link rel="stylesheet" href="@Url.Content("~/asset/css/style.css")">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -39,7 +39,7 @@
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li class="active">
                                     <a href="@Url.Action("Search","Home")">Tìm kiếm</a>
-                                </li>                          
+                                </li>
                                 <li><a href="@Url.Action("Category","Home")">Danh mục</a></li>
                                 <li><a href="@Url.Action("About","Home")">About</a></li>
                                 <li><a href="contact.html">Contact</a></li>
@@ -51,9 +51,10 @@
             </div>
         </header>
 
-
-
         @RenderBody()
+
+
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
 
         <footer class="site-footer">
             <div class="container">
@@ -110,6 +111,29 @@
             header.classList.toggle("sticky", window.scrollY > 0)
         })
     </script>
+
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
 
     <script src="@Url.Content("~/asset/js/main.js")"></script>
 
