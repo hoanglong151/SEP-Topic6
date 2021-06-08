@@ -371,6 +371,16 @@ namespace SEPQuestionAnswer.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    var currentUser = UserManager.FindByEmail(user.Email);
+                    SEP24Team10Entities db = new SEP24Team10Entities();
+                    Student student = new Student();
+                    if(currentUser.Email.ToLower().Contains("pm") || currentUser.Email.ToLower().Contains("it"))
+                    {                      
+                        UserManager.AddToRole(currentUser.Id, "Sinh Vien");
+                        student.Email = currentUser.Email;
+                        db.Students.Add(student);
+                        db.SaveChanges();
+                    }
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
