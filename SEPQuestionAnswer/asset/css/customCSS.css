@@ -21,6 +21,6 @@ html{
     border-radius: 5px;
 }
 
-    #myBtn:hover {
-        background-color: #555;
-    }
+#myBtn:hover {
+    background-color: #555;
+}
