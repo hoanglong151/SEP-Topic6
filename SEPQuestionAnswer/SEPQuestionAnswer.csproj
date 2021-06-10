@@ -265,6 +265,7 @@
     <Content Include="asset\images\person_4.jpg" />
     <Content Include="asset\images\person_5.jpg" />
     <Content Include="asset\images\person_6.jpg" />
+    <Content Include="asset\images\test.mp4" />
     <Content Include="asset\images\VL3.mp4" />
     <Content Include="asset\images\_hjkj3598HJ_logo2.png" />
     <Content Include="asset\js\aos.js" />
@@ -403,6 +404,9 @@
     <Content Include="Models\Models.edmx.diagram">
       <DependentUpon>Models.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\Oxygen-Bold.ttf" />
+    <Content Include="fonts\Oxygen-Light.ttf" />
+    <Content Include="fonts\Oxygen-Regular.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -10,7 +10,10 @@
         </div>
         <div class="col-lg-8">
             @*<img src="@Url.Content("~/asset/images/1x/asset-1.png")" alt="Image" class="img-fluid">*@
-            <video autoplay playsinline loop muted src="~/asset/images/VL3.mp4"  class="img-fluid" style="width:760px;height:545px;pointer-events:none;"></video>
+            @*<video autoplay loop muted src="~/asset/images/VL3.mp4" width="760" height="427"></video>*@
+                <video class="video-fluid" autoplay loop muted width="760" height="427">
+                    <source src="~/asset/images/test.mp4" type="video/mp4" />
+                </video>
         </div>
     </div>
 </div>

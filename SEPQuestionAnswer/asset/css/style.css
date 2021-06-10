@@ -19,7 +19,9 @@ a {
   transition: .3s all ease; }
   a:hover {
     text-decoration: none; }
-
+header{
+    font-weight: 400;
+}
 header.sticky {
     position: fixed;
     background-color: white;

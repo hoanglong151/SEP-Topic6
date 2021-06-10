@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="@Url.Content("~/asset/css/owl.theme.default.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/asset/css/customCSS.css")">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
 
 
     <link rel="stylesheet" href="@Url.Content("~/asset/css/aos.css")">
@@ -28,26 +29,33 @@
         <header class="site-navbar py-4" role="banner" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-3">
+                    <div class="col-2">
                         <h1 class="site-logo"><a href="@Url.Action("Index","Home")" class="h2 flex">FAQ<span class="text-primary">.</span> </a></h1>
                     </div>
-                    <div class="col-9">
+                    <div class="col-8">
                         <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
 
                             <div class="d-block d-lg-none ml-md-0 mr-auto"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li class="active">
+                                <li>
                                     <a href="@Url.Action("Search","Home")">Tìm kiếm</a>
                                 </li>
                                 <li><a href="@Url.Action("Category","Home")">Danh mục</a></li>
                                 <li><a href="@Url.Action("About","Home")">About</a></li>
+                                @*<li class="has-children">
+                                    @Html.Partial("_LoginPartial")
+                                </li>*@
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-2">
+                        <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
+
+                            <div class="d-block d-lg-none ml-md-0 mr-auto"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+                            <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li class="has-children">
                                     @Html.Partial("_LoginPartial")
-                                    <ul class="dropdown arrow-top">                                    
-                                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                    </ul>
                                 </li>
-                               
                             </ul>
                         </nav>
                     </div>
