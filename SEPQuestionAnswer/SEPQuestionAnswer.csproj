@@ -233,8 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />

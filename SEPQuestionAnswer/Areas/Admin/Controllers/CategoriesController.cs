@@ -21,21 +21,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             return View(categories.ToList());
         }
 
-        // GET: Admin/Categories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
         private void CheckValidate(Category category)
         {
             if (category.CategoryName == null)
@@ -104,32 +89,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             }
             ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName", category.StatusCategory_ID);
             return View(category);
-        }
-
-        // GET: Admin/Categories/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
-        // POST: Admin/Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
