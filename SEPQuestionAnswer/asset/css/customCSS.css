@@ -24,3 +24,7 @@ html{
 #myBtn:hover {
     background-color: #555;
 }
+.color-btn {
+    background-color: #3ca59d;
+    border-color: #3ca59d;
+}

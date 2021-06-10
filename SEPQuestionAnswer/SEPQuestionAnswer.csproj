@@ -251,6 +251,8 @@
     <Content Include="asset\fonts\icomoon\Read Me.txt" />
     <Content Include="asset\fonts\icomoon\style.css" />
     <Content Include="asset\images\1x\asset-1.png" />
+    <Content Include="asset\images\bg-footer.png" />
+    <Content Include="asset\images\FAQ-720x380.png" />
     <Content Include="asset\images\hero_bg_1.jpg" />
     <Content Include="asset\images\img_1.jpg" />
     <Content Include="asset\images\img_2.jpg" />
@@ -264,6 +266,7 @@
     <Content Include="asset\images\person_5.jpg" />
     <Content Include="asset\images\person_6.jpg" />
     <Content Include="asset\images\VL3.mp4" />
+    <Content Include="asset\images\_hjkj3598HJ_logo2.png" />
     <Content Include="asset\js\aos.js" />
     <Content Include="asset\js\bootstrap.min.js" />
     <Content Include="asset\js\jquery-3.3.1.min.js" />

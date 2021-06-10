@@ -10,7 +10,7 @@
         </div>
         <div class="col-lg-8">
             @*<img src="@Url.Content("~/asset/images/1x/asset-1.png")" alt="Image" class="img-fluid">*@
-            <video autoplay loop muted src="@Url.Content("~/asset/images/VL3.mp4")" class="img-fluid" style="width:760px;height:545px"></video>
+            <video autoplay playsinline loop muted src="~/asset/images/VL3.mp4"  class="img-fluid" style="width:760px;height:545px;pointer-events:none;"></video>
         </div>
     </div>
 </div>
@@ -79,13 +79,33 @@
                     </ul>
                 </div>
             </div>
-
+      
             <div class="col-lg-9">
 
+                <div style="margin-bottom:10px">
+                    <a class="btn text-white radius color-btn" data-toggle="collapse" href="#test" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:100%">
+                        Học gì để giỏi ?
+                    </a>
+                    <div class="collapse" id="test">
+                        <div class="card card-body">
+                            aasdlasdl;asdlasdkas;ldkas;ldkas;dlaskdas;ldkas;ldkasl;dkasl;dkas;ldadasdasdasd
+                        </div>
+                    </div>
+                </div>
 
-                <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+                <div style="margin-bottom:10px">
+                    <a class="btn text-white radius color-btn" data-toggle="collapse" href="#test1" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:100%">
+                        Học gì để trao dồi kỹ năng code Front-end?
+                    </a>
+                    <div class="collapse" id="test1">
+                        <div class="card card-body">
+                            adasdasdasdasdasdasdddddddddddddddddddddddddddddddddd
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">-->
                     @*<div class="image" style="background-image: url('images/img_1.jpg');"></div>*@
-                    <img src="@Url.Content("~/asset/images/img_1.jpg")" alt="Image" class="image">
+                    <!--<img src="@Url.Content("~/asset/images/img_1.jpg")" alt="Image" class="image">
                     <div class="text">
 
                         <h3 class="font-weight-light"><a href="single-post.html">Episode 08: How To Create Web Page Using Bootstrap 4</a></h3>
@@ -99,76 +119,8 @@
                         </div>
 
                     </div>
-                </div>
+                </div>-->
 
-
-                <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <img src="@Url.Content("~/asset/images/img_2.jpg")" alt="Image" class="image">
-                    @*<img src="@Url.Content("~/images/img_1.jpg")" alt="Image" class="img-fluid mr-2">*@
-                    <div class="text">
-
-                        <h3 class="font-weight-light"><a href="single-post.html">Episode 07: How To Create Web Page Using Bootstrap 4</a></h3>
-                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
-
-                        <div class="player">
-                            <audio id="player2" preload="none" controls style="max-width: 100%">
-                                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
-                            </audio>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <img src="@Url.Content("~/asset/images/img_3.jpg")" alt="Image" class="image">
-                    <div class="text">
-
-                        <h3 class="font-weight-light"><a href="single-post.html">Episode 06: How To Create Web Page Using Bootstrap 4</a></h3>
-                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
-
-
-                        <div class="player">
-                            <audio id="player2" preload="none" controls style="max-width: 100%">
-                                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <img src="@Url.Content("~/asset/images/img_4.jpg")" alt="Image" class="image">
-                    <div class="text">
-
-                        <h3 class="font-weight-light"><a href="single-post.html">Episode 05: How To Create Web Page Using Bootstrap 4</a></h3>
-                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
-
-
-                        <div class="player">
-                            <audio id="player2" preload="none" controls style="max-width: 100%">
-                                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <img src="@Url.Content("~/asset/images/img_5.jpg")" alt="Image" class="image">
-                    <div class="text">
-
-                        <h3 class="font-weight-light"><a href="single-post.html">Episode 04: How To Create Web Page Using Bootstrap 4</a></h3>
-                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
-
-
-                        <div class="player">
-                            <audio id="player2" preload="none" controls style="max-width: 100%">
-                                <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
-                            </audio>
-                        </div>
-                    </div>
-                </div>
 
 
             </div>
@@ -192,7 +144,7 @@
         </div>
     </div>
 </div>
-<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(/asset/images/hero_bg_1.jpg)" data-aos="fade" data-stellar-background-ratio="0.5">
+<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(/asset/images/FAQ-720x380.png)" data-aos="fade" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center justify-content-center text-center">
 
@@ -203,7 +155,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Đặt câu hỏi ở đây!" aria-label="Enter Email" aria-describedby="button-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="button-addon2">Send</button>
+                            <button class="btn btn-primary" type="button" id="button-addon2"><strong>Gửi</strong></button>
                         </div>
                     </div>
                 </form>
