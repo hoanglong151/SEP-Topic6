@@ -1,6 +1,6 @@
 html {
     scroll-behavior: smooth;
-    font-family: "Oxygen"
+    /*font-family: 'Oxygen', sans-serif;*/
 }
 .flex{
     width: 100% !important
@@ -39,4 +39,19 @@ html {
 .mejs__overlay-button,
 .mejs__controls mejs__offscreen {
     display: none !important;
+}
+.ln-text {
+    margin-bottom:20px
+}
+.bx-eff {
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%) !important;
+    border-radius:10px;
+
+}
+.col-bg {
+    background-color: #42826D;
+    text-align:center;
+}
+#zoom:hover {
+    transform: scale(1.1);
 }
