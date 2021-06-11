@@ -429,15 +429,12 @@
     <Content Include="Models\Models.edmx.diagram">
       <DependentUpon>Models.edmx</DependentUpon>
     </Content>
-<<<<<<< HEAD
     <Content Include="fonts\Oxygen-Bold.ttf" />
     <Content Include="fonts\Oxygen-Light.ttf" />
     <Content Include="fonts\Oxygen-Regular.ttf" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Students\Index.cshtml" />
-=======
->>>>>>> Login
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
