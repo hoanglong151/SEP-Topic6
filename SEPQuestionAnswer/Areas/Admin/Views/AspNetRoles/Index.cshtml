@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SEPQuestionAnswer.Models.AspNetRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">  
+    <tr>
+        
+        <th>
+            <h1>BCN khoa</h1>
+            <h3>Email</h3>
+        </th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                foreach (var user in item.AspNetUsers)
+                {
+                    if(item.Name == "BCN")
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+                            <td>
+                                <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+</table>
+<table class="table">
+    <tr>
+        <th>
+            Danh sách quyền
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a> |
+            @Html.ActionLink("Xoá", "Delete", new { id=item.Id })        
+        </td>
+    </tr>
+}
+
+</table>

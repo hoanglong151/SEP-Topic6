@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using SEPQuestionAnswer.Models;
+using Microsoft.Owin.Security.VanLang;
 
 namespace SEPQuestionAnswer
 {
@@ -63,6 +64,7 @@ namespace SEPQuestionAnswer
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+            app.UseVanLangAuthentication("https://fitlogin.vanlanguni.edu.vn/LoginManagement");
         }
     }
 }
