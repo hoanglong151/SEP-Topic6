@@ -8,8 +8,16 @@
         <li class="has-children">
             @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             <ul class="dropdown arrow-top">
-                <li><a href="#">Quản Lý</a></li>
+                @if (this.User.IsInRole("BCN"))
+                {
+                    <li><a href="@Url.Action("Index","AspNetRoles",new { Area = "Admin"})">Quản Lý</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                }
+                else
+                {
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                }
+
             </ul>
         </li>
     </ul>
