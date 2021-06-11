@@ -1,0 +1,29 @@
+﻿@model PagedList.IPagedList<SEPQuestionAnswer.Models.Student>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>               
+            </td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page}))
