@@ -49,8 +49,13 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult Create(string roleId, string userId)
         {
             AspNetRole role = db.AspNetRoles.Find(roleId);
-            AspNetUser user = db.AspNetUsers.Find(userId);
+            AspNetUser user = db.AspNetUsers.Find(userId);           
             role.AspNetUsers.Add(user);
+
+            Student student = new Student();
+            student.Email = user.Email;
+            db.Students.Add(student);
+
             db.Entry(role).State = EntityState.Modified;
             db.SaveChanges();
 
