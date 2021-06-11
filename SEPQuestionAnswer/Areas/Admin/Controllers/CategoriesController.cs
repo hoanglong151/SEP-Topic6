@@ -26,7 +26,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             if (category.CategoryName == null)
             {
                 ModelState.AddModelError("CategoryName", "Điền tên danh mục");
-            }else if (category.CategoryName.Trim() == "")
+            }
+            if (category.CategoryName == " ")
             {
                 ModelState.AddModelError("CategoryName", "Tên danh muc không hợp lệ");
             }
@@ -58,12 +59,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Category category = db.Categories.Find(id);
             if (category == null)
             {

@@ -5,6 +5,7 @@ using SEPQuestionAnswer.Areas.Admin.Controllers;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 
 namespace SEPQuestionAnswer.Tests.Controllers
 {
@@ -33,83 +34,83 @@ namespace SEPQuestionAnswer.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestCreate()
+        public void TestCreateP()
         {
-            Random rd = new Random();
-            //In case the category name is null
-            Category category = new Category
+            var rand = new Random();
+            var cate = new Category
             {
-                ID = rd.Next(),
-                CategoryName = null,
-                StatusCategory_ID = rd.Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count())
+                CategoryName = rand.NextDouble().ToString(),
+                StatusCategory_ID = rand.Next(2, 3)
             };
-            var result = controller.Create(category) as ViewResult;
-            Assert.AreEqual("Điền tên danh mục", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
-          
-            //In case the category name is space
-            Category category1 = new Category
+
+            var controller = new CategoriesController();
+
+            using (var scope = new TransactionScope())
             {
-                ID = rd.Next(),
-                CategoryName = "   ",
-                StatusCategory_ID = rd.Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count())
-            };
-            var result1 = controller.Create(category1) as ViewResult;
-            Assert.AreEqual("Tên danh muc không hợp lệ", controller.ModelState["CategoryName"].Errors[1].ErrorMessage);
+                var result = controller.Create(cate) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
 
+            cate.CategoryName = null;
+            controller.ModelState.Clear();
 
-            //Testing create category succesfully
-            Category category2 = new Category
-            {
-                ID = rd.Next(),
-                CategoryName = rd.NextDouble().ToString(),
-                StatusCategory_ID = rd.Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count())
-            };           
-            var result2 = controller.Create(category2) as ViewResult;
-            Assert.IsNotNull(result2);                       
-        }
-
-        [TestMethod]
-        public void TestEditView()
-        {
-            var id = new Random().Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count());
-            var result = controller.Edit(id) as ViewResult;
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void TestEdit()
-        {
-            Random rd = new Random();
-            //In case the category name is null
-            Category category = new Category
-            {
-                ID = rd.Next(),
-                CategoryName = null,
-                StatusCategory_ID = rd.Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count())
-            };
-            var result = controller.Edit(category) as ViewResult;
-            Assert.AreEqual("Điền tên danh mục", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
-
-            //In case the category name is space
-            Category category1 = new Category
-            {
-                ID = rd.Next(),
-                CategoryName = "   ",
-                StatusCategory_ID = rd.Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count())
-            };
-            var result1 = controller.Edit(category1) as ViewResult;
-            Assert.AreEqual("Tên danh muc không hợp lệ", controller.ModelState["CategoryName"].Errors[1].ErrorMessage);
-
-
-            //Testing create category succesfully
-            Category category2 = new Category
-            {
-                ID = rd.Next(),
-                CategoryName = rd.NextDouble().ToString(),
-                StatusCategory_ID = rd.Next(db.Categories.FirstOrDefault(p => p.ID > 0).ID, db.StatusCategories.Count())
-            };
-            var result2 = controller.Edit(category2) as ViewResult;
+            var result2 = controller.Create(cate) as ViewResult;
             Assert.IsNotNull(result2);
+            Assert.AreEqual("Điền tên danh mục", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+
+            cate.CategoryName = " ";
+            controller.ModelState.Clear();
+            var result3 = controller.Create(cate) as ViewResult;
+            Assert.IsNotNull(result3);
+            Assert.AreEqual("Tên danh muc không hợp lệ", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void TestEditG()
+        {
+            var db = new SEP24Team10Entities();
+            var controller = new CategoriesController();
+            var result0 = controller.Edit(0) as HttpNotFoundResult;
+            Assert.IsNotNull(result0);
+            var categories = db.Categories.FirstOrDefault();
+            var result = controller.Edit(categories.ID) as ViewResult;
+            Assert.IsNotNull(result);
+
+            var model = result.Model as Category;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(model.CategoryName, categories.CategoryName);
+            Assert.AreEqual(model.StatusCategory_ID, categories.StatusCategory_ID);
+        }
+
+        [TestMethod]
+        public void TestEditP()
+        {
+            var db = new SEP24Team10Entities();
+            var cate = db.Categories.AsNoTracking().First();
+            var rand = new Random();
+            cate.CategoryName = rand.NextDouble().ToString();
+            cate.StatusCategory_ID = rand.Next(2, 3);
+
+            var controller = new CategoriesController();
+
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.Edit(cate) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+                var entity = db.Categories.Find(cate.ID);
+                Assert.IsNotNull(entity);
+                Assert.AreEqual(entity.CategoryName, cate.CategoryName);
+                Assert.AreEqual(entity.StatusCategory_ID, cate.StatusCategory_ID);
+            }
+
+            cate.CategoryName = null;
+            controller.ModelState.Clear();
+
+            var result2 = controller.Edit(cate) as ViewResult;
+            Assert.IsNotNull(result2);
+            Assert.AreEqual("Điền tên danh mục", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
         }
     }
 }

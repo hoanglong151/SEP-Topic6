@@ -18,7 +18,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
         {           
             var list = controller.Index(1) as ViewResult;
             Assert.IsNotNull(list);
-            Assert.IsNotNull(list.Model as PagedList<Student>);           
+            Assert.IsNotNull(list.Model as PagedList<Student>);
         }
     }
 }
