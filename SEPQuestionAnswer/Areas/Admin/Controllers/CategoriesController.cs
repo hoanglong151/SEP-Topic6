@@ -23,13 +23,14 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
 
         private void CheckValidate(Category category)
         {
-            if (category.CategoryName == null)
+            var check = db.Categories.FirstOrDefault(c => c.CategoryName == category.CategoryName);
+            if (string.IsNullOrWhiteSpace(category.CategoryName))
             {
-                ModelState.AddModelError("CategoryName", "Điền tên danh mục");
+                ModelState.AddModelError("CategoryName", "Tên danh muc không được để trống hoặc nhập ký tự khoảng trắng");
             }
-            if (category.CategoryName == " ")
+            if (check != null)
             {
-                ModelState.AddModelError("CategoryName", "Tên danh muc không hợp lệ");
+                ModelState.AddModelError("CategoryName", "Tên danh muc đã tồn tại");
             }
         }
         // GET: Admin/Categories/Create
@@ -47,6 +48,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult Create(Category category)
         {
             CheckValidate(category);
+            var check = db.Categories.FirstOrDefault(c => c.CategoryName == category.CategoryName);
             if (ModelState.IsValid)
             {
                 db.Categories.Add(category);
