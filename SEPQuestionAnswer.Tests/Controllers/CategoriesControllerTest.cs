@@ -52,18 +52,19 @@ namespace SEPQuestionAnswer.Tests.Controllers
                 Assert.AreEqual("Index", result.RouteValues["action"]);
             }
 
+            cate.CategoryName = "Thôi học";
+            var check = db.Categories.FirstOrDefault(c => c.CategoryName == cate.CategoryName);
+            var result3 = controller.Create(cate) as ViewResult;
+            Assert.IsNotNull(result3);
+            Assert.AreEqual("Tên danh muc đã tồn tại", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+            
+
             cate.CategoryName = null;
             controller.ModelState.Clear();
 
             var result2 = controller.Create(cate) as ViewResult;
             Assert.IsNotNull(result2);
-            Assert.AreEqual("Điền tên danh mục", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
-
-            cate.CategoryName = " ";
-            controller.ModelState.Clear();
-            var result3 = controller.Create(cate) as ViewResult;
-            Assert.IsNotNull(result3);
-            Assert.AreEqual("Tên danh muc không hợp lệ", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Tên danh muc không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -105,12 +106,18 @@ namespace SEPQuestionAnswer.Tests.Controllers
                 Assert.AreEqual(entity.StatusCategory_ID, cate.StatusCategory_ID);
             }
 
+            cate.CategoryName = "Thôi học";
+            var check = db.Categories.FirstOrDefault(c => c.CategoryName == cate.CategoryName);
+            var result3 = controller.Create(cate) as ViewResult;
+            Assert.IsNotNull(result3);
+            Assert.AreEqual("Tên danh muc đã tồn tại", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+
             cate.CategoryName = null;
             controller.ModelState.Clear();
 
             var result2 = controller.Edit(cate) as ViewResult;
             Assert.IsNotNull(result2);
-            Assert.AreEqual("Điền tên danh mục", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Tên danh muc không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
         }
     }
 }
