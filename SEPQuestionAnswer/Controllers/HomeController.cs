@@ -36,5 +36,10 @@ namespace SEPQuestionAnswer.Controllers
             ViewBag.Message = "Your Search page.";
             return View();
         }
+
+        public ActionResult Deny()
+        {
+            return View();
+        }
     }
 }

@@ -79,7 +79,15 @@ namespace SEPQuestionAnswer.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                    if(UserManager.IsInRole(userId, "Student"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }else if(UserManager.IsInRole(userId, "BCN"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return RedirectToAction("Deny", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -333,7 +341,16 @@ namespace SEPQuestionAnswer.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                    if (UserManager.IsInRole(userId, "Student"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if (UserManager.IsInRole(userId, "BCN"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return RedirectToAction("Deny", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
