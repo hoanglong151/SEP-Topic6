@@ -82,10 +82,10 @@ namespace SEPQuestionAnswer.Controllers
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     if(UserManager.IsInRole(userId, "Student"))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToLocal(returnUrl);
                     }else if(UserManager.IsInRole(userId, "BCN"))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToLocal(returnUrl);
                     }
                     return RedirectToAction("Deny", "Home");
                 case SignInStatus.LockedOut:
@@ -344,11 +344,11 @@ namespace SEPQuestionAnswer.Controllers
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     if (UserManager.IsInRole(userId, "Student"))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToLocal(returnUrl);
                     }
                     else if (UserManager.IsInRole(userId, "BCN"))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToLocal(returnUrl);
                     }
                     return RedirectToAction("Deny", "Home");
                 case SignInStatus.LockedOut:

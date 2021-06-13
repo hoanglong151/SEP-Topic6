@@ -15,6 +15,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
         // GET: Admin/Categories
+        [Authorize(Roles = "BCN")]
         public ActionResult Index()
         {
             var categories = db.Categories.Include(c => c.StatusCategory);
@@ -34,6 +35,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             }
         }
         // GET: Admin/Categories/Create
+        [Authorize(Roles = "BCN")]
         public ActionResult Create()
         {
             ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName");
@@ -61,6 +63,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories/Edit/5
+        [Authorize(Roles = "BCN")]
         public ActionResult Edit(int id)
         {
             Category category = db.Categories.Find(id);

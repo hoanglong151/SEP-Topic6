@@ -15,6 +15,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
         // GET: Admin/AspNetRoles
+        [Authorize(Roles = "BCN")]
         public ActionResult Index()
         {
             return View(db.AspNetRoles.ToList());
@@ -35,6 +36,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             return View(aspNetRole);
         }
         // GET: Admin/AspNetRoles/Create
+        [Authorize(Roles = "BCN")]
         public ActionResult Create(string roleId)
         {           
             ViewBag.User = new SelectList(db.AspNetUsers, "ID", "UserName");
@@ -94,6 +96,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AspNetRoles/Delete/5
+        [Authorize(Roles = "BCN")]
         public ActionResult Delete(string roleId, string userId)
         {
             ViewBag.Role = db.AspNetRoles.Find(roleId).Name;

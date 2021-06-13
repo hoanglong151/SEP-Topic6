@@ -14,6 +14,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
+        [Authorize(Roles = "BCN")]
         // GET: Admin/AspNetRoles
         public ActionResult Index()
         {
@@ -35,6 +36,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             return View(aspNetRole);
         }
 
+        [Authorize(Roles = "BCN")]
         // GET: Admin/AspNetRoles/Create
         public ActionResult Create()
         {
@@ -45,7 +47,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public ActionResult Create(AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
@@ -91,6 +93,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AspNetRoles/Delete/5
+        [Authorize(Roles = "BCN")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -107,7 +110,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
 
         // POST: Admin/AspNetRoles/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public ActionResult DeleteConfirmed(string id)
         {
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);

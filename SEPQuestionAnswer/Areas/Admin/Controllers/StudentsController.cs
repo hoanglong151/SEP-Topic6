@@ -11,6 +11,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
         // GET: Admin/Students
+        [Authorize(Roles = "BCN")]
         public ActionResult Index(int? page)
         {
             int sizePage = 10;
