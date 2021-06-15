@@ -1,0 +1,75 @@
+﻿@model SEPQuestionAnswer.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Questioner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Questioner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Respondent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Respondent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AskQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AskQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountView)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountView)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusQuestion.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusQuestion.StatusName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    <a href="@Url.Action("Delete", new { id = Model.ID})">Delete</a> |
+    @Html.ActionLink("Back to List", "Index")
+</p>

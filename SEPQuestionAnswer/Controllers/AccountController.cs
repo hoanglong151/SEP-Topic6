@@ -87,7 +87,11 @@ namespace SEPQuestionAnswer.Controllers
                     {
                         return RedirectToLocal(returnUrl);
                     }
-                    return RedirectToAction("Deny", "Home");
+                    else
+                    {
+                        LogOff();
+                        return RedirectToAction("Deny", "Home");
+                    }                    
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -350,7 +354,11 @@ namespace SEPQuestionAnswer.Controllers
                     {
                         return RedirectToLocal(returnUrl);
                     }
-                    return RedirectToAction("Deny", "Home");
+                    else
+                    {
+                        LogOff();
+                        return RedirectToAction("Deny", "Home");
+                    }                   
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
