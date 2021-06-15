@@ -26,7 +26,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         {
             if (string.IsNullOrWhiteSpace(category.CategoryName))
             {
-                ModelState.AddModelError("CategoryName", "Tên danh muc không được để trống hoặc nhập ký tự khoảng trắng");
+                ModelState.AddModelError("CategoryName", "Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng");
             }
         }
 
@@ -35,11 +35,11 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             var check = db.Categories.FirstOrDefault(c => c.CategoryName == category.CategoryName);
             if (string.IsNullOrWhiteSpace(category.CategoryName))
             {
-                ModelState.AddModelError("CategoryName", "Tên danh muc không được để trống hoặc nhập ký tự khoảng trắng");
+                ModelState.AddModelError("CategoryName", "Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng");
             }
             if (check != null)
             {
-                ModelState.AddModelError("CategoryName", "Tên danh muc đã tồn tại");
+                ModelState.AddModelError("CategoryName", "Tên danh mục đã tồn tại");
             }
         }
         // GET: Admin/Categories/Create
@@ -105,7 +105,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("CategoryName", "Tên danh muc đã tồn tại");
+                        ModelState.AddModelError("CategoryName", "Tên danh mục đã tồn tại");
                     }
                 }
                 else
