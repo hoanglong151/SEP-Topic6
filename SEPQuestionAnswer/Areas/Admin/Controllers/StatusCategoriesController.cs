@@ -21,7 +21,15 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             return View(db.StatusCategories.ToList());
         }
 
-        private void CheckValidate(StatusCategory statusCategory)
+        private void CheckValidateEdit(StatusCategory statusCategory)
+        {
+            if (string.IsNullOrWhiteSpace(statusCategory.StatusName))
+            {
+                ModelState.AddModelError("StatusName", "Tên trạng thái không được để trống hoặc nhập kí tự khoảng trắng");
+            }
+        }
+
+        private void CheckValidateCreate(StatusCategory statusCategory)
         {
             var check = db.StatusCategories.FirstOrDefault(s => s.StatusName == statusCategory.StatusName);
             if (string.IsNullOrWhiteSpace(statusCategory.StatusName))
@@ -59,7 +67,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,StatusName")] StatusCategory statusCategory)
         {
-            CheckValidate(statusCategory);
+            CheckValidateCreate(statusCategory);
             var check = db.StatusCategories.FirstOrDefault(s => s.StatusName == statusCategory.StatusName);
             if (ModelState.IsValid)
             {
@@ -90,12 +98,30 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,StatusName")] StatusCategory statusCategory)
         {
-            CheckValidate(statusCategory);
+            CheckValidateEdit(statusCategory);
             if (ModelState.IsValid)
             {
-                db.Entry(statusCategory).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var check = db.StatusCategories.Where(c => c.StatusName == statusCategory.StatusName).Count();
+                if (check >= 1)
+                {
+                    var check1 = db.StatusCategories.AsNoTracking().FirstOrDefault(c => c.StatusName == statusCategory.StatusName && c.ID == statusCategory.ID);
+                    if (check1 != null)
+                    {
+                        db.Entry(statusCategory).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("StatusName", "Tên trạng thái đã tồn tại");
+                    }
+                }
+                else
+                {
+                    db.Entry(statusCategory).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             return View(statusCategory);
         }
