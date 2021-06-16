@@ -65,6 +65,14 @@ namespace SEPQuestionAnswer.Tests.Controllers
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
             }
+
+
+            status.StatusName = "Hoạt động";
+            var check = db.StatusCategories.AsNoTracking().FirstOrDefault(s => s.StatusName == status.StatusName);
+            var result3 = controller.Create(status) as ViewResult;
+            Assert.AreEqual("Tên trạng thái đã tồn tại", controller.ModelState["StatusName"].Errors[0].ErrorMessage);
+            Assert.IsNotNull(result3);
+
             status.StatusName = null;
             controller.ModelState.Clear();
 
@@ -72,12 +80,6 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.IsNotNull(result1);
             Assert.AreEqual("Tên trạng thái không được để trống hoặc nhập kí tự khoảng trắng", controller.ModelState["StatusName"].Errors[0].ErrorMessage);
 
-            status.StatusName = "Hoạt động";
-            controller.ModelState.Clear();
-            var check = db.StatusCategories.FirstOrDefault(s => s.StatusName == status.StatusName);
-            var result3 = controller.Create(status) as ViewResult;
-            Assert.AreEqual("Tên trạng thái đã tồn tại", controller.ModelState["StatusName"].Errors[0].ErrorMessage);
-            Assert.IsNotNull(result3);
         }
 
         [TestMethod]
@@ -105,18 +107,31 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var controller = new StatusCategoriesController();
             using (var scope = new TransactionScope())
             {
+                status.StatusName = "Hoạt động";
+                var result = controller.Edit(status) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+
+            status.StatusName = rand.Next().ToString();
+            controller.ModelState.Clear();
+            using (var scope = new TransactionScope())
+            {
                 status.StatusName = rand.Next().ToString();
                 var result = controller.Edit(status) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
             }
 
-            status.StatusName = "Hoạt động";
-            controller.ModelState.Clear();
-            var check = db.StatusCategories.AsNoTracking().FirstOrDefault(s => s.StatusName == status.StatusName);
-            var result3 = controller.Edit(status) as ViewResult;
-            Assert.AreEqual("Tên trạng thái đã tồn tại", controller.ModelState["StatusName"].Errors[0].ErrorMessage);
-            Assert.IsNotNull(result3);
+
+            status = db.StatusCategories.AsNoTracking().OrderByDescending(x => x.ID).First();
+            using (var scope = new TransactionScope())
+            {
+                status.StatusName = "Hoạt động";
+                var result = controller.Edit(status) as ViewResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Tên trạng thái đã tồn tại", controller.ModelState["StatusName"].Errors[0].ErrorMessage);
+            }
 
             status.StatusName = null;
             controller.ModelState.Clear();

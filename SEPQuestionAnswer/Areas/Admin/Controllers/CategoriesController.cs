@@ -22,16 +22,24 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             return View(categories.ToList());
         }
 
-        private void CheckValidate(Category category)
+        private void CheckValidateEdit(Category category)
+        {
+            if (string.IsNullOrWhiteSpace(category.CategoryName))
+            {
+                ModelState.AddModelError("CategoryName", "Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng");
+            }
+        }
+
+        private void CheckValidateCreate(Category category)
         {
             var check = db.Categories.FirstOrDefault(c => c.CategoryName == category.CategoryName);
             if (string.IsNullOrWhiteSpace(category.CategoryName))
             {
-                ModelState.AddModelError("CategoryName", "Tên danh muc không được để trống hoặc nhập ký tự khoảng trắng");
+                ModelState.AddModelError("CategoryName", "Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng");
             }
             if (check != null)
             {
-                ModelState.AddModelError("CategoryName", "Tên danh muc đã tồn tại");
+                ModelState.AddModelError("CategoryName", "Tên danh mục đã tồn tại");
             }
         }
         // GET: Admin/Categories/Create
@@ -49,7 +57,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
         {
-            CheckValidate(category);
+            CheckValidateCreate(category);
             var check = db.Categories.FirstOrDefault(c => c.CategoryName == category.CategoryName);
             if (ModelState.IsValid)
             {
@@ -82,12 +90,31 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
         {
-            CheckValidate(category);
+            CheckValidateEdit(category);
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var check = db.Categories.Where(c => c.CategoryName == category.CategoryName).Count();
+                if (check >= 1)
+                {
+                    var check1 = db.Categories.AsNoTracking().FirstOrDefault(c => c.CategoryName == category.CategoryName && c.ID == category.ID);
+                    if (check1 != null)
+                    {
+                        db.Entry(category).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("CategoryName", "Tên danh mục đã tồn tại");
+                    }
+                }
+                else
+                {
+                    db.Entry(category).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
             }
             ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName", category.StatusCategory_ID);
             return View(category);

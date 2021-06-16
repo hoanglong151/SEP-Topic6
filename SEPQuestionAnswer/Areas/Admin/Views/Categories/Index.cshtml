@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<SEPQuestionAnswer.Models.Category>
-@{ 
-    int count = Model.Count();
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+int count = Model.Count();
 }
 
 <div id="page-wrapper">
