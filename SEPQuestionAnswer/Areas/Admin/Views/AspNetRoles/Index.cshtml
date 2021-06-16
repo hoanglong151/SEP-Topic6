@@ -4,54 +4,115 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Thêm Mới", "Create")
-</p>
-<table class="table">  
-    <tr>
-        
-        <th>
-            <h1>BCN khoa</h1>
-            <h3>Email</h3>
-        </th>
-    </tr>
-    @foreach(var item in Model)
-            {
-                foreach (var user in item.AspNetUsers)
-                {
-                    if(item.Name == "BCN")
-                    {
-                        <tr>
-                            <td>@user.Email</td>
-                            <td>
-                                <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
-                            </td>
-                        </tr>
-                    }
-                }
-            }
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+            Wellcome Admin <small>Student List</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="~/Areas/Admin/Views/AspNetRoles/Index.cshtml">Home</a></li>
+            <li>@Html.ActionLink("Thêm Mới", "Create")</li>
+        </ol>
 
-</table>
-<table class="table">
-    <tr>
-        <th>
-            Danh sách quyền
-        </th>
-        <th></th>
-    </tr>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a> |
-            @Html.ActionLink("Xoá", "Delete", new { id=item.Id })        
-        </td>
-    </tr>
-}
+    <div id="page-inner">
 
-</table>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Studen List
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        foreach (var user in item.AspNetUsers)
+                                        {
+                                            if (item.Name == "BCN")
+                                            {
+                                                <tr>
+                                                    <td>@user.Email</td>
+                                                    <td>
+                                                        <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+        @*<table class="table">
+            <tr>
+                <th>
+                    Danh sách quyền
+                </th>
+                <th></th>
+            </tr>*@
+    @*<div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                Wellcome Admin <small>Student List</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+            </ol>
+
+        </div>*@
+
+        <div id="page-inner">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">                       
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Danh sách quyền</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a> |
+                                                    @Html.ActionLink("Xoá", "Delete", new { id = item.Id })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+
+            @*</table>*@
