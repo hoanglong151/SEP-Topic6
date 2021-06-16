@@ -51,17 +51,21 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult Create(string roleId, string userId)
         {
             AspNetRole role = db.AspNetRoles.Find(roleId);
-            AspNetUser user = db.AspNetUsers.Find(userId);           
-            role.AspNetUsers.Add(user);
+            AspNetUser user = db.AspNetUsers.Find(userId);
+            var check = role.AspNetUsers.Where(c => c.Email == user.Email).Count();
+            if(check == 0)
+            {
+                role.AspNetUsers.Add(user);
 
-            Student student = new Student();
-            student.Email = user.Email;
-            db.Students.Add(student);
+                Student student = new Student();
+                student.Email = user.Email;
+                db.Students.Add(student);
 
-            db.Entry(role).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "AspNetRoles");
+                db.Entry(role).State = EntityState.Modified;
+                db.SaveChanges();
+                return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+            }
+            return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
         }
 
         // GET: Admin/AspNetRoles/Edit/5
