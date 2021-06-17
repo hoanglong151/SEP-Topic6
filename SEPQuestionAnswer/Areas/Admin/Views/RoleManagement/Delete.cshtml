@@ -8,27 +8,29 @@
 }
 
 @*<h2>Delete</h2>*@
+<div id="page-wrapper">
+    <h3>Bạn có muốn gỡ quyền @user khỏi @role?</h3>
+    <div>
+        <hr />
+        @*<dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-<h3>Bạn có muốn gỡ quyền @user khỏi @role?</h3>
-<div>   
-    <hr />
-    @*<dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            </dl>*@
 
-    </dl>*@
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Xác nhận" class="btn btn-default" /> |
-        <a href="@Url.Action("Index","AspNetRoles")">Hủy</a>
+            <div class="form-actions no-color">
+                <input type="submit" value="Xác nhận" class="btn btn-default" /> |
+                <a href="@Url.Action("Index","AspNetRoles")">Hủy</a>
+            </div>
+        }
     </div>
-    }
 </div>

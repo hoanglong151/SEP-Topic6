@@ -20,22 +20,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         {
             return View(db.AspNetRoles.ToList());
         }
-
-        // GET: Admin/AspNetRoles/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            if (aspNetRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetRole);
-        }
-
+        
         [Authorize(Roles = "BCN")]
         // GET: Admin/AspNetRoles/Create
         public ActionResult Create()
@@ -81,7 +66,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
+        public ActionResult Edit(AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {
