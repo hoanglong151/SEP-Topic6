@@ -15,7 +15,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
         // GET: Admin/Categories
-        [Authorize(Roles = "BCN")]
+        //[Authorize(Roles = "BCN")]
         public ActionResult Index()
         {
             var categories = db.Categories.Include(c => c.StatusCategory);

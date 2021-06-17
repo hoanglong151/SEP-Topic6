@@ -2,36 +2,61 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+int count = Model.Count();
 }
 
-<h2>Index</h2>
+<div id="page-wrapper">
+    <div class="header">
+        <h1 class="page-header">
+            Wellcome Admin <small>Catagory List</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Data</li>
+        </ol>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusCategory.StatusName)
-        </th>
-        <th></th>
-    </tr>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusCategory.StatusName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID })           
-        </td>
-    </tr>
-}
+    <div id="page-inner">
 
-</table>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Catagory List
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>CategoryName</th>
+                                        <th>StatusName</th>
+                                        <th>ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for(int i = 1; i <= count; i++)
+                                    {
+                                        string cssClassName = i % 2 == 1 ? "odd" : "even";
+                                        <tr class="@cssClassName">
+                                            <td>@Model.ElementAt(i - 1).CategoryName</td>
+                                            <td>@Model.ElementAt(i - 1).StatusCategory.StatusName</td>
+                                            <td>@Model.ElementAt(i - 1).ID</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+    <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez.com</a></p></footer>
+</div>
