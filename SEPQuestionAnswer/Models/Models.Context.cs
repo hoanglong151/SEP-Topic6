@@ -25,16 +25,15 @@ namespace SEPQuestionAnswer.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Question> Questions { get; set; }
-        public virtual DbSet<StatusCategory> StatusCategories { get; set; }
-        public virtual DbSet<StatusQuestion> StatusQuestions { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<StatusQuestion> StatusQuestions { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

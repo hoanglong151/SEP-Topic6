@@ -2,33 +2,37 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
+<div class="container pt-5 hero" style="margin-top: 20px">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
     <div class="form-horizontal">
         <h4>Category</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
         <div class="form-group">
-            @Html.LabelFor(model => model.StatusCategory_ID, "StatusCategory_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Tên danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("StatusCategory_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StatusCategory_ID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Disable", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Status)
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -38,12 +42,9 @@
             </div>
         </div>
     </div>
-}
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -21,10 +21,9 @@ namespace SEPQuestionAnswer.Models
         }
     
         public int ID { get; set; }
-        public int StatusCategory_ID { get; set; }
+        public bool Status { get; set; }
         public string CategoryName { get; set; }
     
-        public virtual StatusCategory StatusCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Questions { get; set; }
     }
