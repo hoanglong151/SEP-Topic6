@@ -39,8 +39,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var rand = new Random();
             var cate = new Category
             {
-                CategoryName = rand.NextDouble().ToString(),
-                StatusCategory_ID = 1
+                CategoryName = rand.NextDouble().ToString()
             };
 
             var controller = new CategoriesController();
@@ -81,7 +80,6 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var model = result.Model as Category;
             Assert.IsNotNull(model);
             Assert.AreEqual(model.CategoryName, categories.CategoryName);
-            Assert.AreEqual(model.StatusCategory_ID, categories.StatusCategory_ID);
         }
 
         [TestMethod]

@@ -18,8 +18,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         //[Authorize(Roles = "BCN")]
         public ActionResult Index()
         {
-            var categories = db.Categories.Include(c => c.StatusCategory);
-            return View(categories.ToList());
+            var categories = db.Categories.ToList();
+            return View(categories);
         }
 
         private void CheckValidateEdit(Category category)
@@ -46,7 +46,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [Authorize(Roles = "BCN")]
         public ActionResult Create()
         {
-            ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName");
             return View();
         }
 
@@ -65,8 +64,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName", category.StatusCategory_ID);
             return View(category);
         }
 
@@ -79,7 +76,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName", category.StatusCategory_ID);
             return View(category);
         }
 
@@ -116,7 +112,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                 }
 
             }
-            ViewBag.StatusCategory_ID = new SelectList(db.StatusCategories, "ID", "StatusName", category.StatusCategory_ID);
             return View(category);
         }
 

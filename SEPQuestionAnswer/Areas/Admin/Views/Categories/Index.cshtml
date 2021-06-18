@@ -44,7 +44,6 @@ int count = Model.Count();
                                         string cssClassName = i % 2 == 1 ? "odd" : "even";
                                         <tr class="@cssClassName">
                                             <td>@Model.ElementAt(i - 1).CategoryName</td>
-                                            <td>@Model.ElementAt(i - 1).StatusCategory.StatusName</td>
                                             <td>@Model.ElementAt(i - 1).ID</td>
                                         </tr>
                                     }

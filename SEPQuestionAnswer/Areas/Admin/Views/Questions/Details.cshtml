@@ -1,0 +1,73 @@
+﻿@model SEPQuestionAnswer.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tình Trạng Câu Hỏi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            Danh Mục
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+        <dt>
+            Người Hỏi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Questioner)
+        </dd>
+
+        <dt>
+            Người Trả Lời
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Respondent)
+        </dd>
+
+        <dt>
+            Câu Hỏi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AskQuestion)
+        </dd>
+
+        <dt>
+            Câu Trả Lời
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer)
+        </dd>
+
+        <dt>
+            Lượt Xem
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountView)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
