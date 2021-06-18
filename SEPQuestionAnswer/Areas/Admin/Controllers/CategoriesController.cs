@@ -33,6 +33,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
         {
+            Validation(category);
             if (ModelState.IsValid)
             {
                 db.Categories.Add(category);
@@ -65,6 +66,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
         {
+            Validation(category);
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;
@@ -81,7 +83,37 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
+        public void Validation(Category category)
+        {
+            var condition = db.Categories.Where(m => m.CategoryName.Equals(category.CategoryName));
+
+            if(HttpContext.Request.Url.AbsolutePath == "/Admin/Categories/Create")
+            {
+                if (string.IsNullOrWhiteSpace(category.CategoryName))
+                {
+                    ModelState.AddModelError("CategoryName", "Thông tin không hợp lệ!");
+                }
+
+                if (condition.Count() >= 1)
+                {
+                    ModelState.AddModelError("CategoryName", "Tên đã tồn tại");
+                }
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(category.CategoryName))
+                {
+                    ModelState.AddModelError("CategoryName", "Thông tin không hợp lệ!");
+                }
+
+                if (condition.Count() >= 1)
+                {
+                    ModelState.AddModelError("CategoryName", "Vui lòng nhập tên mới hoặc tên đã tồn tại trong hệ thống");
+                }
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
