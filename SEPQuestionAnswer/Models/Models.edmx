@@ -79,20 +79,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Status_ID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Category_ID" Type="int" Nullable="false" />
           <Property Name="Questioner" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Respondent" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AskQuestion" Type="nvarchar(max)" />
           <Property Name="Answer" Type="nvarchar(max)" />
           <Property Name="CountView" Type="int" />
-        </EntityType>
-        <EntityType Name="StatusQuestion">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -179,18 +172,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Question_StatusQuestion">
-          <End Role="StatusQuestion" Type="Self.StatusQuestion" Multiplicity="1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusQuestion">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="Status_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SEP24Team10ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -200,7 +181,6 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StatusQuestion" EntityType="Self.StatusQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -223,10 +203,6 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
-          <AssociationSet Name="FK_Question_StatusQuestion" Association="Self.FK_Question_StatusQuestion">
-            <End Role="StatusQuestion" EntitySet="StatusQuestion" />
-            <End Role="Question" EntitySet="Question" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -240,7 +216,6 @@
           <EntitySet Name="AspNetUsers" EntityType="SEP24Team10Model.AspNetUser" />
           <EntitySet Name="Categories" EntityType="SEP24Team10Model.Category" />
           <EntitySet Name="Questions" EntityType="SEP24Team10Model.Question" />
-          <EntitySet Name="StatusQuestions" EntityType="SEP24Team10Model.StatusQuestion" />
           <EntitySet Name="Students" EntityType="SEP24Team10Model.Student" />
           <EntitySet Name="sysdiagrams" EntityType="SEP24Team10Model.sysdiagram" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SEP24Team10Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -253,10 +228,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Question_Category" Association="SEP24Team10Model.FK_Question_Category">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Question_StatusQuestion" Association="SEP24Team10Model.FK_Question_StatusQuestion">
-            <End Role="StatusQuestion" EntitySet="StatusQuestions" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="SEP24Team10Model.AspNetUserRoles">
@@ -337,7 +308,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status_ID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Category_ID" Type="Int32" Nullable="false" />
           <Property Name="Questioner" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Respondent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -345,15 +316,6 @@
           <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CountView" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
-          <NavigationProperty Name="StatusQuestion" Relationship="SEP24Team10Model.FK_Question_StatusQuestion" FromRole="Question" ToRole="StatusQuestion" />
-        </EntityType>
-        <EntityType Name="StatusQuestion">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Questions" Relationship="SEP24Team10Model.FK_Question_StatusQuestion" FromRole="StatusQuestion" ToRole="Question" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -409,18 +371,6 @@
             </Principal>
             <Dependent Role="Question">
               <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Question_StatusQuestion">
-          <End Type="SEP24Team10Model.StatusQuestion" Role="StatusQuestion" Multiplicity="1" />
-          <End Type="SEP24Team10Model.Question" Role="Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusQuestion">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="Status_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -507,15 +457,7 @@
                 <ScalarProperty Name="Respondent" ColumnName="Respondent" />
                 <ScalarProperty Name="Questioner" ColumnName="Questioner" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StatusQuestions">
-            <EntityTypeMapping TypeName="SEP24Team10Model.StatusQuestion">
-              <MappingFragment StoreEntitySet="StatusQuestion">
-                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

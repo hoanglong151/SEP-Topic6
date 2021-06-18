@@ -178,7 +178,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
@@ -227,9 +226,6 @@
     <Compile Include="Models\Question.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StatusQuestion.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -246,11 +242,6 @@
     <Content Include="Areas\Admin\Views\AspNetRoles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManagement\Create.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManagement\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
