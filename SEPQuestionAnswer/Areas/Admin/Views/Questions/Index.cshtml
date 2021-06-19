@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SEPQuestionAnswer.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Câu Hỏi
+        </th>
+        <th>
+            Câu Trả Lời
+        </th>
+        <th>
+            Người Hỏi
+        <th>
+            Người Trả Lời
+        </th>
+        <th>
+            Danh Mục
+        </th>
+
+        <th>
+            Tình Trạng Câu Hỏi
+        </th>
+        <th>
+            Lượt Xem
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AskQuestion)
+            </td>
+            <td>
+                @item.Answer.ToString().Substring(0, (item.Answer.Length > 50) ? 50 : item.Answer.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Questioner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Respondent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            @if (item.Status == "Accept")
+            {
+                <td style="color:forestgreen">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            }
+            else if (item.Status == "Pending")
+            {
+                <td style="color:red">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            }
+            else if (item.Status == "Reject")
+            {
+                <td style="color:dimgrey">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.CountView)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+

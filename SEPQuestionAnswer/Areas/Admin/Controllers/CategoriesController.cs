@@ -40,7 +40,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(category);
         }
 
