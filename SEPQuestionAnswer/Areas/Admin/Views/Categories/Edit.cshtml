@@ -2,48 +2,123 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Edit</h2>
-
-
-<div class="container pt-5 hero" style="margin-top: 20px">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Category</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.ID)
-
-            <div class="form-group">                
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.HiddenFor(model => model.Status)
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Cập Nhật Danh Mục</h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ID)
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    @Html.HiddenFor(model => model.Status)
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", @id = "text", @autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                                    <label class="form-label">Tên Danh Mục</label>
+                                </div>
+                            </div>
+                            <input id="submit1" type="submit" value="Save" class="btn btn-primary waves-effect" disabled />
+                            <a href=@Url.Action("Index","Categories") class="btn btn-primary waves-effect">Hủy</a>
+                        }
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="form-group">
-                @Html.Label("Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
-                </div>
-            </div>
+<script type="text/javascript">
+    const submit = document.getElementById('submit1');
+    const text = document.getElementById('text').value;
+    const check = document.getElementById('text');
+    check.addEventListener("input", function (e) {
+        if (e.currentTarget.value === text.toLowerCase() || e.currentTarget.value === text) {
+            console.log(e.currentTarget.value);
+            submit.disabled = true;
+        } else {
+            console.log(e.currentTarget.value);
+            submit.disabled = false;
+        }
+    });
+</script>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+
+
+
+
+
+
+@*<h2>Edit</h2>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="container pt-5 hero" style="margin-top: 20px">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Category</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID)
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.HiddenFor(model => model.Status)
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", @id = "text", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input id="submit1" type="submit" value="Save" class="btn btn-default" disabled />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
                 </div>
             </div>
         </div>
-    }
+    </section>*@
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</div>
+

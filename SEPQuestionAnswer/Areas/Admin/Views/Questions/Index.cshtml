@@ -4,84 +4,105 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Câu Hỏi
-        </th>
-        <th>
-            Câu Trả Lời
-        </th>
-        <th>
-            Người Hỏi
-        <th>
-            Người Trả Lời
-        </th>
-        <th>
-            Danh Mục
-        </th>
-
-        <th>
-            Tình Trạng Câu Hỏi
-        </th>
-        <th>
-            Lượt Xem
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AskQuestion)
-            </td>
-            <td>
-                @item.Answer.ToString().Substring(0, (item.Answer.Length > 50) ? 50 : item.Answer.Length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Questioner)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Respondent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            @if (item.Status == "Accept")
-            {
-                <td style="color:forestgreen">
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-            }
-            else if (item.Status == "Pending")
-            {
-                <td style="color:red">
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-            }
-            else if (item.Status == "Reject")
-            {
-                <td style="color:dimgrey">
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.CountView)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Danh Sách Câu Hỏi
+                        </h2>
+                        <a href=@Url.Action("Create","Questions") class="btn btn-danger" style="margin-top:15px">Tạo Câu Hỏi</a>
+                        <ul class="header-dropdown m-r--7">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Câu Hỏi</th>
+                                        <th>Câu Trả Lời</th>
+                                        <th>Người Hỏi</th>
+                                        <th>Người Trả Lời</th>
+                                        <th style="width:65px">Danh Mục</th>
+                                        <th style="width:70px">Tình Trạng</th>
+                                        <th style="width:65px">Lượt Xem</th>
+                                        <th style="width:45px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Câu Hỏi</th>
+                                        <th>Câu Trả Lời</th>
+                                        <th>Người Hỏi</th>
+                                        <th>Người Trả Lời</th>
+                                        <th>Danh Mục</th>
+                                        <th>Tình Trạng</th>
+                                        <th>Lượt Xem</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.AskQuestion.ToString().Substring(0, (item.AskQuestion.Length > 40) ? 40 : item.AskQuestion.Length)</td>
+                                            <td>@Html.Raw(!String.IsNullOrEmpty(item.Answer) ? item.Answer.Substring(0, Math.Min(item.Answer.Length, 40)) : item.Answer)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Questioner)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Respondent)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
+                                            @if (item.Status == "Accept")
+                                            {
+                                                <td style="color:forestgreen">
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </td>
+                                            }
+                                            else if (item.Status == "Pending")
+                                            {
+                                                <td style="color:red">
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </td>
+                                            }
+                                            else if (item.Status == "Reject")
+                                            {
+                                                <td style="color:dimgrey">
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </td>
+                                            }
+                                            <td>@Html.DisplayFor(modelItem => item.CountView)</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.ID})">
+                                                    <i class="fas fa-pen"></i> |
+                                                </a>
+                                                <a href="@Url.Action("Details", new { id = item.ID})">
+                                                    <i class="fas fa-info"></i> |
+                                                </a>
+                                                <a href="@Url.Action("Delete", new { id = item.ID})">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 

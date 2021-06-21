@@ -2,44 +2,148 @@
 
 @{
     ViewBag.Title = "Index";
-    
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<head>
-    <title>Quản lý</title>
-</head>
-<h2>Index</h2>
 
-<div id="page-wrapper">  
-    <table class="table">
-        <p>
-            <a href="@Url.Action("Create")" class="btn btn-default">Create</a>
-        </p>
-        <tr>
-            <th>
-                Danh mục
-            </th>
-            <th>
-                Disable
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID})) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
-                    <td>                    
-                        @Html.CheckBoxFor(modelItem => item.Status, new { onclick = "this.form.submit();" })
-                    </td>
-                    <td>                        
-                        <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
-                    </td>
-                </tr>
-            }
-            
-        }
-    </table>
-</div>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <di class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Danh Sách Danh Mục
+                        </h2>
+                        <a href=@Url.Action("Create","Categories") class="btn btn-danger" style="margin-top:15px">Tạo Danh Mục</a>
+                        <ul class="header-dropdown m-r--7">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Danh Mục</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Tên Danh Mục</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID }))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                                </td>
+                                                <td class="demo-checkbox">
+                                                    @*<label for=@item.ID></label>*@
+                                                    @*@Html.CheckBoxFor(modelItem => item.Status, new { onclick = "this.form.submit();", @class = "filled-in chk-col-red" })
+                                                    @Html.LabelFor(model => item.Status)*@
+                                                    @*<div class="demo-checkbox">*@
+                                                        @if (item.Status == true)
+                                                        {
+                                                            <input type="checkbox" id="@item.ID" class="filled-in chk-col-red" checked="" onclick = "submit(@item.ID);">
+                                                            <label for="@item.ID"></label>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="checkbox" id="@item.ID" class="filled-in chk-col-red" onclick = "submit(@item.ID);">
+                                                            <label for="@item.ID"></label>
+                                                        }
+                                                    @*</div>*@
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </di>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    function submit(id) {
+        let input = document.getElementById(id);
+        console.log(input);
+    }
+</script>
+
+
+
+
+
+
+
+
+
+@*<head>
+        <title>Quản lý</title>
+    </head>
+    <h2>Index</h2>
+    <section class="content">
+        <div class="container-fluid">
+            <div id="page-wrapper">
+                <table class="table">
+                    <p>
+                        <a href="@Url.Action("Create")" class="btn btn-default">Create</a>
+                    </p>
+                    <tr>
+                        <th>
+                            Danh mục
+                        </th>
+                        <th>
+                            Disable
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                </td>
+                                <td>
+                                    @Html.CheckBoxFor(modelItem => item.Status, new { onclick = "this.form.submit();" })
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </table>
+            </div>
+            </div>
+        </section>*@

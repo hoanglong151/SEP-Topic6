@@ -51,7 +51,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // POST: Admin/Questions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Question question)
         {
@@ -84,7 +84,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // POST: Admin/Questions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Question question)
         {
