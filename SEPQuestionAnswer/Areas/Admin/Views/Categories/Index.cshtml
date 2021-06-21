@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <!-- Exportable Table -->
         <div class="row clearfix">
-            <di class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
@@ -50,100 +50,51 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID }))
+                                    <tr>
+                                        @using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID }))
                                         {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CategoryName)
-                                                </td>
-                                                <td class="demo-checkbox">
-                                                    @*<label for=@item.ID></label>*@
-                                                    @*@Html.CheckBoxFor(modelItem => item.Status, new { onclick = "this.form.submit();", @class = "filled-in chk-col-red" })
-                                                    @Html.LabelFor(model => item.Status)*@
-                                                    @*<div class="demo-checkbox">*@
-                                                        @if (item.Status == true)
-                                                        {
-                                                            <input type="checkbox" id="@item.ID" class="filled-in chk-col-red" checked="" onclick = "submit(@item.ID);">
-                                                            <label for="@item.ID"></label>
-                                                        }
-                                                        else
-                                                        {
-                                                            <input type="checkbox" id="@item.ID" class="filled-in chk-col-red" onclick = "submit(@item.ID);">
-                                                            <label for="@item.ID"></label>
-                                                        }
-                                                    @*</div>*@
-                                                </td>
-                                                <td>
-                                                    <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
-                                                </td>
-                                            </tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        </td>
+                                        <td>
+                                            @if (item.Status == true)
+                                            {
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-red" checked="" onclick="submit(@item.ID);">
+                                                <label for="@item.ID"></label>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-red" onclick="submit(@item.ID);">
+                                                <label for="@item.ID"></label>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
+                                        </td>
                                         }
+                                    </tr>              
                                     }
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </di>
+            </div>
         </div>
     </div>
 </section>
 
 <script type="text/javascript">
-    function submit(id) {
-        let input = document.getElementById(id);
-        console.log(input);
+    function submit(ID) {
+        var check = document.getElementById(ID);
+        check.addEventListener('change', function (e) {
+            if (e.target.checked) {
+                check.value = true;
+                check.setAttribute('checked','checked');
+            } else {
+                check.value = false;
+                check.removeAttribute('checked');
+            }
+        });
     }
 </script>
-
-
-
-
-
-
-
-
-
-@*<head>
-        <title>Quản lý</title>
-    </head>
-    <h2>Index</h2>
-    <section class="content">
-        <div class="container-fluid">
-            <div id="page-wrapper">
-                <table class="table">
-                    <p>
-                        <a href="@Url.Action("Create")" class="btn btn-default">Create</a>
-                    </p>
-                    <tr>
-                        <th>
-                            Danh mục
-                        </th>
-                        <th>
-                            Disable
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID }))
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CategoryName)
-                                </td>
-                                <td>
-                                    @Html.CheckBoxFor(modelItem => item.Status, new { onclick = "this.form.submit();" })
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
-                                </td>
-                            </tr>
-                        }
-
-                    }
-                </table>
-            </div>
-            </div>
-        </section>*@
