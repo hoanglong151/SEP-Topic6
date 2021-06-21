@@ -14,6 +14,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/Questions
         public ActionResult Index()
         {
+            var count = db.Questions.ToList().Count();
+            ViewBag.Total = count;
             var questions = db.Questions.Include(q => q.Category).OrderByDescending(o => o.Status == "Pending").ThenByDescending(d => d.Status == "Accept").ToList();
             return View(questions);
         }

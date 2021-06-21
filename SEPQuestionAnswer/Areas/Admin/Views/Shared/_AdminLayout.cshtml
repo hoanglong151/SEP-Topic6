@@ -80,7 +80,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="../../index.html">Quản Lý</a>
+                <a class="navbar-brand" href="@Url.Action("Index","AspNetRoles")">Quản Lý</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -314,19 +314,25 @@
                     <li>
                         <a href="@Url.Action("Index","Categories")">
                             <i class="material-icons">home</i>
-                            <span>Home</span>
+                            <span>Danh Mục</span>
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Index","Questions")">
                             <i class="material-icons">text_fields</i>
-                            <span>Question</span>
+                            <span>Câu Hỏi</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../../pages/helper-classes.html">
+                        <a href="@Url.Action("Index","AspNetRoles")">
                             <i class="material-icons">layers</i>
-                            <span>Helper Classes</span>
+                            <span>Phân Quyền</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Students")">
+                            <i class="material-icons">layers</i>
+                            <span>Danh Sách Sinh Viên</span>
                         </a>
                     </li>
                     <li>
