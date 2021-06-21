@@ -1,56 +1,76 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>FQA &mdash; FrequentlyAsked Question </title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900">
-    <link rel="stylesheet" href="@Url.Content("~/asset/fonts/icomoon/style.css")">
+    <title>FAQ - Fequently Asked Question</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/bootstrap.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/magnific-popup.css")">
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/jquery-ui.css")">
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/owl.carousel.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/owl.theme.default.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/customCSS.css")">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen">
+    <!-- Favicons -->
+    <link href="@Url.Content("~/assets/img/favicon.png")" rel="icon">
+    <link href="@Url.Content("~/assets/img/apple-touch-icon.png")" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/aos.css")">
+    <!-- Vendor CSS Files -->
+    <link href="@Url.Content("~/assets/vendor/aos/aos.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/vendor/bootstrap-icons/bootstrap-icons.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/vendor/boxicons/css/boxicons.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/vendor/glightbox/css/glightbox.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/vendor/swiper/swiper-bundle.min.css")" rel="stylesheet">
 
-    <link rel="stylesheet" href="@Url.Content("~/asset/css/style.css")">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Template Main CSS File -->
+    <link href="@Url.Content("~/assets/css/style.css")" rel="stylesheet">
+    <!-- =======================================================
+    * Template Name: Plato - v4.3.0
+    * Template URL: https://bootstrapmade.com/plato-responsive-bootstrap-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
+
 <body>
+    <div class="wrap">
 
-    <div class="site-wrap">
-        <header class="site-navbar py-4" role="banner" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-2">
-                        <h1 class="site-logo"><a href="@Url.Action("Index","Home")" class="h2 flex">FAQ<span class="text-primary">.</span> </a></h1>
-                    </div>
-                    <div class="col-8">
-                        <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
+        <!-- ======= Hero Section ======= -->
+        <section id="hero">
+            <div class="hero-container" data-aos="fade-up">
+                <h1>Start your new digital experience with <span>Plato</span></h1>
+                <h2>We are team of talented designers making websites with Bootstrap</h2>
+            </div>
+        </section><!-- End Hero -->
+        <!-- ======= Header ======= -->
+        <header id="header" class="d-flex align-items-center">
+            <div class="container d-flex align-items-center justify-content-between">
 
-                            <div class="d-block d-lg-none ml-md-0 mr-auto"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
-                            <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li>
-                                    <a href="@Url.Action("Search","Home")">Tìm kiếm</a>
-                                </li>
-                                <li><a href="@Url.Action("Category","Home")">Danh mục</a></li>
-                                <li><a href="@Url.Action("About","Home")">About</a></li>
-                                @*<li class="has-children">
-                                    @Html.Partial("_LoginPartial")
-                                </li>*@
+                <div class="logo">
+                    <h1 class="text-light"><a href="@Url.Action("Index", "Home")"><span>FAQ<span style="color:red; font-size:20px">CNTT</span></span></a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                </div>
+
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link scrollto" href="@Url.Action("Category","Home")">Danh mục</a></li>
+                        <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Drop</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="#">Drop Down 1</a></li>
+                                <li><a href="#">Drop Down 2</a></li>
+                                <li><a href="#">Drop Down 3</a></li>
+                                <li><a href="#">Drop Down 4</a></li>
                             </ul>
-                        </nav>
-                    </div>
+                        </li>
+                        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    </ul>
                     <div class="col-2">
-                        <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
-
+                        <nav id="navbar" class="navbar">
                             <div class="d-block d-lg-none ml-md-0 mr-auto"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li class="has-children">
@@ -59,120 +79,69 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
             </div>
-        </header>
-
+        </header><!-- End Header -->
         @RenderBody()
 
+        <!-- ======= Footer ======= -->
+        <footer id="footer">
+            <div class="footer-top footer-cus cta">
+                <div class="container">
+                    <div class="row">
 
-        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+                        <div class="col-lg-6 col-md-6 footer-contact">
+                            <img src="~/assets/img/vlu_logo.png" />
+                        </div>
 
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <h3>About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium animi, odio beatae aspernatur natus recusandae quasi magni eum voluptatem nam!</p>
+                        <div class="col-lg-6 col-md-6 footer-links">
+                            <div>
+                                <p>
+                                    <strong><i class="fa fa-home" aria-hidden="true"></i> Trường Đại học Văn Lang</strong>
+                                </p><hr>
+                                <p><strong>Cơ sở chính:</strong> 69/68 Đặng Thùy Trâm, P. 13, Q. Bình Thạnh, TP. HCM</p>
+
+                                <p><strong>Cơ sở 1</strong>: 45 Nguyễn Khắc Nhu, P. Cô Giang, Q.1, TP. HCM</p>
+
+                                <p><strong>Cơ sở 2</strong>: 233A Phan Văn Trị, P.11, Q. Bình Thạnh, TP. HCM</p>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-lg-3 mx-auto">
-                        <h3>Navigation</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Podcasts</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4">
-                        <h3>Subscribe</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, quibusdam!</p>
-                        <form action="#" class="form-subscribe">
-                            <input type="email" class="form-control mb-3" placeholder="Enter Email">
-                            <input type="submit" class="btn btn-primary" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-
-                <div class="row pt-5 mt-5 text-center">
-                    <div class="col-md-12">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-
                 </div>
             </div>
-        </footer>
+
+            <div class="container py-4">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Plato</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/plato-responsive-bootstrap-website-template/ -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </footer><!-- End Footer -->
+
     </div>
 
-    <script src="@Url.Content("~/asset/js/jquery-3.3.1.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/jquery-migrate-3.0.1.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/jquery-ui.js")"></script>
-    <script src="@Url.Content("~/asset/js/popper.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/owl.carousel.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/jquery.stellar.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/jquery.countdown.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/jquery.magnific-popup.min.js")"></script>
-    <script src="@Url.Content("~/asset/js/aos.js")"></script>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <script src="@Url.Content("~/asset/js/mediaelement-and-player.min.js")"></script>
+    <!-- Vendor JS Files -->
+    <script src="@Url.Content("~/assets/vendor/aos/aos.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/glightbox/js/glightbox.min.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/isotope-layout/isotope.pkgd.min.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/php-email-form/validate.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/swiper/swiper-bundle.min.js")"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;
-            for (var i = 0; i < total; i++) {
-                new MediaElementPlayer(mediaElements[i], {
-                    pluginPath: 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/',
-                    shimScriptAccess: 'always',
-                    success: function () {
-                        var target = document.body.querySelectorAll('.player'), targetTotal = target.length;
-                        for (var j = 0; j < targetTotal; j++) {
-                            target[j].style.visibility = 'visible';
-                        }
-                    }
-                });
-            }
-        });
-    </script>
-    <script type="text/javascript">
-        window.addEventListener("scroll", function () {
-            var header = document.querySelector("header");
-            header.classList.toggle("sticky", window.scrollY > 0)
-        })
-    </script>
-
-    <script>
-        //Get the button
-        var mybutton = document.getElementById("myBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () { scrollFunction() };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    </script>
-
-
-    <script src="@Url.Content("~/asset/js/main.js")"></script>
+    <!-- Template Main JS File -->
+    <script src="@Url.Content("~/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)
 </body>
+
 </html>
