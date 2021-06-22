@@ -2,12 +2,8 @@
 @{
     ViewBag.Title = "Category";
 }
-<!DOCTYPE html>
-    <div class="wrap">   
-        <main id="main">
-
             <!-- ======= Caterogy Section ======= -->
-            <section id="contact" class="contact">
+            <section id="category" class="contact">
                 <div class="container">
 
                     <div class="section-title" data-aos="fade-down">
@@ -15,34 +11,40 @@
                         <h2>Danh mục</h2>
                     </div>
 
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-12" data-aos="fade-up" data-aos-delay="100">
-                            <div class="info-box">
-                                <i class="bx bx-map"></i>
+                    <div class="row">
+                        <div  class="col-lg-3 col-md-12 arr" style="cursor:pointer;" onclick="window.location = '@Url.Action("Index", "Home")';"
+                             data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-box bor zoom">
+                                <h3>Đào tạo</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-box bor zoom">
+                                <h3>Nghề nghiệp</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-box bor zoom">
+                                <h3>Kiến thức</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-box bor zoom">
+                                <h3>Bổ túc</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-box bor zoom">
+                                <h3>Học phí của ngành CNTT</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                            <div class="info-box bor zoom">
                                 <h3>Our Address</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-                            <div class="info-box">
-                                <i class="bx bx-envelope"></i>
-                                <h3>Email Us</h3>
-                                <p>info@example.com<br>contact@example.com</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                            <div class="info-box">
-                                <i class="bx bx-phone-call"></i>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
             </section><!-- End Category Section -->
-
-        </main><!-- End #main -->
-
-    </div>
-
-</html>
