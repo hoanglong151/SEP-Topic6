@@ -27,10 +27,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/AspNetRoles/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {
@@ -40,7 +36,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
         // GET: Admin/AspNetRoles/Create
         [Authorize(Roles = "BCN")]
-        public ActionResult Create(string roleId)
+        public ActionResult Create()
         {           
             //ViewBag.User = new SelectList(db.AspNetUsers, "ID", "UserName");
             return View();
@@ -91,10 +87,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/AspNetRoles/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {
@@ -108,7 +100,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
+        public ActionResult Edit(AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {
@@ -123,8 +115,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [Authorize(Roles = "BCN")]
         public ActionResult Delete(string roleId, string userId)
         {
-            ViewBag.Role = db.AspNetRoles.Find(roleId).Name;
-            ViewBag.User = db.AspNetUsers.Find(userId).Email;
             if (roleId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -134,6 +124,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Role = db.AspNetRoles.Find(roleId).Name;
+            ViewBag.User = db.AspNetUsers.Find(userId).Email;
             return View(aspNetRole);
         }
 
@@ -144,7 +136,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         {
             AspNetUser aspNetUser = db.AspNetUsers.Find(userId);
             AspNetRole aspNetRole = db.AspNetRoles.Find(roleId);
-            aspNetRole.AspNetUsers.Remove(aspNetUser);
+            var check = aspNetRole;
+            check.AspNetUsers.Remove(aspNetUser);
             db.SaveChanges();
             return RedirectToAction("Index", "AspNetRoles");
         }

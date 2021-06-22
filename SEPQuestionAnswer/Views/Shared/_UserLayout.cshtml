@@ -60,7 +60,7 @@
                         <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
                         <li class="dropdown">
                             <a href="#"><span>Drop</span> <i class="bi bi-chevron-down"></i></a>
-                            <ul>
+                            <ul style="border-radius:5px">
                                 <li><a href="#">Drop Down 1</a></li>
                                 <li><a href="#">Drop Down 2</a></li>
                                 <li><a href="#">Drop Down 3</a></li>
@@ -69,16 +69,7 @@
                         </li>
                         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     </ul>
-                    <div class="col-2">
-                        <nav id="navbar" class="navbar">
-                            <div class="d-block d-lg-none ml-md-0 mr-auto"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
-                            <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li class="has-children">
-                                    @Html.Partial("_LoginPartial")
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    @Html.Partial("_LoginPartial")
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
             </div>

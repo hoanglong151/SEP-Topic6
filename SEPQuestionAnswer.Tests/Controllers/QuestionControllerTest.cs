@@ -57,7 +57,6 @@ namespace SEPQuestionAnswer.Tests.Controllers
         public class MockHttpContextBase : HttpContextBase
         {
             public override IPrincipal User { get; set; }
-
         }
 
         [TestMethod]

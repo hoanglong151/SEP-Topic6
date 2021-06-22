@@ -39,11 +39,21 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var rand = new Random();
             var cate = new Category
             {
-                CategoryName = rand.NextDouble().ToString()
+                CategoryName = rand.NextDouble().ToString(),
+                Status = false
             };
 
             var controller = new CategoriesController();
 
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.Create(cate) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+
+            cate.Status = true;
+            controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
                 var result = controller.Create(cate) as RedirectToRouteResult;
@@ -92,9 +102,19 @@ namespace SEPQuestionAnswer.Tests.Controllers
             using (var scope = new TransactionScope())
             {
                 cate.CategoryName = "Nghĩ Học";
+                cate.Status = true;
                 var result = controller.Edit(cate) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+            cate.CategoryName = "Nghĩ Học";
+            cate.Status = false;
+            controller.ModelState.Clear();
+            using (var scope = new TransactionScope())
+            {
+                var result1 = controller.Edit(cate) as RedirectToRouteResult;
+                Assert.IsNotNull(result1);
+                Assert.AreEqual("Index", result1.RouteValues["action"]);
             }
 
             cate.CategoryName = rand.Next().ToString();
@@ -102,27 +122,41 @@ namespace SEPQuestionAnswer.Tests.Controllers
             using (var scope = new TransactionScope())
             {
                 cate.CategoryName = rand.Next().ToString();
-                var result = controller.Edit(cate) as RedirectToRouteResult;
-                Assert.IsNotNull(result);
-                Assert.AreEqual("Index", result.RouteValues["action"]);
-            }
-
-
-            cate = db.Categories.AsNoTracking().OrderByDescending(x => x.ID).First();
-            using (var scope = new TransactionScope())
-            {
-                cate.CategoryName = "Nghĩ Học";
-                var result = controller.Edit(cate) as ViewResult;
-                Assert.IsNotNull(result);
-                Assert.AreEqual("Tên danh mục đã tồn tại", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+                var result2 = controller.Edit(cate) as RedirectToRouteResult;
+                Assert.IsNotNull(result2);
+                Assert.AreEqual("Index", result2.RouteValues["action"]);
             }
 
             cate.CategoryName = null;
             controller.ModelState.Clear();
 
-            var result1 = controller.Edit(cate) as ViewResult;
-            Assert.IsNotNull(result1);
+            var result3 = controller.Edit(cate) as ViewResult;
+            Assert.IsNotNull(result3);
             Assert.AreEqual("Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void UpdateStatus()
+        {
+            var db = new SEP24Team10Entities();
+            var controller = new CategoriesController();
+            var cate = db.Categories.AsNoTracking().FirstOrDefault();
+            cate.Status = true;
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.UpdateStatus(cate.ID) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+
+            cate.Status = false;
+            controller.ModelState.Clear();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.UpdateStatus(cate.ID) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
         }
     }
 }
