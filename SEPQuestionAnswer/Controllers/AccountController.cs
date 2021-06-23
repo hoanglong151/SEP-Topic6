@@ -346,7 +346,7 @@ namespace SEPQuestionAnswer.Controllers
             {
                 case SignInStatus.Success:
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-                    if (UserManager.IsInRole(userId, "Student"))
+                    if (UserManager.IsInRole(userId, "Sinh Viên"))
                     {
                         return RedirectToLocal(returnUrl);
                     }
@@ -401,7 +401,7 @@ namespace SEPQuestionAnswer.Controllers
                     Student student = new Student();
                     if(currentUser.Email.ToLower().Contains("pm") || currentUser.Email.ToLower().Contains("it"))
                     {                      
-                        UserManager.AddToRole(currentUser.Id, "Sinh Vien");
+                        UserManager.AddToRole(currentUser.Id, "Sinh Viên");
                         student.Email = currentUser.Email;
                         db.Students.Add(student);
                         db.SaveChanges();
