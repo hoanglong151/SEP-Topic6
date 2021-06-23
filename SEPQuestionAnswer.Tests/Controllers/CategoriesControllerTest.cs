@@ -59,14 +59,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
                 var result = controller.Create(cate) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
-            }
-
-            cate.CategoryName = "Thôi học";
-            var check = db.Categories.FirstOrDefault(c => c.CategoryName == cate.CategoryName);
-            var result3 = controller.Create(cate) as ViewResult;
-            Assert.IsNotNull(result3);
-            Assert.AreEqual("Tên danh mục đã tồn tại", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
-            
+            }          
 
             cate.CategoryName = null;
             controller.ModelState.Clear();

@@ -123,6 +123,7 @@
                                             </td>
                                             <td>
                                                 <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a> |
+                                                <a href="@Url.Action("Edit", "AspNetRoles", new { id = item.Id})">Cập nhật</a> |
                                                 @Html.ActionLink("Xoá", "Delete", new { id = item.Id })
                                             </td>
                                         </tr>
