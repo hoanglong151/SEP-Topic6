@@ -37,7 +37,7 @@
                                 <thead>
                                     <tr>
                                         <th>Câu Hỏi</th>
-                                        <th>Câu Trả Lời</th>
+                                        @*<th>Câu Trả Lời</th>*@
                                         <th>Người Hỏi</th>
                                         <th>Người Trả Lời</th>
                                         <th style="width:65px">Danh Mục</th>
@@ -49,7 +49,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Câu Hỏi</th>
-                                        <th>Câu Trả Lời</th>
+                                        @*<th>Câu Trả Lời</th>*@
                                         <th>Người Hỏi</th>
                                         <th>Người Trả Lời</th>
                                         <th>Danh Mục</th>
@@ -63,7 +63,7 @@
                                     {
                                         <tr>
                                             <td>@item.AskQuestion.ToString().Substring(0, (item.AskQuestion.Length > 40) ? 40 : item.AskQuestion.Length)</td>
-                                            <td>@Html.Raw(!String.IsNullOrEmpty(item.Answer) ? item.Answer.Substring(0, Math.Min(item.Answer.Length, 40)) : item.Answer)</td>
+                                            @*<td>@Html.Raw(!String.IsNullOrEmpty(item.Answer) ? item.Answer.Substring(0, Math.Min(item.Answer.Length, 40)) : item.Answer)</td>*@
                                             <td>@Html.DisplayFor(modelItem => item.Questioner)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Respondent)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>

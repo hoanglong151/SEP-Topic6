@@ -78,6 +78,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult Delete(string id)
         {
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);
+            ViewBag.Name = aspNetRole.Name;
             if (aspNetRole == null)
             {
                 return HttpNotFound();
