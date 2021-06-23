@@ -1,151 +1,229 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="container pt-5 hero">
-    <div class="row align-items-center text-center text-md-left">
 
-        <div class="col-lg-4">
-            <h1 class="mb-3 display-3">Nơi mọi câu hỏi đều được trả lời</h1>
-            <p>Hãy để thầy, cô giải đáp mọi thắc mắc của bạn trong lĩnh vực Công Nghệ Thông Tin</p>
-        </div>
-        <div class="col-lg-8">
-            @*<img src="@Url.Content("~/asset/images/1x/asset-1.png")" alt="Image" class="img-fluid">*@
-            @*<video autoplay loop muted src="~/asset/images/VL3.mp4" width="760" height="427"></video>*@
-                <video class="video-fluid" autoplay loop muted width="760" height="427">
-                    <source src="~/asset/images/test.mp4" type="video/mp4" />
-                </video>
-        </div>
-    </div>
-</div>
-<div class="site-section">
-    <div class="container">
 
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="featured-user  mb-5 mb-lg-0">
-                    <h3 class="mb-4">Popular Podcaster</h3>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#" class="d-flex align-items-center">
-                                <img src="@Url.Content("~/asset/images/person_1.jpg")" alt="Image" class="img-fluid mr-2">
-                                <div class="podcaster">
-                                    <span class="d-block">Claire Stanford</span>
-                                    <span class="small">32,420 podcasts</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="d-flex align-items-center">
-                                <img src="@Url.Content("~/asset/images/person_2.jpg")" alt="Image" class="img-fluid mr-2">
-                                <div class="podcaster">
-                                    <span class="d-block">Dianne Winston</span>
-                                    <span class="small">12,381 podcasts</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="d-flex align-items-center">
-                                <img src="@Url.Content("~/asset/images/person_3.jpg")" alt="Image" class="img-fluid mr-2">
-                                <div class="podcaster">
-                                    <span class="d-block">Borris Larry</span>
-                                    <span class="small">9,291 podcasts</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="d-flex align-items-center">
-                                <img src="@Url.Content("~/asset/images/person_4.jpg")" alt="Image" class="img-fluid mr-2">
-                                <div class="podcaster">
-                                    <span class="d-block">Garry Smith</span>
-                                    <span class="small">3,291 podcasts</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="d-flex align-items-center">
-                                <img src="@Url.Content("~/asset/images/person_5.jpg")" alt="Image" class="img-fluid mr-2">
-                                <div class="podcaster">
-                                    <span class="d-block">Gerson Stack</span>
-                                    <span class="small">1,092 podcasts</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="d-flex align-items-center">
-                                <img src="@Url.Content("~/asset/images/person_6.jpg")" alt="Image" class="img-fluid mr-2">
-                                <div class="podcaster">
-                                    <span class="d-block">Jenna Stone</span>
-                                    <span class="small">911 podcasts</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-      
-            <div class="col-lg-9">
+<main id="main">
 
-                <h1 class="ln-text">Các câu hỏi phổ biến</h1>
-                <div style="margin-bottom:10px">
-                    <a class="btn text-white radius color-btn" data-toggle="collapse" href="#test" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:100%">
-                        Học gì để giỏi ?
-                    </a>
-                    <div class="collapse" id="test">
-                        <div class="card card-body">
-                            aasdlasdl;asdlasdkas;ldkas;ldkas;dlaskdas;ldkas;ldkasl;dkasl;dkas;ldadasdasdasd
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="card" data-aos="fade-up">
+                        <img src="assets/img/features-1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <i class="bx bx-tachometer"></i>
+                            <h5 class="card-title"><a href="">Our Mission</a></h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                         </div>
                     </div>
                 </div>
-
-                <div style="margin-bottom:10px">
-                    <a class="btn text-white radius color-btn" data-toggle="collapse" href="#test1" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:100%">
-                        Học gì để trao dồi kỹ năng code Front-end?
-                    </a>
-                    <div class="collapse" id="test1">
-                        <div class="card card-body">
-                            adasdasdasdasdasdasdddddddddddddddddddddddddddddddddd
+                <div class="col-lg-4 col-md-6 mt-5 mt-md-0 d-flex align-items-stretch">
+                    <div class="card" data-aos="fade-up" data-aos-delay="150">
+                        <img src="assets/img/features-2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <i class="bx bx-file"></i>
+                            <h5 class="card-title"><a href="">Our Plan</a></h5>
+                            <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
                         </div>
                     </div>
                 </div>
-     
-
-            </div>
-            <div class="container" data-aos="fade-up">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="site-block-27">
-                            <ul>
-                                <li><a href="#" class="icon-keyboard_arrow_left"></a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#" class="icon-keyboard_arrow_right"></a></li>
-                            </ul>
+                <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <div class="card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="assets/img/features-3.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <i class="bx bx-show"></i>
+                            <h5 class="card-title"><a href="">Our Vision</a></h5>
+                            <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet. </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(/asset/images/FAQ-720x380.png)" data-aos="fade" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
 
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <h2>Nơi bạn có thể đạt câu hỏi</h2>
-                <p class="mb-5">Mọi câu hỏi thắc mắc của bạn sẽ được Ban chủ nhiệm Khoa trả lời. Hãy đặt câu hỏi đừng ngại!</p>
-                <form action="#" method="post" class="site-block-subscribe">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Đặt câu hỏi ở đây!" aria-label="Enter Email" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="button-addon2"><strong>Gửi</strong></button>
+        </div>
+    </section><!-- End Features Section -->
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container">
+
+            <div class="text-center" data-aos="zoom-in">
+                <h3>Frequently Asked Question - CNTT</h3>
+                <p>
+                    Hỗ trợ trả lời, giải đáp thắc mắc cho sinh viên về những vấn đề liên quan đến ngành <strong>Công Nghệ Thông tin</strong>.
+                    Được chính các thầy cô trong <strong>BCN Khoa</strong> trả lời
+                </p>
+
+            </div>
+
+        </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-down">
+                <span>F.A.Q</span>
+                <h2>F.A.Q</h2>
+                <p>Các câu hỏi được quan tâm nhiều nhất </p>
+            </div>
+
+            <div class="faq-list">
+                <ul>
+                    <li data-aos="fade-up">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                            <p>
+                                Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                            </p>
                         </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="100">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="200">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="300">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="400">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                            </p>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </section><!-- End F.A.Q Section -->
+    <!-- ======= Post Question Section ======= -->
+    <section id="post" class="contact">
+        <div class="container">
+            <div class="section-title" data-aos="fade-down">
+                <span>Post Question</span>
+                <h2>Gửi câu hỏi</h2>
+            </div>
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="form-group mt-3">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                </div>
+                <div class="my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+        </div>
+    </section><!-- End Post Question Section -->
+    <!-- ======= Testimonials Section ======= -->
+    <div class="testimonials" style="padding:0px;">
+        <div class="container position-relative">
+
+            <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item edit">
+                            <img src="~/assets/img/icon-mess.png" class="testimonial-img" alt="">                           
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Câu hỏi mà bạn đã gửi sẽ phải chờ để được thầy cô BCN Khoa phê duyệt và trả lời nhé. Chờ đợi là hạnh phúc!
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <!--<div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                            <h3>Sara Wilsson</h3>
+                            <h4>Designer</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div>--><!-- End testimonial item -->
+
+                    <!--<div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                            <h3>Jena Karlis</h3>
+                            <h4>Store Owner</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div>--><!-- End testimonial item -->
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </div><!-- End Testimonials Section -->
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-down">
+                <span>Contact Us</span>
+                <h2>Contact Us</h2>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-box">
+                        <i class="bx bx-map"></i>
+                        <h3>Our Address</h3>
+                        <p>A108 Adam Street, New York, NY 535022</p>
                     </div>
-                </form>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-box">
+                        <i class="bx bx-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>info@example.com<br>contact@example.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-box">
+                        <i class="bx bx-phone-call"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section><!-- End Contact Us Section -->
+</main><!-- End #main -->

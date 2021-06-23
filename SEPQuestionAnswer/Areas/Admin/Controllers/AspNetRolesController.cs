@@ -49,10 +49,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/AspNetRoles/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {
@@ -81,10 +77,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [Authorize(Roles = "BCN")]
         public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {

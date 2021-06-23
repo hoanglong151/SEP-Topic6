@@ -1,0 +1,15 @@
+.edit{
+    padding:10px;
+}
+.arr{
+    padding:10px;
+}
+.info-box h3:hover {
+    color: #72c393
+}
+.bor{
+    border-radius: 20px
+}
+.zoom:hover{
+    transform:scale(1.1);
+}

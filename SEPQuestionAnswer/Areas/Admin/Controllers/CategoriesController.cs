@@ -44,12 +44,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Category category = db.Categories.Find(id);
             if (category == null)
             {
@@ -85,32 +81,15 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
 
         public void Validation(Category category)
         {
-            var condition = db.Categories.Where(m => m.CategoryName.Equals(category.CategoryName));
-
-            if(HttpContext.Request.Url.AbsolutePath == "/Admin/Categories/Create")
-            {
+            var condition = db.Categories.FirstOrDefault(m => m.CategoryName == category.CategoryName);
                 if (string.IsNullOrWhiteSpace(category.CategoryName))
                 {
-                    ModelState.AddModelError("CategoryName", "Thông tin không hợp lệ!");
+                    ModelState.AddModelError("CategoryName", "Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng");
                 }
-
-                if (condition.Count() >= 1)
+                if (condition != null)
                 {
-                    ModelState.AddModelError("CategoryName", "Tên đã tồn tại");
+                    ModelState.AddModelError("CategoryName", "Tên danh mục đã tồn tại");
                 }
-            }
-            else
-            {
-                if (string.IsNullOrWhiteSpace(category.CategoryName))
-                {
-                    ModelState.AddModelError("CategoryName", "Thông tin không hợp lệ!");
-                }
-
-                if (condition.Count() >= 1)
-                {
-                    ModelState.AddModelError("CategoryName", "Vui lòng nhập tên mới hoặc tên đã tồn tại trong hệ thống");
-                }
-            }
         }
 
         protected override void Dispose(bool disposing)

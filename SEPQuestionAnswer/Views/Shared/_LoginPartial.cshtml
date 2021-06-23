@@ -4,10 +4,10 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-    <ul class="site-menu js-clone-nav d-none d-lg-block">
-        <li class="has-children">
+    <ul>
+        <li class="dropdown">
             @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            <ul class="dropdown arrow-top">
+            <ul class="dropdown" style="border-radius:5px">
                 @if (this.User.IsInRole("BCN"))
                 {
                     <li><a href="@Url.Action("Index","AspNetRoles",new { Area = "Admin"})">Quản Lý</a></li>
@@ -28,5 +28,6 @@ else
     <ul class="site-menu js-clone-nav d-none d-lg-block">
         @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        
     </ul>
 }

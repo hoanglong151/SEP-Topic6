@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-}
+} 
 <section class="content">
     <div class="container-fluid">
         <!-- Exportable Table -->
@@ -47,25 +47,25 @@
                                 </tfoot>
                                 <tbody>
                                     @foreach (var item in Model)
-                                    {
-                                        foreach (var user in item.AspNetUsers)
-                                        {
-                                            if (item.Name == "BCN")
-                                            {
-                                                <tr>
-                                                    <td>@user.Email</td>
-                                                    <td>
-                                                        <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
-                                                    </td>
-                                                </tr>
+                                            {                                      
+                                                foreach (var user in item.AspNetUsers)
+                                                {
+                                                    if (item.Name == "BCN")
+                                                    {
+                                                        <tr>
+                                                            <td>@user.Email</td>
+                                                            <td>
+                                                                <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
                                             }
-                                        }
-                                    }
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -130,4 +130,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>           
+</section>
+
