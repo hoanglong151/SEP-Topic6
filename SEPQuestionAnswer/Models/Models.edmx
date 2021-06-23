@@ -79,10 +79,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Category_ID" Type="int" Nullable="false" />
-          <Property Name="Questioner" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Respondent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category_ID" Type="int" />
+          <Property Name="Questioner" Type="nvarchar(max)" />
+          <Property Name="Respondent" Type="nvarchar(max)" />
           <Property Name="AskQuestion" Type="nvarchar(max)" />
           <Property Name="Answer" Type="nvarchar(max)" />
           <Property Name="CountView" Type="int" />
@@ -161,7 +161,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Question_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -215,7 +215,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="SEP24Team10Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="SEP24Team10Model.AspNetUser" />
           <EntitySet Name="Categories" EntityType="SEP24Team10Model.Category" />
-          <EntitySet Name="Questions" EntityType="SEP24Team10Model.Question" />
           <EntitySet Name="Students" EntityType="SEP24Team10Model.Student" />
           <EntitySet Name="sysdiagrams" EntityType="SEP24Team10Model.sysdiagram" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SEP24Team10Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -226,13 +225,14 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Question_Category" Association="SEP24Team10Model.FK_Question_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="SEP24Team10Model.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Questions" EntityType="SEP24Team10Model.Question" />
+          <AssociationSet Name="FK_Question_Category" Association="SEP24Team10Model.FK_Question_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -303,20 +303,6 @@
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Questions" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Category" ToRole="Question" />
         </EntityType>
-        <EntityType Name="Question">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Category_ID" Type="Int32" Nullable="false" />
-          <Property Name="Questioner" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Respondent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AskQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CountView" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
-        </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="ID" />
@@ -362,8 +348,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="SEP24Team10Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="SEP24Team10Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category_ID" Type="Int32" />
+          <Property Name="Questioner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Respondent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AskQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountView" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
+        </EntityType>
         <Association Name="FK_Question_Category">
-          <End Type="SEP24Team10Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="SEP24Team10Model.Category" Role="Category" Multiplicity="0..1" />
           <End Type="SEP24Team10Model.Question" Role="Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -373,10 +377,6 @@
               <PropertyRef Name="Category_ID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="SEP24Team10Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="SEP24Team10Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -448,20 +448,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="SEP24Team10Model.Question">
-              <MappingFragment StoreEntitySet="Question">
-                <ScalarProperty Name="CountView" ColumnName="CountView" />
-                <ScalarProperty Name="Answer" ColumnName="Answer" />
-                <ScalarProperty Name="AskQuestion" ColumnName="AskQuestion" />
-                <ScalarProperty Name="Respondent" ColumnName="Respondent" />
-                <ScalarProperty Name="Questioner" ColumnName="Questioner" />
-                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="SEP24Team10Model.Student">
               <MappingFragment StoreEntitySet="Student">
@@ -489,6 +475,20 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="SEP24Team10Model.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="CountView" ColumnName="CountView" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="AskQuestion" ColumnName="AskQuestion" />
+                <ScalarProperty Name="Respondent" ColumnName="Respondent" />
+                <ScalarProperty Name="Questioner" ColumnName="Questioner" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

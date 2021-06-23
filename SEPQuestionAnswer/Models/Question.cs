@@ -16,7 +16,7 @@ namespace SEPQuestionAnswer.Models
     {
         public int ID { get; set; }
         public string Status { get; set; }
-        public int Category_ID { get; set; }
+        public Nullable<int> Category_ID { get; set; }
         public string Questioner { get; set; }
         public string Respondent { get; set; }
         public string AskQuestion { get; set; }

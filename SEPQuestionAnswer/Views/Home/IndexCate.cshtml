@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SEPQuestionAnswer.Models.Category>
+
+@{
+    ViewBag.Title = "IndexCate";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section id="category" class="contact">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-down">
+            <span>Danh mục</span>
+            <h2>Danh mục</h2>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-box bor zoom">
+                        <a href="@Url.Action("IndexQByC","Home", new { id = item.ID})"><h3 style="margin-left: 0; text-align: center;">@item.CategoryName</h3></a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>*@

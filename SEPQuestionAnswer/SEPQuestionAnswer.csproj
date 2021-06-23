@@ -810,8 +810,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Deny.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\IndexCate.cshtml" />
+    <Content Include="Views\Home\IndexQByC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SEPQuestionAnswer.Models.Question>
+
+@{
+    ViewBag.Title = "IndexQByC";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>IndexQByC</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Questioner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Respondent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AskQuestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountView)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Questioner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Respondent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AskQuestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountView)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

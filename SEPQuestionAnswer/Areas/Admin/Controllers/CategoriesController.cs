@@ -70,7 +70,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             }
             return View(category);
         }
-
+        [HttpPost]
         public ActionResult UpdateStatus(int id)
         {
             Category category = db.Categories.Find(id);
