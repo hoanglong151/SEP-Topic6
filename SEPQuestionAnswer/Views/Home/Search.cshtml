@@ -13,21 +13,19 @@
 <table class="table" style="display: none">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AskQuestion)
+            Câu hỏi
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Answer)
-        </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr class="Search">
             <td>
-                @Html.DisplayFor(modelItem => item.AskQuestion)
+                <a href="@Url.Action("Details", "Questions", new { id = item.ID})">@item.AskQuestion</a>
             </td>
             <td>
-                @Html.Raw(item.Answer)
+                Views: @item.CountView
             </td>
         </tr>
     }

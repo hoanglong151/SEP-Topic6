@@ -1,0 +1,21 @@
+﻿@model SEPQuestionAnswer.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h1>@Model.AskQuestion</h1>
+    <hr />   
+    <table class="table">
+        
+        <tr>
+            <td>
+                <b>@Model.Respondent replied:</b>
+            </td>
+            <td>
+               @MvcHtmlString.Create(@Model.Answer)
+            </td>
+        </tr>
+    </table>
+</div>

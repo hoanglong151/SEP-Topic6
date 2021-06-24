@@ -12,16 +12,16 @@ namespace SEPQuestionAnswer.Controllers
         private SEP24Team10Entities db = new SEP24Team10Entities();
         public ActionResult Index()
         {
-            var question = db.Questions.OrderByDescending(x => x.CountView).Take(10).ToList();
+            var question = db.Questions.Where(x => x.Status == "Accept").Where(x => x.Category.Status == true).OrderByDescending(x => x.CountView).Take(5).ToList();
             return View(question);
         }
-        public ActionResult IndexCate()
+        public ActionResult Category()
         {
             var cate = db.Categories.Where(k => k.Status == true).ToList();
             return View(cate);
         }
 
-        public ActionResult IndexQByC(int id)
+        public ActionResult Questions(int id)
         {
             var question = db.Questions.Where(k => k.Category_ID == id).ToList();
             return View(question);
@@ -31,14 +31,7 @@ namespace SEPQuestionAnswer.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
-        }
-        public ActionResult UpdateCount(int id)
-        {
-            Question question = db.Questions.Find(id);
-            question.CountView += 1;
-            db.SaveChanges();
-            return View(question);
-        }
+        }        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -61,11 +54,7 @@ namespace SEPQuestionAnswer.Controllers
             ViewBag.Category_ID = new SelectList(db.Categories, "ID", "CategoryName", question.Category_ID);
             return View(question);
         }
-        public ActionResult Category()
-        {
-            ViewBag.Message = "Your Category page.";
-            return View();
-        }
+      
         public ActionResult Search()
         {
             ViewBag.Message = "Your Search page.";
