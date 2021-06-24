@@ -10,6 +10,7 @@ namespace SEPQuestionAnswer.Controllers
     public class HomeController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
+        private int compare = 0;
         public ActionResult Index()
         {
             var question = db.Questions.OrderByDescending(x => x.CountView).Take(10).ToList();
@@ -32,12 +33,38 @@ namespace SEPQuestionAnswer.Controllers
 
             return View();
         }
-        public ActionResult UpdateCount(int id)
+
+        public Question countView1(int id)
         {
-            Question question = db.Questions.Find(id);
-            question.CountView += 1;
+            var view = db.Questions.Find(id);
+            view.CountView += 1;
             db.SaveChanges();
-            return View(question);
+            return view;
+        }
+        [HttpPost]
+        public JsonResult countView(int id)
+        {
+            var result = countView1(id);
+            return Json(new
+            {
+                view = result
+            });
+        }
+        public Question countView2(int id)
+        {
+            var view = db.Questions.Find(id);
+            view.CountView += 0;
+            db.SaveChanges();
+            return view;
+        }
+        [HttpPost]
+        public JsonResult countView3(int id)
+        {
+            var result = countView2(id);
+            return Json(new
+            {
+                view = result
+            });
         }
         public ActionResult Contact()
         {
@@ -46,7 +73,7 @@ namespace SEPQuestionAnswer.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Question question)
         {
