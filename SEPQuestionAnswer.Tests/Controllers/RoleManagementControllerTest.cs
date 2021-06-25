@@ -9,10 +9,7 @@ using System.Transactions;
 using System.Web;
 using System.Security.Principal;
 using System.Net;
-using Microsoft.Owin.Host.SystemWeb;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
-using Moq;
 
 namespace SEPQuestionAnswer.Tests.Controllers
 {

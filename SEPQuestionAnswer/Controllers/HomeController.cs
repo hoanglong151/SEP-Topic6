@@ -13,7 +13,7 @@ namespace SEPQuestionAnswer.Controllers
         private int compare = 0;
         public ActionResult Index()
         {
-            var question = db.Questions.OrderByDescending(x => x.CountView).Take(10).ToList();
+            var question = db.Questions.OrderByDescending(x => x.CountView).Take(5).ToList();
             return View(question);
         }
         public ActionResult IndexCate()
@@ -73,10 +73,19 @@ namespace SEPQuestionAnswer.Controllers
             return View();
         }
 
+        private void Validation(Question question)
+        {
+            if (string.IsNullOrWhiteSpace(question.AskQuestion))
+            {
+                ModelState.AddModelError("AskQuestion", "Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng");
+            }
+        }
+
         [HttpPost, Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Question question)
         {
+            Validation(question);
             if (ModelState.IsValid)
             {
                 question.CountView = 0;
@@ -87,11 +96,6 @@ namespace SEPQuestionAnswer.Controllers
             }
             ViewBag.Category_ID = new SelectList(db.Categories, "ID", "CategoryName", question.Category_ID);
             return View(question);
-        }
-        public ActionResult Category()
-        {
-            ViewBag.Message = "Your Category page.";
-            return View();
         }
         public ActionResult Search()
         {

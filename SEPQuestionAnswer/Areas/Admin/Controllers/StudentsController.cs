@@ -12,11 +12,10 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         private SEP24Team10Entities db = new SEP24Team10Entities();
         // GET: Admin/Students
         [Authorize(Roles = "BCN")]
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
-            int sizePage = 10;
-            int pageNumber = (page ?? 1);
-            return View(db.Students.ToList().ToPagedList(pageNumber, sizePage));
+            var student = db.Students.ToList();
+            return View(student);
         }
     }
 }

@@ -23,7 +23,7 @@
     @foreach (var item in Model)
     {
         <tr class="Search">
-            <td>
+            <td class="text1">
                 @Html.DisplayFor(modelItem => item.AskQuestion)
             </td>
             <td>
@@ -42,21 +42,15 @@
     });
 </script>
 <script>
-    $(document).ready(function () {
-        function Contains(text_one, text_two) {
-            if (text_one.indexOf(text_two) != -1)
-                return true;
-        }
-        $("#Search").keyup(function () {
-            var searchText = $("#Search").val().toLowerCase();
-            $(".Search").each(function () {
-                if (!Contains($(this).text().toLowerCase(), searchText)) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            });
+    $("#Search").keyup(function () {
+        var searchText = $("#Search").val().toLowerCase();
+        $(".Search").each(function () {
+            var id = $(this).find("td:nth-child(1)").text();
+            if (id.indexOf(searchText) !== 0 && id.toLowerCase().indexOf(searchText.toLowerCase()) < 0) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
         });
     });
 </script>

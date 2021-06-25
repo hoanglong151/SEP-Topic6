@@ -38,7 +38,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             Question question = db.Questions.Find(id);
             if (question == null)
             {
-                return HttpNotFound();
+                return View(question);
             }
             return View(question);
         }
@@ -108,7 +108,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             Question question = db.Questions.Find(id);
             if (question == null)
             {
-                return HttpNotFound();
+                return View(question);
             }
             return View(question);
         }

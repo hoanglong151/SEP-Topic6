@@ -5,6 +5,7 @@ using SEPQuestionAnswer.Models;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using PagedList;
+using System.Linq;
 
 namespace SEPQuestionAnswer.Tests.Controllers
 {
@@ -16,9 +17,10 @@ namespace SEPQuestionAnswer.Tests.Controllers
         [TestMethod]
         public void TestIndex()
         {           
-            var list = controller.Index(1) as ViewResult;
-            Assert.IsNotNull(list);
-            Assert.IsNotNull(list.Model as PagedList<Student>);
+            var result = controller.Index() as ViewResult;
+            Assert.IsNotNull(result);
+            var result1 = result.Model as List<Student>;
+            Assert.AreEqual(db.Students.Count(), result1.Count);
         }
     }
 }

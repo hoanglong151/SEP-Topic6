@@ -1,5 +1,4 @@
-﻿@model PagedList.IPagedList<SEPQuestionAnswer.Models.Student>
-@using PagedList.Mvc
+﻿@model IEnumerable<SEPQuestionAnswer.Models.Student>
 
 @{
     ViewBag.Title = "Students";
@@ -53,6 +52,7 @@
                                     }
                                 </tbody>
                             </table>
+                            @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
                         </div>
                     </div>
                 </div>
