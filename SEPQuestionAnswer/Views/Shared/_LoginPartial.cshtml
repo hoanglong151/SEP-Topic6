@@ -5,7 +5,6 @@
     {
         @Html.AntiForgeryToken()
         <ul>
-            <li><a class="nav-link scrollto" href="#post">Post</a></li>
             <li class="dropdown">
                 @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 <ul class="dropdown" style="border-radius:5px">

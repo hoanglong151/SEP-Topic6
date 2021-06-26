@@ -5,66 +5,31 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>IndexQByC</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Questioner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Respondent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AskQuestion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Answer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountView)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Questioner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Respondent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AskQuestion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Answer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountView)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+<section id="faq" class="faq">
+    <div class="container">
 
-</table>
+        <div class="section-title" data-aos="fade-down">
+            <span>Danh sách câu hỏi</span>
+            <h2>Danh sách câu hỏi</h2>          
+        </div>
+
+        <div class="faq-list">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li data-aos="fade-up">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-id="@item.ID" data-bs-toggle="collapse" class="btn-active collapsed" data-bs-target="#faq-list-@item.ID" aria-expanded="false">@item.AskQuestion<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-@item.ID" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                @Html.Raw(item.Answer)
+                            </p>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+</section>

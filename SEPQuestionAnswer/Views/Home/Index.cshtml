@@ -15,8 +15,8 @@
                         <img src="@Url.Content("~/assets/img/features-1.jpg")" class="card-img-top" alt="...">
                         <div class="card-body">
                             <i class="bx bx-tachometer"></i>
-                            <h5 class="card-title"><a href="">Our Mission</a></h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                            <h5 class="card-title"><a href="">Mục tiêu</a></h5>
+                            <p class="card-text">Tập trung giải đáp những câu hỏi của sinh viên khoa CNTT. Cho sinh viên 1 câu trả lời rõ ràng, chính xác trong thời gian ít nhất. </p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,6 @@
                             </div>
                         </li>
                     }
-
                 </ul>
             </div>
 
@@ -94,7 +93,7 @@
     <section id="post" class="contact">
         <div class="container">
             <div class="section-title" data-aos="fade-down">
-                <span>Post Question</span>
+                <span>Gửi câu hỏi</span>
                 <h2>Gửi câu hỏi</h2>
             </div>
             @using (Html.BeginForm("Create", "Home", FormMethod.Post))
@@ -103,7 +102,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group form-float">
                     <div class="form-line">
-                        <textarea class="form-control" name="AskQuestion" rows="5" placeholder="Message" required></textarea>
+                        <textarea class="form-control" name="AskQuestion" rows="5" placeholder="Nhập câu hỏi của bạn" required></textarea>
                         @Html.ValidationMessage("AskQuestion", "", new { @class = "text-danger" })
                     </div>
                 </div>

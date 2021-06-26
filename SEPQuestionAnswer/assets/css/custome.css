@@ -27,3 +27,8 @@ html{
 .button:hover {
     background-color: #45a36c
 }
+btn-alter {
+    background-color: #ff1c1c;
+    color:white;
+    width:100%;
+}

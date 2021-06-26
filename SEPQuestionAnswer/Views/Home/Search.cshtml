@@ -2,15 +2,50 @@
 
 @{
     ViewBag.Title = "Search";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    //Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>Search</h2>
+@*<p>
+        <input type="text" id="Search" placeholder="Nhập câu hỏi" />
+    </p>
+    <table class="table" style="display: none">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AskQuestion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Answer)
+            </th>
+        </tr>
 
-<p>
-    <input type="text" id="Search" placeholder="Nhập câu hỏi" />
-</p>
-<table class="table" style="display: none">
+        @foreach (var item in Model)
+        {
+            <tr class="Search">
+                <td class="text1">
+                    @Html.DisplayFor(modelItem => item.AskQuestion)
+                </td>
+                <td>
+                    @Html.Raw(item.Answer)
+                </td>
+            </tr>
+        }
+    </table>*@
+
+<div class="s130" style="min-height:0;">
+    <form style="padding-top: 0">
+        <div class="inner-form">
+            <div class="input-field first-wrap">
+                <div class="svg-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                    </svg>
+                </div>
+                <input type="text" id="Search" placeholder="Nhập câu hỏi" />
+            </div>
+        </div>
+    </form>
+</div>
+@*<table class="table" style="display: none">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.AskQuestion)
@@ -30,8 +65,31 @@
                 @Html.Raw(item.Answer)
             </td>
         </tr>
-    }
-</table>
+    }*@
+<section id="faq" class="faq table" style="display:none">
+    <div class="container">
+
+    
+
+        <div class="faq-list">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li data-aos="fade-up" class="Search">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-id="@item.ID" data-bs-toggle="collapse" class="btn-active collapsed" data-bs-target="#faq-list-@item.ID" aria-expanded="false">@item.AskQuestion<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-@item.ID" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                @Html.Raw(item.Answer)
+                            </p>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+</section>
+@*</table>*@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
@@ -45,7 +103,7 @@
     $("#Search").keyup(function () {
         var searchText = $("#Search").val().toLowerCase();
         $(".Search").each(function () {
-            var id = $(this).find("td:nth-child(1)").text();
+            var id = $(this).find("p").text();
             if (id.indexOf(searchText) !== 0 && id.toLowerCase().indexOf(searchText.toLowerCase()) < 0) {
                 $(this).hide();
             } else {
