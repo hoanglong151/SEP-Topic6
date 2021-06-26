@@ -70,7 +70,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                         UserManager.AddToRole(user.Id, role.Name);
                         return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
                     }
-
                 }
             }                                  
         }
