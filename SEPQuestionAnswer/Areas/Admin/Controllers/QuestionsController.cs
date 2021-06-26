@@ -19,7 +19,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             var date = DateTime.Now;
             ViewBag.Total = count;
             var questions = db.Questions.Include(q => q.Category)
-                .OrderByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date);
+                .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date);
             return View(questions);
         }
 

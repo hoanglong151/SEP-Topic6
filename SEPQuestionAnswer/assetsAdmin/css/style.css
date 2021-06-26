@@ -7,22 +7,26 @@ html {
 .dropdown button{
     box-shadow:none !important;
 }
+.dropdown-menu li a:hover, .dropdown-menu li a:focus{
+    color:#262626;
+}
 .navbar {
-  font-family: "Roboto", sans-serif;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  border-radius: 0;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  border: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 12;
-  width: 100%; }
+    font-family: "Roboto", sans-serif;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    width: 100%;
+}
   .navbar .navbar-brand {
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
@@ -7481,7 +7485,7 @@ fieldset[disabled] .form-control {
     margin-bottom: -5px; }
     .dropdown-menu .footer a:hover {
       background-color: transparent; }
-  .dropdown-menu > li > a {
+  .dropdown-menu li a {
     padding: 7px 18px;
     color: #666;
     -moz-transition: all 0.5s;
@@ -7490,9 +7494,11 @@ fieldset[disabled] .form-control {
     transition: all 0.5s;
     font-size: 14px;
     line-height: 25px; }
-    .dropdown-menu > li > a:hover {
-      background-color: rgba(0, 0, 0, 0.075); }
-    .dropdown-menu > li > a i.material-icons {
+    .dropdown-menu li a:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+      text-decoration:none;
+    }
+    .dropdown-menu li a i.material-icons {
       float: left;
       margin-right: 7px;
       margin-top: 2px;
