@@ -16,29 +16,11 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
     public class RoleManagementController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
-
-        // GET: Admin/AspNetRoles
-        [Authorize(Roles = "BCN")]
-        public ActionResult Index()
-        {
-            return View(db.AspNetRoles.ToList());
-        }
-
-        // GET: Admin/AspNetRoles/Details/5
-        public ActionResult Details(string id)
-        {
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            if (aspNetRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetRole);
-        }
+        
         // GET: Admin/AspNetRoles/Create
-        [Authorize(Roles = "BCN")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
-        {           
-            //ViewBag.User = new SelectList(db.AspNetUsers, "ID", "UserName");
+        {                      
             return View();
         }
 
@@ -53,66 +35,49 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             AspNetRole role = db.AspNetRoles.Find(roleId);
             var user = UserManager.FindByName(email);
 
-            if(role.Name == "Sinh Viên")
+            var exists = db.AspNetUsers.ToList().Exists(e => e.Email == email);
+
+            if (exists == false)
             {
-                if (UserManager.IsInRole(user.Id, role.Name))
-                {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
-                }
-                else
-                {
-                    UserManager.AddToRole(user.Id, role.Name);
-                    Student student = new Student();
-                    student.Email = user.Email;
-                    db.Students.Add(student);
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
-                }
-                
+                return Content($"<script language='javascript' type='text/javascript'>alert('Không tìm thấy email trên hệ thống. Thử lại!');window.location.href='/Admin/RoleManagement/Create?roleId={roleId}';</script>");
             }
             else
             {
-                if (UserManager.IsInRole(user.Id, role.Name))
+                if (role.Name == "Sinh Viên")
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                    if (UserManager.IsInRole(user.Id, role.Name))
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+                    else
+                    {
+                        UserManager.AddToRole(user.Id, role.Name);
+                        Student student = new Student();
+                        student.Email = user.Email;
+                        db.Students.Add(student);
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+
                 }
                 else
                 {
-                    UserManager.AddToRole(user.Id, role.Name);
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+                    if (UserManager.IsInRole(user.Id, role.Name))
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+                    else
+                    {
+                        UserManager.AddToRole(user.Id, role.Name);
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+
                 }
-                
-            }                        
+            }                                  
         }
-
-        // GET: Admin/AspNetRoles/Edit/5
-        public ActionResult Edit(string id)
-        {
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            if (aspNetRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetRole);
-        }
-
-        // POST: Admin/AspNetRoles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(AspNetRole aspNetRole)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(aspNetRole).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(aspNetRole);
-        }
+        
 
         // GET: Admin/AspNetRoles/Delete/5
-        [Authorize(Roles = "BCN")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string roleId, string userId)
         {
             if (roleId == null)

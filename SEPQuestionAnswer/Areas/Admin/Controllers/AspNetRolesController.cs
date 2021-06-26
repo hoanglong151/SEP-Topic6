@@ -14,89 +14,13 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
-        [Authorize(Roles = "BCN")]
+        [Authorize(Roles = "Admin, BCN")]
         // GET: Admin/AspNetRoles
         public ActionResult Index()
         {
             return View(db.AspNetRoles.ToList());
         }
         
-        [Authorize(Roles = "BCN")]
-        // GET: Admin/AspNetRoles/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/AspNetRoles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]        
-        public ActionResult Create(AspNetRole aspNetRole)
-        {
-            if (ModelState.IsValid)
-            {
-                aspNetRole.Id = Guid.NewGuid().ToString();
-                db.AspNetRoles.Add(aspNetRole);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(aspNetRole);
-        }
-
-        // GET: Admin/AspNetRoles/Edit/5
-        public ActionResult Edit(string id)
-        {
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            if (aspNetRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetRole);
-        }
-
-        // POST: Admin/AspNetRoles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(AspNetRole aspNetRole)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(aspNetRole).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(aspNetRole);
-        }
-
-        // GET: Admin/AspNetRoles/Delete/5
-        [Authorize(Roles = "BCN")]
-        public ActionResult Delete(string id)
-        {
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            ViewBag.Name = aspNetRole.Name;
-            if (aspNetRole == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aspNetRole);
-        }
-
-        // POST: Admin/AspNetRoles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]        
-        public ActionResult DeleteConfirmed(string id)
-        {
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            db.AspNetRoles.Remove(aspNetRole);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

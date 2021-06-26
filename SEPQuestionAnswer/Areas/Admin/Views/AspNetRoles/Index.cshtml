@@ -80,10 +80,7 @@
                     <div class="header">
                         <h2>
                             Phân Quyền
-                        </h2>
-                        <div>
-                            <a href=@Url.Action("Create","AspNetRoles") class="btn btn-danger" style="margin-top:15px">Tạo Mới Quyền</a>
-                        </div>
+                        </h2>                        
                         <ul class="header-dropdown m-r--7">
                             <li class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -122,9 +119,7 @@
                                                 @Html.DisplayFor(modelItem => item.Name)
                                             </td>
                                             <td>
-                                                <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a> |
-                                                <a href="@Url.Action("Edit", "AspNetRoles", new { id = item.Id})">Cập nhật</a> |
-                                                @Html.ActionLink("Xoá", "Delete", new { id = item.Id })
+                                                <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a>                                                
                                             </td>
                                         </tr>
                                     }
