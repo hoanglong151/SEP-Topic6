@@ -53,32 +53,42 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             AspNetRole role = db.AspNetRoles.Find(roleId);
             var user = UserManager.FindByName(email);
 
-            if(role.Name == "Sinh Viên")
+            var exists = db.AspNetUsers.ToList().Exists(e => e.Email == email);
+
+            if (exists == false)
             {
-                if (UserManager.IsInRole(user.Id, role.Name))
-                {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
-                }
-                else
-                {
-                    UserManager.AddToRole(user.Id, role.Name);
-                    Student student = new Student();
-                    student.Email = user.Email;
-                    db.Students.Add(student);
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
-                }
-                
+                return Content($"<script language='javascript' type='text/javascript'>alert('Không tìm thấy email trên hệ thống. Thử lại!');window.location.href='/Admin/RoleManagement/Create?roleId={roleId}';</script>");
             }
             else
             {
-                if (UserManager.IsInRole(user.Id, role.Name))
+                if (role.Name == "Sinh Viên")
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                    if (UserManager.IsInRole(user.Id, role.Name))
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+                    else
+                    {
+                        UserManager.AddToRole(user.Id, role.Name);
+                        Student student = new Student();
+                        student.Email = user.Email;
+                        db.Students.Add(student);
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+
                 }
                 else
                 {
-                    UserManager.AddToRole(user.Id, role.Name);
-                    return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+                    if (UserManager.IsInRole(user.Id, role.Name))
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+                    else
+                    {
+                        UserManager.AddToRole(user.Id, role.Name);
+                        return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
+                    }
+
                 }
                 
             }                        
