@@ -86,6 +86,7 @@
           <Property Name="AskQuestion" Type="nvarchar(max)" />
           <Property Name="Answer" Type="nvarchar(max)" />
           <Property Name="CountView" Type="int" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -364,6 +365,7 @@
           <Property Name="AskQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CountView" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
         </EntityType>
         <Association Name="FK_Question_Category">
@@ -478,6 +480,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="SEP24Team10Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="CountView" ColumnName="CountView" />
                 <ScalarProperty Name="Answer" ColumnName="Answer" />
                 <ScalarProperty Name="AskQuestion" ColumnName="AskQuestion" />

@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,9 +15,11 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/Questions
         public ActionResult Index()
         {
-            var count = db.Questions.ToList().Count();
+            var count = db.Questions.Where(s => s.Status == "Accept").ToList().Count();
+            var date = DateTime.Now;
             ViewBag.Total = count;
-            var questions = db.Questions.Include(q => q.Category).OrderByDescending(o => o.Status == "Pending").ThenByDescending(d => d.Status == "Accept").ToList();
+            var questions = db.Questions.Include(q => q.Category)
+                .OrderByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date);
             return View(questions);
         }
 
@@ -60,6 +63,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             Validation(question);
             if (ModelState.IsValid)
             {
+                question.Date = DateTime.Now;
                 question.CountView = 0;
                 question.Questioner = User.Identity.Name;
                 question.Respondent = User.Identity.Name;

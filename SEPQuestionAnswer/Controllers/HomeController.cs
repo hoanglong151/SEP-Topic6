@@ -88,6 +88,7 @@ namespace SEPQuestionAnswer.Controllers
             Validation(question);
             if (ModelState.IsValid)
             {
+                question.Date = DateTime.Now;
                 question.CountView = 0;
                 question.Questioner = User.Identity.Name;
                 db.Questions.Add(question);
