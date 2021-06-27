@@ -84,7 +84,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
         public void countView3()
         {
             var question = db.Questions.First();
-            var result = controller.countView3(question.ID);
+            var result = controller.countView2(question.ID);
             Assert.IsNotNull(result);
         }
 

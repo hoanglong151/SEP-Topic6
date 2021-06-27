@@ -13,7 +13,7 @@ namespace SEPQuestionAnswer.Controllers
         private int compare = 0;
         public ActionResult Index()
         {
-            var question = db.Questions.OrderByDescending(x => x.CountView).Take(5).ToList();
+            var question = db.Questions.OrderByDescending(x => x.CountView).Where(s => s.Status == "Accept").Take(5).ToList();
             return View(question);
         }
         public ActionResult IndexCate()
@@ -24,7 +24,7 @@ namespace SEPQuestionAnswer.Controllers
 
         public ActionResult IndexQByC(int id)
         {
-            var question = db.Questions.Where(k => k.Category_ID == id).ToList();
+            var question = db.Questions.Where(k => k.Category_ID == id).Where(s => s.Status == "Accept").ToList();
             return View(question);
         }
         public ActionResult About()
@@ -47,10 +47,10 @@ namespace SEPQuestionAnswer.Controllers
             var result = countView1(id);
             return Json(new
             {
-                view = result
+                view = result.CountView
             });
         }
-        public Question countView2(int id)
+        public Question countView0(int id)
         {
             var view = db.Questions.Find(id);
             view.CountView += 0;
@@ -58,12 +58,12 @@ namespace SEPQuestionAnswer.Controllers
             return view;
         }
         [HttpPost]
-        public JsonResult countView3(int id)
+        public JsonResult countView2(int id)
         {
-            var result = countView2(id);
+            var result = countView0(id);
             return Json(new
             {
-                view = result
+                view = result.CountView
             });
         }
         public ActionResult Contact()

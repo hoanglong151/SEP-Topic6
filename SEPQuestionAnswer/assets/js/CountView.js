@@ -6,7 +6,8 @@ var view = {
     registerEvents: function () {
         $('.btn-active').off('click').on('click', function (e) {
             e.preventDefault();
-            var id = $(this).data('id');
+            var btn = $(this);
+            var id = btn.data('id');
             if (check == 0) {
                 check = id;
                 $.ajax({
@@ -18,7 +19,7 @@ var view = {
             } else if (check == id) {
                 check = 0;
                 $.ajax({
-                    url: "/Home/countView3",
+                    url: "/Home/countView2",
                     data: { id: id },
                     dataType: "json",
                     type: "POST",
