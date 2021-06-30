@@ -357,12 +357,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 56px;
   color: #fff;
+  word-break: break-word;
 }
 
 #hero h2 {
   color: #eee;
   margin-bottom: 40px;
   font-size: 22px;
+  word-break: break-word;
 }
 
 #hero .btn-get-started {
@@ -605,6 +607,7 @@ section {
   position: relative;
   z-index: 2;
   color: #5e5e5e;
+  word-break: break-word;
 }
 
 .features .card:hover {
@@ -639,6 +642,7 @@ section {
 
 .cta p {
   color: #fff;
+  word-break: break-word;
 }
 
 .cta .cta-btn {
