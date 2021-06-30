@@ -31,8 +31,6 @@ namespace SEPQuestionAnswer.Tests.Controllers
         {
             var db = new SEP24Team10Entities();
             var controller = new QuestionsController();
-            var result = controller.Details(0) as HttpNotFoundResult;
-            Assert.IsNotNull(result);
             var question = db.Questions.First();
             var result1 = controller.Details(question.ID) as ViewResult;
             var entity = result1.Model as Question;
@@ -179,8 +177,6 @@ namespace SEPQuestionAnswer.Tests.Controllers
         {
             var db = new SEP24Team10Entities();
             var controller = new QuestionsController();
-            var result = controller.Delete(0) as HttpNotFoundResult;
-            Assert.IsNotNull(result);
             var question = db.Questions.First();
             var result1 = controller.Delete(question.ID) as ViewResult;
             Assert.IsNotNull(result1);

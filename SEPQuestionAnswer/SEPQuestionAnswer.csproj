@@ -606,6 +606,7 @@
     <Content Include="assets\img\hero2.jpg" />
     <Content Include="assets\img\icon-mess.png" />
     <Content Include="assets\img\login2.jpg" />
+    <Content Include="assets\img\logoVLU.png" />
     <Content Include="assets\img\portfolio-details-1.jpg" />
     <Content Include="assets\img\portfolio-details-2.jpg" />
     <Content Include="assets\img\portfolio-details-3.jpg" />
