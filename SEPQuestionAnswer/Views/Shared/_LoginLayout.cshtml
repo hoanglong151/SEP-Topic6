@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
   <head>
   	<title>Login 10</title>
     <meta charset="utf-8">
@@ -10,14 +11,27 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link href="~/assets/login/css/style.css" rel="stylesheet" />
+
 	</head>
   <body class="img js-fullheight">
-  	@RenderBody()
-  	<script src="~/assets/login/js/jquery.min.js"></script>
-  	<script src="~/assets/login/js/popper.js"></script>
-  	<script src="~/assets/login/js/bootstrap.min.js"></script>
-  	<script src="~/assets/login/js/main.js"></script>
-  	@RenderSection("scripts", required: false)
+      <style>
+          .text {
+              width: 100%;
+              background-color: red;
+              color: white
+          }
+
+              .text:hover {
+                  background-color: #b51b1b;
+                  color: white
+              }
+      </style>
+      @RenderBody()
+      <script src="~/assets/login/js/jquery.min.js"></script>
+      <script src="~/assets/login/js/popper.js"></script>
+      <script src="~/assets/login/js/bootstrap.min.js"></script>
+      <script src="~/assets/login/js/main.js"></script>
+      @RenderSection("scripts", required: false)
   </body>
 </html>
 
