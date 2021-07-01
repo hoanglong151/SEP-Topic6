@@ -43,7 +43,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             }
             else
             {
-                if (role.Name == "Sinh Viên")
+                if (role.Name == "Sinh Viên - Giảng Viên")
                 {
                     if (UserManager.IsInRole(user.Id, role.Name))
                     {
