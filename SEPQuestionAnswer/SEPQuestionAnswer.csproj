@@ -877,6 +877,7 @@
     <Content Include="assets\login\scss\bootstrap\_utilities.scss" />
     <Content Include="assets\login\scss\bootstrap\_variables.scss" />
     <Content Include="assets\login\scss\style.scss" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminNotification.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom-scripts.js" />
     <Content Include="Scripts\easypiechart-data.js" />

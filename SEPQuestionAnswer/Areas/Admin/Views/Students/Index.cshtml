@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<SEPQuestionAnswer.Models.Student>
-
+@*@using SEPQuestionAnswer.Models*@
 @{
     ViewBag.Title = "Students";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -30,35 +30,55 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <table id="myTable" class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
                                         <th>Email</th>
+                                        <th>Số câu hỏi đã gửi</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>Email</th>
+                                        <th>Số câu hỏi đã gửi</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
+                                        var count = 0;
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            @foreach (var i in @ViewBag.list)
+                                            {
+                                                if (i.Questioner == item.Email)
+                                                {
+                                                    count += 1;
+                                                }
+                                                else
+                                                {
+                                                    count += 0;
+                                                }
+                                            }
+                                            <td>
+                                                @count
                                             </td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
-                            @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez.com</a></p></footer>
     </div>
 </section>
+
+
+
+
+
 

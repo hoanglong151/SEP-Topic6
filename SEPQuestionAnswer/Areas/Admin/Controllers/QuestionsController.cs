@@ -16,11 +16,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var count = db.Questions.Where(s => s.Status == "Accept").ToList().Count();
-            var countP = db.Questions.Where(s => s.Status == "Pending").Count();
-            var listP = db.Questions.Where(s => s.Status == "Pending").ToList();
             var date = DateTime.Now;
-            Session["count"] = countP;
-            Session["list"] = listP;
             ViewBag.Total = count;
             var questions = db.Questions.Include(q => q.Category)
                 .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date).ToList();

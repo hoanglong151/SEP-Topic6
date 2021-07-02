@@ -10,6 +10,7 @@ using SEPQuestionAnswer.Models;
 using System.Web;
 using System.Security.Principal;
 using System.Transactions;
+using Moq;
 
 namespace SEPQuestionAnswer.Tests.Controllers
 {
@@ -18,14 +19,19 @@ namespace SEPQuestionAnswer.Tests.Controllers
     {
         HomeController controller = new HomeController();
         SEP24Team10Entities db = new SEP24Team10Entities();
+
         [TestMethod]
         public void Index()
         {
+
             // Act
             ViewResult result = controller.Index() as ViewResult;
+            var mockTempData = new Mock<TempDataDictionary>();
+            controller.TempData = mockTempData.Object;
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.IsNotNull(controller.TempData);
             var result1 = result.Model as List<Question>;
             Assert.AreEqual(db.Questions.OrderByDescending(x => x.CountView).Take(5).Count(), result1.Count);
         }
@@ -141,7 +147,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
 
             question.AskQuestion = null;
             controller.ModelState.Clear();
-            var result1 = controller.Create(question) as ViewResult;
+            var result1 = controller.Create(question) as RedirectToRouteResult;
             Assert.IsNotNull(result1);
             Assert.AreEqual("Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
         }

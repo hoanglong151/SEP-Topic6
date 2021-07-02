@@ -17,7 +17,7 @@ namespace SEPQuestionAnswer.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                new { controller = "Questions", action = "Index", id = UrlParameter.Optional },
                 new[] { "SEPQuestionAnswer.Areas.Admin.Controllers" }
             );
         }

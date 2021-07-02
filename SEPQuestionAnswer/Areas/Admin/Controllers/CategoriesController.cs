@@ -10,14 +10,15 @@ using SEPQuestionAnswer.Models;
 
 namespace SEPQuestionAnswer.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "BCN")]
     public class CategoriesController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
-
         // GET: Admin/Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            var cate = db.Categories.OrderByDescending(s => s.Status == true).ToList();
+            return View(cate);
         }
        
         // GET: Admin/Categories/Create

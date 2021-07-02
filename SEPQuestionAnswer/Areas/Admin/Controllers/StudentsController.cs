@@ -15,6 +15,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var student = db.Students.ToList();
+            var question = db.Questions.ToList();
+            ViewBag.list = question;
             return View(student);
         }
     }

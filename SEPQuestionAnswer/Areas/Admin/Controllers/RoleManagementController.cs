@@ -13,6 +13,7 @@ using SEPQuestionAnswer.Models;
 
 namespace SEPQuestionAnswer.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoleManagementController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();

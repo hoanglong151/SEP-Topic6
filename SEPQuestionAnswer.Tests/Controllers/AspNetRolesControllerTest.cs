@@ -24,6 +24,17 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.IsNotNull(result);
             var result1 = result.Model as List<AspNetRole>;
             Assert.AreEqual(db.AspNetRoles.Count(), result1.Count);
-        }        
+        }   
+        
+        [TestMethod]
+        public void RenderHeader()
+        {
+            var db = new SEP24Team10Entities();
+            var controller = new AspNetRolesController();
+            var result = controller.RenderHeader() as PartialViewResult;
+            Assert.IsNotNull(result);
+            var result1 = result.Model as List<Question>;
+            Assert.AreEqual(db.Questions.Where(s => s.Status == "Pending").Count(), result1.Count);
+        }
     }
 }

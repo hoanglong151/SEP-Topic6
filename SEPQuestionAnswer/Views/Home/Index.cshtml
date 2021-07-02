@@ -2,10 +2,27 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+@section scripts{
+    <script>
+            setTimeout(function() {
+                $('.alert').fadeOut('slow');
+            }, 5000)
+    </script>
+}
 <main id="main">
-
-    <!-- ======= Features Section ======= -->
+    @if (ViewBag.fail != null)
+    {
+        <div class="alert alert-danger" role="alert" style="position: relative; z-index: 10;">
+            @ViewBag.fail
+        </div>
+    }
+    else if (ViewBag.success != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.success
+        </div>
+    }
+        <!-- ======= Features Section ======= -->
     <section id="features" class="features">
         <div class="container">
 
@@ -88,8 +105,6 @@
         </div>
     </section><!-- End F.A.Q Section -->
     <!-- ======= Post Question Section ======= -->
-    @*@if (Request.IsAuthenticated)
-        {*@
     <section id="post" class="contact">
         <div class="container">
             <div class="section-title" data-aos="fade-down">
@@ -102,7 +117,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group form-float">
                     <div class="form-line">
-                        <textarea class="form-control" name="AskQuestion" rows="5" placeholder="Nhập câu hỏi của bạn" required></textarea>
+                        @Html.TextArea("AskQuestion", htmlAttributes: new { @class = "form-control", @placeholder = "Nhập câu hỏi của bạn", @rows = "5", @required="" })
                         @Html.ValidationMessage("AskQuestion", "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -112,11 +127,10 @@
                     <label for="Pending" class="m-l-20">Pending</label>
                     @Html.ValidationMessage("Status", "", new { @class = "text-danger" })
                 </div>
-                <div class="text-center"><button class="button" type="submit">Send Message</button></div>
+                <div class="text-center"><button class="button" type="submit">Gửi Câu Hỏi</button></div>
             }
         </div>
     </section>
-    @*}*@
     <!-- End Post Question Section -->
     <!-- ======= Testimonials Section ======= -->
     <div class="testimonials" style="padding:0px;">

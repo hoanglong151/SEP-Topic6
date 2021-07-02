@@ -14,6 +14,14 @@ namespace SEPQuestionAnswer.Controllers
         public ActionResult Index()
         {
             var question = db.Questions.OrderByDescending(x => x.CountView).Where(s => s.Status == "Accept").Take(5).ToList();
+            if (TempData["fail"] != null)
+            {
+                ViewBag.fail = TempData["fail"];
+            }
+            else if (TempData["success"] != null)
+            {
+                ViewBag.success = TempData["success"];
+            }
             return View(question);
         }
         public ActionResult IndexCate()
@@ -93,10 +101,12 @@ namespace SEPQuestionAnswer.Controllers
                 question.Questioner = User.Identity.Name;
                 db.Questions.Add(question);
                 db.SaveChanges();
+                TempData["success"] = "Gửi Câu Hỏi Thành Công";
                 return RedirectToAction("Index");
             }
             ViewBag.Category_ID = new SelectList(db.Categories, "ID", "CategoryName", question.Category_ID);
-            return View(question);
+            TempData["fail"] = "Gửi Câu Hỏi Thất Bại. Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng";
+            return RedirectToAction("Index");
         }
         public ActionResult Search()
         {

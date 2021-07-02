@@ -63,10 +63,8 @@
         }
     </style>
 </head>
-
 <body>
-        <div class="wrap">
-
+    <div class="wrap">
         <!-- ======= Hero Section ======= -->
         <section id="hero">
             <div class="hero-container" data-aos="fade-up">
@@ -78,105 +76,106 @@
         <header id="header" class="d-flex align-items-center">
             <div class="container d-flex align-items-center justify-content-between">
 
-                    <div class="logo">
-                        <h1 class="text-light"><a href="@Url.Action("Index", "Home")"><span>FAQ<span style="color:red; font-size:20px">CNTT</span></span></a></h1>
-                        <!-- Uncomment below if you prefer to use an image logo -->
-                        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-                    </div>
-
-                    <nav id="navbar" class="navbar">
-                        <ul>
-                            <li><a class="nav-link scrollto" href="@Url.Action("Search", "Home")#search">Tìm kiếm</a></li>
-                            <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#faq">FAQ</a></li>
-                            <li><a class="nav-link scrollto" href="@Url.Action("IndexCate","Home")#cate">Danh mục</a></li>
-                            <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#post">Gửi câu hỏi</a></li>
-                            <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#contact">Liên hệ</a></li>
-                        </ul>
-                        @Html.Partial("_LoginPartial")
-                        <i class="bi bi-list mobile-nav-toggle"></i>
-                    </nav><!-- .navbar -->
+                <div class="logo">
+                    <h1 class="text-light"><a href="@Url.Action("Index", "Home")"><span>FAQ<span style="color:red; font-size:20px">CNTT</span></span></a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                 </div>
-            </header><!-- End Header -->
-            @RenderBody()
 
-            <!-- ======= Footer ======= -->
-            <footer id="footer">
-                <div class="footer-top footer-cus cta">
-                    <div class="container">
-                        <div class="row">
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#faq">FAQ</a></li>
+                        <li><a class="nav-link scrollto" href="@Url.Action("Search", "Home")#search">Tìm kiếm</a></li>
+                        <li><a class="nav-link scrollto" href="@Url.Action("IndexCate","Home")#cate">Danh mục</a></li>
+                        <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#post">Gửi câu hỏi</a></li>
+                        <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#contact">Liên hệ</a></li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+            </div>
+        </header><!-- End Header -->
+        @RenderBody()
 
-                            <div class="col-lg-6 col-md-6 footer-contact">
-                                <img src="~/assets/img/vlu_logo.png" />
-                            </div>
+        <!-- ======= Footer ======= -->
+        <footer id="footer">
+            <div class="footer-top footer-cus cta">
+                <div class="container">
+                    <div class="row">
 
-
-                            <div class="col-lg-6 col-md-6 footer-links">
-                                <div>
-                                    <p>
-                                        <strong><i class="fa fa-home" aria-hidden="true"></i> Trường Đại học Văn Lang</strong>
-                                    </p><hr>
-                                    <p><strong>Cơ sở chính:</strong> 69/68 Đặng Thùy Trâm, P. 13, Q. Bình Thạnh, TP. HCM</p>
-
-                                    <p><strong>Cơ sở 1</strong>: 45 Nguyễn Khắc Nhu, P. Cô Giang, Q.1, TP. HCM</p>
-
-                                    <p><strong>Cơ sở 2</strong>: 233A Phan Văn Trị, P.11, Q. Bình Thạnh, TP. HCM</p>
-                                </div>
-                            </div>
-
+                        <div class="col-lg-6 col-md-6 footer-contact">
+                            <img src="~/assets/img/vlu_logo.png" />
                         </div>
+
+
+                        <div class="col-lg-6 col-md-6 footer-links">
+                            <div>
+                                <p>
+                                    <strong><i class="fa fa-home" aria-hidden="true"></i> Trường Đại học Văn Lang</strong>
+                                </p><hr>
+                                <p><strong>Cơ sở chính:</strong> 69/68 Đặng Thùy Trâm, P. 13, Q. Bình Thạnh, TP. HCM</p>
+
+                                <p><strong>Cơ sở 1</strong>: 45 Nguyễn Khắc Nhu, P. Cô Giang, Q.1, TP. HCM</p>
+
+                                <p><strong>Cơ sở 2</strong>: 233A Phan Văn Trị, P.11, Q. Bình Thạnh, TP. HCM</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+            </div>
 
-                <div class="container py-4">
-                    <div class="copyright">
-                        &copy; Copyright <strong><span>Plato</span></strong>. All Rights Reserved
-                    </div>
-                    <div class="credits">
-                        <!-- All the links in the footer should remain intact. -->
-                        <!-- You can delete the links only if you purchased the pro version. -->
-                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/plato-responsive-bootstrap-website-template/ -->
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
+            <div class="container py-4">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Plato</span></strong>. All Rights Reserved
                 </div>
-            </footer><!-- End Footer -->
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/plato-responsive-bootstrap-website-template/ -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </footer><!-- End Footer -->
 
-        </div>
+    </div>
 
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-        <!-- Vendor JS Files -->
+    <!-- Vendor JS Files -->
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script src="@Url.Content("~/assets/vendor/aos/aos.js")"></script>
-        <script src="@Url.Content("~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
-        <script src="@Url.Content("~/assets/vendor/glightbox/js/glightbox.min.js")"></script>
-        <script src="@Url.Content("~/assets/vendor/isotope-layout/isotope.pkgd.min.js")"></script>
-        <script src="@Url.Content("~/assets/vendor/php-email-form/validate.js")"></script>
-        <script src="@Url.Content("~/assets/vendor/swiper/swiper-bundle.min.js")"></script>
-        <script src="@Url.Content("~/assets/search/js/extention/choices.js")"></script>
-        <!-- Template Main JS File -->
-        <script src="@Url.Content("~/assets/js/main.js")"></script>
-        <script>
-            $(document).ready(function () {
-                if (!$.browser.webkit) {
-                    $('.wrapper').html('<p>Sorry! Non webkit users. :(</p>');
-                }
-            });
-        </script>
-        @RenderSection("scripts", required: false)
-        <script src="~/assets/js/CountView.js"></script>
-        <script type="text/javascript">
-            const currentLocation = location.href;
-            const menuItem = document.querySelectorAll('a');
-            const menuLength = menuItem.length
-            for (let i = 0; i < menuLength; i++) {
-                if (menuItem[i].href === currentLocation) {
-                    menuItem[i].className = "active";
-                }
+    <script src="@Url.Content("~/assets/vendor/aos/aos.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/glightbox/js/glightbox.min.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/isotope-layout/isotope.pkgd.min.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/php-email-form/validate.js")"></script>
+    <script src="@Url.Content("~/assets/vendor/swiper/swiper-bundle.min.js")"></script>
+    <script src="@Url.Content("~/assets/search/js/extention/choices.js")"></script>
+    <!-- Template Main JS File -->
+    <script src="@Url.Content("~/assets/js/main.js")"></script>
+    <script>
+        $(document).ready(function () {
+            if (!$.browser.webkit) {
+                $('.wrapper').html('<p>Sorry! Non webkit users. :(</p>');
             }
-        </script>
+        });
+    </script>
+
+    <script src="~/assets/js/CountView.js"></script>
+    <script type="text/javascript">
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('a');
+        const menuLength = menuItem.length
+        for (let i = 0; i < menuLength; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].className = "active";
+            }
+        }
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
