@@ -80,7 +80,7 @@ namespace SEPQuestionAnswer.Controllers
             {
                 case SignInStatus.Success:
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-                    if(UserManager.IsInRole(userId, "Student"))
+                    if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
                     {
                         return RedirectToLocal(returnUrl);
                     }else if(UserManager.IsInRole(userId, "BCN"))
@@ -346,7 +346,7 @@ namespace SEPQuestionAnswer.Controllers
             {
                 case SignInStatus.Success:
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-                    if (UserManager.IsInRole(userId, "Sinh Viên"))
+                    if (UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
                     {
                         return RedirectToLocal(returnUrl);
                     }
@@ -399,9 +399,9 @@ namespace SEPQuestionAnswer.Controllers
                     var currentUser = UserManager.FindByEmail(user.Email);
                     SEP24Team10Entities db = new SEP24Team10Entities();
                     Student student = new Student();
-                    if(currentUser.Email.ToLower().Contains("pm") || currentUser.Email.ToLower().Contains("it"))
+                    if(currentUser.Email.ToLower().Contains("pm") || currentUser.Email.ToLower().Contains("it") || currentUser.Email.ToLower().Contains("vlu"))
                     {                      
-                        UserManager.AddToRole(currentUser.Id, "Sinh Viên");
+                        UserManager.AddToRole(currentUser.Id, "Sinh Viên - Giảng Viên");
                         student.Email = currentUser.Email;
                         db.Students.Add(student);
                         db.SaveChanges();

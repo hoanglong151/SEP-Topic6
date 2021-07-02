@@ -4,7 +4,75 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
+
 <section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Danh Sách Thành Viên Admin
+                        </h2>
+                        <ul class="header-dropdown m-r--7">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        foreach (var user in item.AspNetUsers)
+                                        {
+                                            if (item.Name == "Admin")
+                                            {
+                                                <tr>
+                                                    <td>@user.Email</td>
+                                                    <td>
+                                                        <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="content" style="margin-top: 0px">
     <div class="container-fluid">
         <!-- Exportable Table -->
         <div class="row clearfix">
@@ -119,7 +187,7 @@
                                                 @Html.DisplayFor(modelItem => item.Name)
                                             </td>
                                             <td>
-                                                <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a>                                                
+                                                <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a>                                              
                                             </td>
                                         </tr>
                                     }
