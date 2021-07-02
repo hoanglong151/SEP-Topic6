@@ -22,7 +22,6 @@ namespace SEPQuestionAnswer.Models
         public string Respondent { get; set; }
         [Required]
         public string AskQuestion { get; set; }
-        [Required]
         public string Answer { get; set; }
         public Nullable<int> CountView { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
