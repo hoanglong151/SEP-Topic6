@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", @id = "text", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", @id = "text", @autocomplete = "off", @minLength = "1", @required = true } })
                                     @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
                                     <label class="form-label">Tên Danh Mục</label>
                                 </div>

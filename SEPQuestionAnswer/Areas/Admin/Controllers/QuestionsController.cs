@@ -93,6 +93,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             Validation(question);
             if (ModelState.IsValid)
             {
+                question.Date = DateTime.Now;
                 question.Respondent = User.Identity.Name;
                 db.Entry(question).State = EntityState.Modified;
                 db.SaveChanges();

@@ -11,7 +11,8 @@ namespace SEPQuestionAnswer.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Question
     {
         public int ID { get; set; }
@@ -19,7 +20,9 @@ namespace SEPQuestionAnswer.Models
         public Nullable<int> Category_ID { get; set; }
         public string Questioner { get; set; }
         public string Respondent { get; set; }
+        [Required]
         public string AskQuestion { get; set; }
+        [Required]
         public string Answer { get; set; }
         public Nullable<int> CountView { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
