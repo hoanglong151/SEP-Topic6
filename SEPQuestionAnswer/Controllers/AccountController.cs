@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.VanLang;
 using SEPQuestionAnswer.Models;
 
 namespace SEPQuestionAnswer.Controllers
@@ -334,25 +335,39 @@ namespace SEPQuestionAnswer.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync2();
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
             switch (result)
             {
                 case SignInStatus.Success:
+                    SEP24Team10Entities db = new SEP24Team10Entities();
+                    Student student = new Student();
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-                    if (UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
+                    var currentUser = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserName();
+                    if (currentUser.ToLower().Contains("pm") || currentUser.ToLower().Contains("it") || currentUser.ToLower().Contains("vlu"))
                     {
-                        return RedirectToLocal(returnUrl);
+                        if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            UserManager.AddToRole(userId, "Sinh Viên - Giảng Viên");
+                            student.Email = currentUser;
+                            db.Students.Add(student);
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else if (UserManager.IsInRole(userId, "BCN"))
                     {
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -395,22 +410,12 @@ namespace SEPQuestionAnswer.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
-                {
-                    var currentUser = UserManager.FindByEmail(user.Email);
-                    SEP24Team10Entities db = new SEP24Team10Entities();
-                    Student student = new Student();
-                    if(currentUser.Email.ToLower().Contains("pm") || currentUser.Email.ToLower().Contains("it") || currentUser.Email.ToLower().Contains("vlu"))
-                    {                      
-                        UserManager.AddToRole(currentUser.Id, "Sinh Viên - Giảng Viên");
-                        student.Email = currentUser.Email;
-                        db.Students.Add(student);
-                        db.SaveChanges();
-                    }
+                {                  
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 AddErrors(result);
