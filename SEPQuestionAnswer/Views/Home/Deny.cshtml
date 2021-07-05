@@ -1,8 +1,15 @@
 ﻿
 @{
     ViewBag.Title = "Deny";
-    Layout = null;
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h1>Trang thuộc khoa CNTT, nếu bạn không phải sinh viên CNTT vui lòng quay lại sau. Cảm ơn bạn vì đã ghé thăm trang chúng tôi</h1>
-
+<@*h1>Trang thuộc khoa CNTT, nếu bạn không phải sinh viên CNTT vui lòng quay lại sau. Cảm ơn bạn vì đã ghé thăm trang chúng tôi</h1>*@
+        <div class="jumbotron jumbotron-fluid mydiv" >
+            <div class="container">
+                <h1 class="display-4">Xin Lỗi !</h1>              
+                <hr />
+                <p class="lead word" style="color:black">Trang thuộc khoa CNTT, nếu bạn không phải sinh viên CNTT vui lòng quay lại sau. Cảm ơn bạn vì đã ghé thăm trang chúng tôi.</p>
+                <a class="nut" href="@Url.Action("Index", "Home")">Quay lai</a>
+            </div>
+        </div>

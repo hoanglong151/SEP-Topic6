@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 body {
-    background-image: url('../../login/images/lg.jpg');
+    background-image: url('../../img/login-bg.png');
     background-size: cover;
     overflow: hidden
 }

@@ -1,5 +1,6 @@
-html{
-    word-break:break-all;
+html {
+    word-break: break-all;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .edit{
@@ -32,4 +33,32 @@ btn-alter {
     background-color: #ff1c1c;
     color:white;
     width:100%;
+}
+.mydiv {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em; 
+    margin-left: -15em;
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+    padding-top:10px;
+    border-radius:5px;
+}
+.word{
+    word-break:break-word;
+}
+.nut {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    background-color: red;
+    border-radius: 5px;
+    color:white;
+}
+.nut:hover {
+    color: white;
+    background-color: #b51b1b;
 }
