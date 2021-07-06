@@ -5,9 +5,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 body {
-    background-image: url('../../img/login-bg2.png');
+    background-image: linear-gradient(rgba(238, 118, 33, 0.3), rgba(0, 0, 0, 0.5)), url('../../img/login.jpg');
     background-size: cover;
-    overflow: hidden
+    overflow: hidden;
 }
 :root {
   --blue: #007bff;
@@ -8232,7 +8232,7 @@ h1, h2, h3, h4, h5,
   border: none;
   height: 50px;
   color: white !important;
-  border: 1px solid transparent;
+  border: 2px solid white;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 40px;
   padding-left: 20px;

@@ -597,12 +597,13 @@
     <Content Include="assets\img\hero2.jpg" />
     <Content Include="assets\img\i-quest.png" />
     <Content Include="assets\img\icon-mess.png" />
-    <Content Include="assets\img\login-bg2.png" />
+    <Content Include="assets\img\login.jpg" />
     <Content Include="assets\img\login2.jpg" />
     <Content Include="assets\img\logoVLU.png" />
     <Content Include="assets\img\Searchs_130.png" />
     <Content Include="assets\img\sup.png" />
     <Content Include="assets\img\testimonials-bg.jpg" />
+    <Content Include="assets\img\warning.png" />
     <Content Include="assets\js\CountView.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\login\css\bootstrap.min.css" />
