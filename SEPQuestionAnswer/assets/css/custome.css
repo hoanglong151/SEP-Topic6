@@ -2,7 +2,9 @@ html {
     word-break: break-all;
     font-family: 'Noto Sans', sans-serif;
 }
-
+.dis-footer{
+    padding-left:100px;
+}
 .edit{
     padding:10px;
 }
@@ -61,4 +63,15 @@ btn-alter {
 .nut:hover {
     color: white;
     background-color: #b51b1b;
+}
+.imgsize{
+    height:100px;
+}
+.exclamark {
+    color: red;
+    position: absolute;
+    top: 22px;
+    right: 16px;
+    height: 50px;
+    width: 50px
 }

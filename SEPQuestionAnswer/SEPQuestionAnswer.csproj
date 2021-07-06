@@ -615,7 +615,6 @@
     <Content Include="assets\login\css\bootstrap\utilities\_stretched-link.css" />
     <Content Include="assets\login\css\bootstrap\_media.css" />
     <Content Include="assets\login\css\style.css" />
-    <Content Include="assets\login\images\bg.jpg" />
     <Content Include="assets\login\js\bootstrap.min.js" />
     <Content Include="assets\login\js\jquery.min.js" />
     <Content Include="assets\login\js\main.js" />
@@ -756,7 +755,6 @@
     <Content Include="assets\login\css\bootstrap\.DS_Store" />
     <Content Include="assets\login\css\bootstrap\mixins\.DS_Store" />
     <Content Include="assets\login\fonts\.DS_Store" />
-    <Content Include="assets\login\images\.DS_Store" />
     <Content Include="assets\login\js\.DS_Store" />
     <Content Include="assets\login\scss\.DS_Store" />
     <Content Include="assets\login\scss\bootstrap\.DS_Store" />
