@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SEPQuestionAnswer.Models.AspNetRole>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Danh Sách Sinh Viên
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>CountQuestion</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        foreach (var user in item.AspNetUsers)
+                                        {
+                                            var count = 0;
+                                            if (item.Name == "Sinh Viên - Giảng Viên")
+                                            {
+                                                <tr>
+                                                    <td>@user.Email</td>
+                                                    @foreach (var i in @ViewBag.list)
+                                                    {
+                                                        if (i.Questioner == user.Email)
+                                                        {
+                                                            count += 1;
+                                                        }
+                                                        else
+                                                        {
+                                                            count += 0;
+                                                        }
+                                                    }
+                                                    <td>
+                                                        @count
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Delete", "RoleManagement", new { roleId = item.Id, userId = user.Id})">Gỡ quyền</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</section>

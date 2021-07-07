@@ -15,9 +15,17 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/Questions
         public ActionResult Index()
         {
-            var count = db.Questions.Where(s => s.Status == "Accept").ToList().Count();
+            var countA = db.Questions.Where(s => s.Status == "Accept").ToList().Count();
+            var countP = db.Questions.Where(s => s.Status == "Pending").ToList().Count();
+            var countD = db.Questions.Where(s => s.Status == "Disable").ToList().Count();
+            var count = db.Questions.ToList().Count();
+            var countTop6 = db.Questions.OrderByDescending(c => c.CountView).ToList().Take(6);
             var date = DateTime.Now;
             ViewBag.Total = count;
+            ViewBag.TotalA = countA;
+            ViewBag.TotalP = countP;
+            ViewBag.TotalD = countD;
+            ViewBag.CountTop6 = countTop6;
             var questions = db.Questions.Include(q => q.Category)
                 .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date).ToList();
             return View(questions);

@@ -22,60 +22,6 @@
             @ViewBag.success
         </div>
     }
-        <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="card" data-aos="fade-up">
-                        <img src="@Url.Content("~/assets/img/features-01.jpg")" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <i class="bx bx-tachometer"></i>
-                            <h5 class="card-title"><a href="">Mục tiêu</a></h5>
-                            <p class="card-text">Tập trung giải đáp những câu hỏi của sinh viên khoa CNTT. Cho sinh viên 1 câu trả lời rõ ràng, chính xác trong thời gian ngắn nhất.  </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-5 mt-md-0 d-flex align-items-stretch">
-                    <div class="card" data-aos="fade-up" data-aos-delay="150">
-                        <img src="@Url.Content("~/assets/img/features-2.jpg")" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <i class="bx bx-file"></i>
-                            <h5 class="card-title"><a href="">Hoạt động</a></h5>
-                            <p class="card-text">Sinh viên dễ dàng xem các danh mục, tìm kiếm các câu hỏi mà mình muốn. Sinh viên có thể đặt câu hỏi trong trường hợp không tìm thấy câu hỏi mình muốn hỏi, BCN khoa sẽ trả lời câu hỏi của bạn trong thời gian ngắn nhất. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <div class="card" data-aos="fade-up" data-aos-delay="300">
-                        <img src="@Url.Content("~/assets/img/features-3.jpg")" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <i class="bx bx-show"></i>
-                            <h5 class="card-title"><a href="">Tầm nhìn</a></h5>
-                            <p class="card-text">FAQ là một trang web giúp tăng độ tương tác giữa các bạn sinh viên với các thành viên trong BCN khoa. Từ đó việc trao đổi giữa sinh viên với BCN khoa sẽ dễ dàng và tiết kiệm được thời gian cho hai bên. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End Features Section -->
-    <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-        <div class="container">
-
-            <div class="text-center" data-aos="zoom-in">
-                <h3>Frequently Asked Question - CNTT</h3>
-                <p>
-                    Hỗ trợ trả lời, giải đáp thắc mắc cho sinh viên về những vấn đề liên quan đến ngành <strong>Công Nghệ Thông tin</strong>.
-                    Được chính các thầy cô trong <strong>BCN Khoa</strong> trả lời
-                </p>
-
-            </div>
-
-        </div>
-    </section><!-- End Cta Section -->
     <!-- ======= F.A.Q Section ======= -->
     <section id="faq" class="faq">
         <div class="container">
@@ -96,6 +42,10 @@
                                 <p>
                                     @Html.Raw(item.Answer)
                                 </p>
+                                <p style="font-size:12px; text-align:right">
+                                    Người Đăng: @item.Respondent<br />
+                                    Ngày: @item.Date
+                                </p>
                             </div>
                         </li>
                     }
@@ -104,12 +54,69 @@
 
         </div>
     </section><!-- End F.A.Q Section -->
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container">
+
+            <div class="text-center" data-aos="zoom-in">
+                <h3>Frequently Asked Question - CNTT</h3>
+                <p>
+                    Hỗ trợ trả lời, giải đáp thắc mắc cho sinh viên về những vấn đề liên quan đến ngành <strong>Công Nghệ Thông tin</strong>.
+                    Được chính các thầy cô trong <strong>BCN Khoa</strong> trả lời
+                </p>
+
+            </div>
+
+        </div>
+    </section><!-- End Cta Section -->
     <!-- ======= Post Question Section ======= -->
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features" style="background-color: #f3faf6">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="card" data-aos="fade-up">
+                        <img src="@Url.Content("~/assets/img/features-01.jpg")" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <i class="bx bx-tachometer"></i>
+                            <h5 class="card-title"><a href="" style="pointer-events:none">Mục tiêu</a></h5>
+                            <p class="card-text">Tập trung giải đáp những câu hỏi của sinh viên khoa CNTT. Cho sinh viên 1 câu trả lời rõ ràng, chính xác trong thời gian ngắn nhất.  </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-5 mt-md-0 d-flex align-items-stretch">
+                    <div class="card" data-aos="fade-up" data-aos-delay="150">
+                        <img src="@Url.Content("~/assets/img/features-2.jpg")" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <i class="bx bx-file"></i>
+                            <h5 class="card-title"><a href="" style="pointer-events:none">Hoạt động</a></h5>
+                            <p class="card-text">Sinh viên dễ dàng xem các danh mục, tìm kiếm các câu hỏi mà mình muốn. Sinh viên có thể đặt câu hỏi trong trường hợp không tìm thấy câu hỏi mình muốn hỏi, BCN khoa sẽ trả lời câu hỏi của bạn trong thời gian ngắn nhất. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <div class="card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="@Url.Content("~/assets/img/features-3.jpg")" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <i class="bx bx-show"></i>
+                            <h5 class="card-title"><a href="" style="pointer-events:none">Tầm nhìn</a></h5>
+                            <p class="card-text">FAQ là một trang web giúp tăng độ tương tác giữa các bạn sinh viên với các thành viên trong BCN khoa. Từ đó việc trao đổi giữa sinh viên với BCN khoa sẽ dễ dàng và tiết kiệm được thời gian cho hai bên. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Features Section -->
     <section id="post" class="contact">
         <div class="container">
             <div class="section-title" data-aos="fade-down">
                 <span>Gửi câu hỏi</span>
                 <h2>Gửi câu hỏi</h2>
+            </div>
+            <div style="font-size:12px; color:red">
+                * Chỉ áp dụng đối với Sinh Viên thuộc Khoa CNTT
             </div>
             @using (Html.BeginForm("Create", "Home", FormMethod.Post))
             {

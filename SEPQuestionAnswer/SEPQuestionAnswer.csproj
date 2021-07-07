@@ -179,7 +179,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\StudentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -227,9 +226,6 @@
     <Compile Include="Models\Question.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Student.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -251,6 +247,7 @@
     <Content Include="Areas\Admin\Views\Questions\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Questions\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRoles\IndexSV.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assetsAdmin\css\materialize.css" />
     <Content Include="assetsAdmin\css\style.css" />
@@ -572,6 +569,7 @@
     <Content Include="assetsAdmin\plugins\jquery-datatable\skin\bootstrap\images\sort_desc_disabled.png" />
     <Content Include="assetsAdmin\plugins\jquery-datatable\skin\bootstrap\js\dataTables.bootstrap.js" />
     <Content Include="assetsAdmin\plugins\jquery-datatable\skin\bootstrap\js\dataTables.bootstrap.min.js" />
+    <Content Include="assetsAdmin\plugins\jquery-knob\jquery.knob.min.js" />
     <Content Include="assetsAdmin\plugins\jquery-slimscroll\jquery.slimscroll.js" />
     <Content Include="assetsAdmin\plugins\jquery\jquery.js" />
     <Content Include="assetsAdmin\plugins\jquery\jquery.min.js" />
@@ -698,7 +696,6 @@
     <Content Include="fonts\Oxygen-Light.ttf" />
     <Content Include="fonts\Oxygen-Regular.ttf" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Students\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
     <Content Include="fonts\fontawesome-webfontba72.eot" />

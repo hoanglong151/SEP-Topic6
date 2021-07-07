@@ -88,13 +88,6 @@
           <Property Name="CountView" Type="int" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -182,7 +175,6 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -230,7 +222,6 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Questions" EntityType="SEP24Team10Model.Question" />
-          <EntitySet Name="Students" EntityType="SEP24Team10Model.Student" />
           <AssociationSet Name="FK_Question_Category" Association="SEP24Team10Model.FK_Question_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Question" EntitySet="Questions" />
@@ -361,13 +352,6 @@
           <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
         </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_Question_Category">
           <End Type="SEP24Team10Model.Category" Role="Category" Multiplicity="0..1" />
           <End Type="SEP24Team10Model.Question" Role="Question" Multiplicity="*" />
@@ -480,14 +464,6 @@
                 <ScalarProperty Name="Questioner" ColumnName="Questioner" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="SEP24Team10Model.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

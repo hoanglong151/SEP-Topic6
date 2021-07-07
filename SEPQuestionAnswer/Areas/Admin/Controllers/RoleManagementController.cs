@@ -36,14 +36,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             AspNetRole role = db.AspNetRoles.Find(roleId);
             var user = UserManager.FindByName(email);
 
-            var exists = db.AspNetUsers.ToList().Exists(e => e.Email == email);
-
-            if (exists == false)
-            {
-                return Content($"<script language='javascript' type='text/javascript'>alert('Không tìm thấy email trên hệ thống. Thử lại!');window.location.href='/Admin/RoleManagement/Create?roleId={roleId}';</script>");
-            }
-            else
-            {
                 if (role.Name == "Sinh Viên - Giảng Viên")
                 {
                     if (UserManager.IsInRole(user.Id, role.Name))
@@ -53,12 +45,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     else
                     {
                         UserManager.AddToRole(user.Id, role.Name);
-                        Student student = new Student();
-                        student.Email = user.Email;
-                        db.Students.Add(student);
                         return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
                     }
-
                 }
                 else
                 {
@@ -71,10 +59,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                         UserManager.AddToRole(user.Id, role.Name);
                         return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
                     }
-                }
-            }                                  
+                }                                  
         }
-        
 
         // GET: Admin/AspNetRoles/Delete/5
         [Authorize(Roles = "Admin")]

@@ -16,18 +16,6 @@
                             Danh Sách Danh Mục
                         </h2>
                         <a href=@Url.Action("Create","Categories") class="btn btn-danger" style="margin-top:15px">Tạo Danh Mục</a>
-                        <ul class="header-dropdown m-r--7">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -39,13 +27,6 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Tên Danh Mục</th>
-                                        <th>Trạng Thái</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
@@ -58,12 +39,12 @@
                                         <td>
                                             @if (item.Status == true)
                                             {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-red" checked="" onclick="submit(@item.ID);">
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-blue" checked="" onclick="submit(@item.ID);">
                                                 <label for="@item.ID"></label>
                                             }
                                             else
                                             {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-red" onclick="submit(@item.ID);">
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-blue" onclick="submit(@item.ID);">
                                                 <label for="@item.ID"></label>
                                             }
                                         </td>

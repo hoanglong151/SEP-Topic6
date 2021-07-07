@@ -22,6 +22,13 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             return View(db.AspNetRoles.ToList());
         }
 
+        public ActionResult IndexSV()
+        {
+            var question = db.Questions.ToList();
+            ViewBag.list = question;
+            return View(db.AspNetRoles.ToList());
+        }
+
         [ChildActionOnly]
         public ActionResult RenderHeader()
         {
