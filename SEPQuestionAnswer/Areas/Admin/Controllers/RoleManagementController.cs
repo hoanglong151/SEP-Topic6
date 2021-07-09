@@ -57,8 +57,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string roleId, AspNetUser email)
         {
-            //string user1 = string.Join(",", email.Users); 
-            //string[] userNew = user1.Split(',');
             for (var i = 0; i < email.Users.Length; i++)
             {
                 var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -73,7 +71,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                         else
                         {
                             UserManager.AddToRole(user.Id, role.Name);
-                            //return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
                         }
                     }
                     else

@@ -24,8 +24,20 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.IsNotNull(result);
             var result1 = result.Model as List<AspNetRole>;
             Assert.AreEqual(db.AspNetRoles.Count(), result1.Count);
-        }   
-        
+        }
+
+        [TestMethod]
+        public void TestIndexSV()
+        {
+            var db = new SEP24Team10Entities();
+            var controller = new AspNetRolesController();
+
+            var result = controller.IndexSV() as ViewResult;
+            Assert.IsNotNull(result);
+            var result1 = result.Model as List<AspNetRole>;
+            Assert.AreEqual(db.AspNetRoles.Count(), result1.Count);
+        }
+
         [TestMethod]
         public void RenderHeader()
         {

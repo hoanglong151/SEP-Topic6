@@ -33,7 +33,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.IsNotNull(result);
             Assert.IsNotNull(controller.TempData);
             var result1 = result.Model as List<Question>;
-            Assert.AreEqual(db.Questions.OrderByDescending(x => x.CountView).Take(5).Count(), result1.Count);
+            Assert.AreEqual(db.Questions.OrderByDescending(x => x.CountView).Take(10).Count(), result1.Count);
         }
 
         [TestMethod]

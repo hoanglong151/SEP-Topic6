@@ -14,9 +14,30 @@ body {
     background-color: #f4f4f4;
 }
 
+.faq-list > ul > li {
+    display: none
+}
+
+.loadMore {
+    background: none;
+    width: 120px;
+    height: 35px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    border: 2px solid #000;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.loadMore:hover {
+    transition: all 1s ease;
+    background-color: black;
+    color: white;
+}
+
 a {
-  color: #4eb478;
-  text-decoration: none;
+    color: #4eb478;
+    text-decoration: none;
 }
 
 a:hover {
