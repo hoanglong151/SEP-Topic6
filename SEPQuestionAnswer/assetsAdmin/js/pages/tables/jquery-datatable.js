@@ -25,4 +25,15 @@ $(function () {
             { orderable: false, targets: '_all' }
         ]
     });
+    $('.js-exportableno').DataTable({
+        dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "order": [],
+        columnDefs: [
+            { orderable: false, targets: '_all' }
+        ]
+    });
 });

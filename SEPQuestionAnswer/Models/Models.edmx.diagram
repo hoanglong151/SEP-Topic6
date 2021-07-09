@@ -17,6 +17,7 @@
         <AssociationConnector Association="SEP24Team10Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="SEP24Team10Model.Question" Width="1.5" PointX="3" PointY="6.875" />
         <AssociationConnector Association="SEP24Team10Model.FK_Question_Category" />
+        <EntityTypeShape EntityType="SEP24Team10Model.StudentOther" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

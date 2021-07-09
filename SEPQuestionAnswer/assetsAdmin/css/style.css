@@ -4,6 +4,11 @@ html {
     word-break: break-all;
 }
 
+.inner .open {
+    position: relative !important;
+    left: 30px !important;
+}
+
 .dropdown button{
     box-shadow:none !important;
 }
@@ -4211,11 +4216,12 @@ section.content {
   border-radius: 0; }
   .bootstrap-select .dropdown-toggle:focus, .bootstrap-select .dropdown-toggle:active {
     outline: none !important; }
-  .bootstrap-select .bs-searchbox,
-  .bootstrap-select .bs-actionsbox,
-  .bootstrap-select .bs-donebutton {
-    padding: 0 0 5px 0;
-    border-bottom: 1px solid #e9e9e9; }
+    .bootstrap-select .bs-searchbox,
+    .bootstrap-select .bs-actionsbox,
+    .bootstrap-select .bs-donebutton {
+        padding: 0 0 5px 0;
+        border-bottom: 1px solid #e9e9e9;
+    }
     .bootstrap-select .bs-searchbox .form-control,
     .bootstrap-select .bs-actionsbox .form-control,
     .bootstrap-select .bs-donebutton .form-control {
@@ -4230,13 +4236,14 @@ section.content {
       border: none;
       margin-left: 30px; }
   .bootstrap-select .bs-searchbox {
-    position: relative; }
+    position: relative;
+  }
     .bootstrap-select .bs-searchbox:after {
       content: '\E8B6';
       font-family: 'Material Icons';
       position: absolute;
       top: 0;
-      left: 10px;
+      left: 40px;
       font-size: 25px; }
   .bootstrap-select ul.dropdown-menu {
     margin-top: 0 !important; }

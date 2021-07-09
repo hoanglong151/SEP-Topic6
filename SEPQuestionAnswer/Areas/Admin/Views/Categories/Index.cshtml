@@ -19,7 +19,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportablenosort">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportableno">
                                 <thead>
                                     <tr>
                                         <th>Tên Danh Mục</th>
@@ -39,12 +39,12 @@
                                         <td>
                                             @if (item.Status == true)
                                             {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-blue" checked="" onclick="submit(@item.ID);">
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-green" checked="" onclick="submit(@item.ID);">
                                                 <label for="@item.ID"></label>
                                             }
                                             else
                                             {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-blue" onclick="submit(@item.ID);">
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-green" onclick="submit(@item.ID);">
                                                 <label for="@item.ID"></label>
                                             }
                                         </td>

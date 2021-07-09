@@ -67,7 +67,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportablenosort">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
                                         <th>Email</th>
@@ -127,14 +127,24 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        @if (item.Name == "Sinh Viên - Giảng Viên")
+                                        {
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Name)
+                                                <a href="@Url.Action("CreateSVOther", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a>
                                             </td>
+                                        }
+                                        else
+                                        {
                                             <td>
-                                                <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a>                                              
+                                                <a href="@Url.Action("Create", "RoleManagement", new { roleId = item.Id})">Cấp quyền</a>
                                             </td>
-                                        </tr>
+                                        }
+
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

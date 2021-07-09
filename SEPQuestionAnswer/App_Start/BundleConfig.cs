@@ -25,6 +25,9 @@ namespace SEPQuestionAnswer
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/chosen").Include("~/Scripts/chosen.jquery*"));
+            bundles.Add(new ScriptBundle("~/Contents/chosen").Include("~/Content/bootstrap-chosen.css"));
         }
     }
 }

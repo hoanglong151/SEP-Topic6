@@ -88,6 +88,13 @@
           <Property Name="CountView" Type="int" />
           <Property Name="Date" Type="datetime" />
         </EntityType>
+        <EntityType Name="StudentOther">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -175,6 +182,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentOther" EntityType="Self.StudentOther" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -226,6 +234,7 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
+          <EntitySet Name="StudentOthers" EntityType="SEP24Team10Model.StudentOther" />
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -364,6 +373,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="StudentOther">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -464,6 +480,14 @@
                 <ScalarProperty Name="Questioner" ColumnName="Questioner" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentOthers">
+            <EntityTypeMapping TypeName="SEP24Team10Model.StudentOther">
+              <MappingFragment StoreEntitySet="StudentOther">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -8,7 +8,7 @@
             <li class="dropdown">
                 @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 <ul class="dropdown" style="border-radius:5px">
-                    @if (this.User.IsInRole("BCN"))
+                    @if (this.User.IsInRole("BCN") || this.User.IsInRole("Admin"))
                     {
 
                         <li><a href="@Url.Action("Index","AspNetRoles",new { Area = "Admin"})">Quản Lý</a></li>

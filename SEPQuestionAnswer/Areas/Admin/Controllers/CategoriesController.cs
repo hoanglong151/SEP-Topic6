@@ -10,7 +10,7 @@ using SEPQuestionAnswer.Models;
 
 namespace SEPQuestionAnswer.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "BCN")]
+    [Authorize(Roles = "BCN, Admin")]
     public class CategoriesController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();

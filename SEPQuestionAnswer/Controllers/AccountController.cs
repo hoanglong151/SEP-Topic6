@@ -346,8 +346,10 @@ namespace SEPQuestionAnswer.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var db = new SEP24Team10Entities();
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     var currentUser = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserName();
+                    var check = db.StudentOthers.FirstOrDefault(x => x.Email == currentUser);
                     if (currentUser.ToLower().Contains("pm") || currentUser.ToLower().Contains("it") || currentUser.ToLower().Contains("vlu"))
                     {
                         if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
@@ -366,6 +368,11 @@ namespace SEPQuestionAnswer.Controllers
                     }
                     else if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
                     {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if(check != null)
+                    {
+                        UserManager.AddToRole(userId, "Sinh Viên - Giảng Viên");
                         return RedirectToAction("Index", "Home");
                     }
                     else
