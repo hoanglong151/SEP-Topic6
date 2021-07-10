@@ -50,7 +50,7 @@
         $("#Search").keyup(function () {
             var searchText = $("#Search").val().toLowerCase();
             $(".Search").each(function () {
-                var id = $(this).find("p").text();
+                var id = $(this).find("a").text();
                 if (id.indexOf(searchText) !== 0 && id.toLowerCase().indexOf(searchText.toLowerCase()) < 0) {
                     $(this).hide();
                 } else {

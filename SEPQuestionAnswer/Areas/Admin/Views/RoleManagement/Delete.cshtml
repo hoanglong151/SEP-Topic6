@@ -20,10 +20,18 @@
                         @using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
-                            <div>
+                        <div>
+                            @if (role == "Sinh Viên - Giảng Viên")
+                            {
+                                <input id="1" type="submit" value="Xác nhận" class="btn btn-primary waves-effect" />
+                                <a href="@Url.Action("IndexSV","AspNetRoles")" class="btn btn-primary waves-effect">Hủy</a>
+                            }
+                            else
+                            {
                                 <input type="submit" value="Xác nhận" class="btn btn-primary waves-effect" />
                                 <a href="@Url.Action("Index","AspNetRoles")" class="btn btn-primary waves-effect">Hủy</a>
-                            </div>
+                            }
+                        </div>
                         }
                     </div>
                 </div>
@@ -31,3 +39,11 @@
         </div>
     </div>
 </section>
+<script>
+    var check = document.getElementById('1');
+    if (check != null) {
+        document.querySelector('#item-4').setAttribute('class', 'active');
+    } else {
+        document.querySelector('#item-3').setAttribute('class', 'active');
+    }
+</script>

@@ -147,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\RoleManagementControllerTest .cs" />
     <Compile Include="Controllers\AspNetRolesControllerTest.cs" />
     <Compile Include="Controllers\CategoriesControllerTest.cs" />
     <Compile Include="Controllers\QuestionControllerTest.cs" />

@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="demo-checkbox" style="margin-bottom: 10px;">
-                                <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-blue" checked="" name="Status" value="true"/>
+                                <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-blue" checked="" name="Status" value="true" />
                                 <label for="md_checkbox_21" style="color:#AAA; font-size:14px">Tình trạng</label>
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                             </div>
@@ -44,7 +44,6 @@
         </div>
     </div>
 </section>
-
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+<script>
+    document.querySelector('#item-1').setAttribute('class', 'active');
+</script>

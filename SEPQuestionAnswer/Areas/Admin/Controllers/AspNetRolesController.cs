@@ -15,13 +15,11 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
-        [Authorize(Roles = "Admin, BCN")]
         // GET: Admin/AspNetRoles
         public ActionResult Index()
         {
             return View(db.AspNetRoles.ToList());
         }
-
         public ActionResult IndexSV()
         {
             var question = db.Questions.ToList();

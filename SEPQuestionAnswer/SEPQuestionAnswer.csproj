@@ -236,9 +236,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\AspNetRoles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AspNetRoles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\AspNetRoles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManagement\Create.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManagement\Delete.cshtml" />

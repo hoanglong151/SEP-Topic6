@@ -53,6 +53,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // POST: Admin/AspNetRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(string roleId, AspNetUser email)
@@ -98,16 +99,13 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AspNetRole aspNetRole = db.AspNetRoles.Find(roleId);
-            if (aspNetRole == null)
-            {
-                return HttpNotFound();
-            }
             ViewBag.Role = db.AspNetRoles.Find(roleId).Name;
             ViewBag.User = db.AspNetUsers.Find(userId).Email;
             return View(aspNetRole);
         }
 
         // POST: Admin/AspNetRoles/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string roleId, string userId)

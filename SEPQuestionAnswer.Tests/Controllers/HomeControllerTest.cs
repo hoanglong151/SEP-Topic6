@@ -23,15 +23,17 @@ namespace SEPQuestionAnswer.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-
+            HomeControllerTest builder = new HomeControllerTest();
+            var tempData = new TempDataDictionary();
+            tempData.Add("fail", "a");
             // Act
             ViewResult result = controller.Index() as ViewResult;
-            var mockTempData = new Mock<TempDataDictionary>();
-            controller.TempData = mockTempData.Object;
-
+            controller.TempData = tempData;
+            controller.ViewBag.fail = tempData;
             // Assert
             Assert.IsNotNull(result);
             Assert.IsNotNull(controller.TempData);
+            Assert.AreEqual(controller.TempData, result.ViewBag.fail);
             var result1 = result.Model as List<Question>;
             Assert.AreEqual(db.Questions.OrderByDescending(x => x.CountView).Take(10).Count(), result1.Count);
         }
