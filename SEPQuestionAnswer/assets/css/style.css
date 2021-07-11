@@ -1234,6 +1234,7 @@ section {
 .faq {
   background: #f3faf6;
   padding: 60px 0;
+  word-break: break-word;
 }
 
 .faq .section-title span {
