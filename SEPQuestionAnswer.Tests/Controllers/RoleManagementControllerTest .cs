@@ -113,23 +113,45 @@ namespace SEPQuestionAnswer.Tests.Controllers
 
             using (var scope = new TransactionScope())
             {
-                StudentOther studentD = db.StudentOthers.Find(check1.ID);
-                db.StudentOthers.Remove(studentD);
-                check.AspNetUsers.Remove(user);
-                var result = controller.DeleteConfirmed(role.Id, user.Id) as RedirectToRouteResult;
-                Assert.IsNotNull(result);
-                Assert.AreEqual("Index", result.RouteValues["action"]);
+                if(check1 != null)
+                {
+                    StudentOther studentD = db.StudentOthers.Find(check1.ID);
+                    db.StudentOthers.Remove(studentD);
+                    check.AspNetUsers.Remove(user);
+                    var result = controller.DeleteConfirmed(role.Id, user.Id) as RedirectToRouteResult;
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual("Index", result.RouteValues["action"]);
+                }
+                else
+                {
+                    check.AspNetUsers.Remove(user);
+                    var result = controller.DeleteConfirmed(role.Id, user.Id) as RedirectToRouteResult;
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual("Index", result.RouteValues["action"]);
+                }
             }
 
             user.Email = "long1511@gmail.com";
+            user.UserName = "long1511@gmail.com";
             check1 = db.StudentOthers.FirstOrDefault(s => s.Email == user.Email);
-            controller.ModelState.Clear();
             using (var scope = new TransactionScope())
             {
-                check.AspNetUsers.Remove(user);
-                var result = controller.DeleteConfirmed(role.Id, user.Id) as RedirectToRouteResult;
-                Assert.IsNotNull(result);
-                Assert.AreEqual("Index", result.RouteValues["action"]);
+                if (check1 == null)
+                {
+                    check.AspNetUsers.Remove(user);
+                    var result = controller.DeleteConfirmed(role.Id, user.Id) as RedirectToRouteResult;
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual("Index", result.RouteValues["action"]);
+                }
+                else
+                {
+                    StudentOther studentD = db.StudentOthers.Find(check1.ID);
+                    db.StudentOthers.Remove(studentD);
+                    check.AspNetUsers.Remove(user);
+                    var result = controller.DeleteConfirmed(role.Id, user.Id) as RedirectToRouteResult;
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual("Index", result.RouteValues["action"]);
+                }
             }
         }
     }

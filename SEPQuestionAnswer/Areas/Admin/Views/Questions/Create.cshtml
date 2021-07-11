@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                @Html.DropDownListFor(model => model.Category_ID, null, "-- Chọn Danh Mục --", htmlAttributes: new { @class = "dropdown bootstrap-select form-control bs3" })
+                                @Html.DropDownListFor(model => model.Category_ID, null, "-- Chọn Danh Mục --", htmlAttributes: new { @class = "dropdown bootstrap-select form-control bs3", @required = true })
                                 @Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group form-float">
@@ -56,7 +56,7 @@
                                 @Html.RadioButton("Status", "Pending", htmlAttributes: new { @class = "radio-col-red", @id = "Pending" })
                                 <label for="Pending" class="m-l-20">Pending</label>
                                 @Html.RadioButton("Status", "Disable", htmlAttributes: new { @class = "radio-col-grey", @id = "Disable" })
-                                <label for="Reject" class="m-l-20">Disable</label>
+                                <label for="Disable" class="m-l-20">Disable</label>
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group form-float">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <input type="submit" value="Tạo" class="btn btn-primary waves-effect" />
-                            <a href=@Url.Action("Index","Questions") class="btn btn-primary waves-effect">Hủy</a>
+                            <a id="cancel" href=@Url.Action("Index","Questions") class="btn btn-primary waves-effect">Hủy</a>
                         }
                     </div>
                 </div>
@@ -89,5 +89,19 @@
     </script>
     <script>
         document.querySelector('#item-2').setAttribute('class', 'active');
+    </script>
+    <script>
+        var cancel = document.querySelector('#cancel');
+        var cate = document.querySelector('#Category_ID');
+        var question = document.querySelector('#AskQuestion');
+        var radio = document.querySelector('#Accept');
+        cancel.addEventListener("click", function (e) {
+            if (cate.value != "" || tinyMCE.get('Answer').getContent() != "" || radio.checked == false || question.value != "") {
+                var check = window.confirm('Bạn Có Muốn Rời Khỏi Form?');
+                if (check == false) {
+                    e.preventDefault();
+                }
+            }
+        })
     </script>
 }

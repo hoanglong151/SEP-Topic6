@@ -36,7 +36,7 @@
                             </div>
 
                             <input type="submit" value="Tạo" class="btn btn-primary waves-effect" />
-                            <a href=@Url.Action("Index","Categories") class="btn btn-primary waves-effect">Hủy</a>
+                            <a id="cancel" href=@Url.Action("Index","Categories") class="btn btn-primary waves-effect">Hủy</a>
                         }
                     </div>
                 </div>
@@ -46,4 +46,17 @@
 </section>
 <script>
     document.querySelector('#item-1').setAttribute('class', 'active');
+</script>
+<script>
+    var input = document.querySelector('#CategoryName');
+    var cancel = document.querySelector('#cancel');
+    var check1 = document.querySelector('#md_checkbox_21');
+    cancel.addEventListener("click", function (e) {
+        if (input.value != "" || check1.checked == false) {
+            var check = window.confirm('Bạn Có Muốn Rời Khỏi Form?');
+            if (check == false) {
+                e.preventDefault();
+            }
+        }
+    })
 </script>

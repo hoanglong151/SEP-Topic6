@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <input type="submit" onclick="" value="Cấp quyền" class="btn btn-primary waves-effect" />
-                            <a href=@Url.Action("Index","AspNetRoles") class="btn btn-primary waves-effect">Hủy</a>
+                            <a id="cancel" href=@Url.Action("Index","AspNetRoles") class="btn btn-primary waves-effect">Hủy</a>
                         }
                     </div>
                 </div>
@@ -36,6 +36,17 @@
 </section>
 <script>
     document.querySelector('#item-4').setAttribute('class', 'active');
+</script>
+<script>
+    var cancel = document.querySelector('#cancel');
+    cancel.addEventListener('click', function (e) {
+        if (document.querySelector('#Users').value != "") {
+            var check = window.confirm('Bạn Có Muốn Rời Khỏi Form?');
+            if (check == false) {
+                e.preventDefault();
+            }
+        }
+    })
 </script>
 
 

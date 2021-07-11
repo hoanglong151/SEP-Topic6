@@ -4,7 +4,6 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
 <section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
@@ -59,7 +58,7 @@
                                 @Html.RadioButton("Status", "Pending", htmlAttributes: new { @class = "radio-col-red", @id = "Pending" })
                                 <label for="Pending" class="m-l-20">Pending</label>
                                 @Html.RadioButton("Status", "Disable", htmlAttributes: new { @class = "radio-col-grey", @id = "Disable" })
-                                <label for="Reject" class="m-l-20">Disable</label>
+                                <label for="Disable" class="m-l-20">Disable</label>
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group form-float">
@@ -70,7 +69,7 @@
                                 </div>
                             </div>
                             <input type="submit" value="Cập nhật" class="btn btn-primary waves-effect" />
-                            <a href=@Url.Action("Index","Questions") class="btn btn-primary waves-effect">Hủy</a>
+                            <a id="cancel" href=@Url.Action("Index","Questions") class="btn btn-primary waves-effect">Hủy</a>
                         }
                     </div>
                 </div>
@@ -92,5 +91,27 @@
     </script>
     <script>
         document.querySelector('#item-2').setAttribute('class', 'active');
+    </script>
+    <script>
+        var cancel = document.querySelector('#cancel');
+        var cate = document.querySelector('#Category_ID').value;
+        var question = document.querySelector('#AskQuestion').value;
+        var radioA = document.querySelector('#Accept').checked;
+        var radioP = document.querySelector('#Pending').checked;
+        var radioD = document.querySelector('#Disable').checked;
+        var answer = document.querySelector('#Answer').value;
+        cancel.addEventListener("click", function (e) {
+            var cate1 = document.querySelector('#Category_ID').value;
+            var question1 = document.querySelector('#AskQuestion').value;
+            var radioA1 = document.querySelector('#Accept').checked;
+            var radioP1 = document.querySelector('#Pending').checked;
+            var radioD1 = document.querySelector('#Disable').checked;
+            if (question != question1 || cate != cate1 || radioA !== radioA1 || radioP != radioP1 || radioD != radioD1 || answer != tinyMCE.get('Answer').getContent()) {
+                var check = window.confirm('Bạn Có Muốn Rời Khỏi Form?');
+                if (check == false) {
+                    e.preventDefault();
+                }
+            }
+        })
     </script>
 }
