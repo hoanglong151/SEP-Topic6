@@ -296,6 +296,7 @@
     <Content Include="assetsAdmin\css\themes\theme-yellow.css" />
     <Content Include="assetsAdmin\css\themes\theme-yellow.min.css" />
     <Content Include="assetsAdmin\images\animation-bg.jpg" />
+    <Content Include="assetsAdmin\images\green.jpg" />
     <Content Include="assetsAdmin\images\image-gallery\1.jpg" />
     <Content Include="assetsAdmin\images\image-gallery\10.jpg" />
     <Content Include="assetsAdmin\images\image-gallery\11.jpg" />
@@ -725,6 +726,7 @@
     <Content Include="assets\img\login.jpg" />
     <Content Include="assets\img\login2.jpg" />
     <Content Include="assets\img\logoVLU.png" />
+    <Content Include="assets\img\logoVLU2.png" />
     <Content Include="assets\img\Searchs_130.png" />
     <Content Include="assets\img\sup.png" />
     <Content Include="assets\img\testimonials-bg.jpg" />

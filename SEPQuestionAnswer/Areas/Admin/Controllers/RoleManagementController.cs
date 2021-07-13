@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -33,12 +34,23 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             string[] userNew = user1.Split(',');
             for(var i = 0; i < userNew.Length; i++)
             {
-                StudentOther student = new StudentOther();
-                student.Email = userNew[i];
-                db.StudentOthers.Add(student);
-                db.SaveChanges();
+                string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                                        @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                                           @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(emailRegex);
+                if (re.IsMatch(userNew[i]))
+                {
+                    StudentOther student = new StudentOther();
+                    student.Email = userNew[i];
+                    db.StudentOthers.Add(student);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Sai Định Dạng Email');window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+                }
             }
-            return RedirectToAction("Index", "AspNetRoles");
+            return RedirectToAction("IndexSV", "AspNetRoles");
         }
 
 
@@ -67,7 +79,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     {
                         if (UserManager.IsInRole(user.Id, role.Name))
                         {
-                            return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                            //return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+                            return RedirectToAction("Create", "RoleManagement", new { id = roleId });
                         }
                         else
                         {
@@ -78,7 +91,9 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     {
                         if (UserManager.IsInRole(user.Id, role.Name))
                         {
-                            return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='/Admin/AspNetRoles';</script>");
+                        ModelState.AddModelError("Email", "toang");
+                        return RedirectToAction("Create", "RoleManagement", new { id = roleId });
+                        //return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
                         }
                         else
                         {
@@ -87,7 +102,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                         }
                     } 
             }
-            return RedirectToAction("IndexSV", "AspNetRoles");
+            return RedirectToAction("Index", "AspNetRoles");
         }
 
         // GET: Admin/AspNetRoles/Delete/5

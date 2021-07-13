@@ -39,7 +39,7 @@
                                         <td>
                                             @if (item.Status == true)
                                             {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-green" checked="" onclick="submit(@item.ID);">
+                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-light-blue" checked="" onclick="submit(@item.ID);">
                                                 <label for="@item.ID"></label>
                                             }
                                             else
@@ -49,7 +49,7 @@
                                             }
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-default">Edit</a>
+                                            <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-danger">Edit</a>
                                         </td>
                                         }
                                     </tr>              

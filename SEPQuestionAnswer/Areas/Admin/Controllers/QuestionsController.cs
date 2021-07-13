@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using SEPQuestionAnswer.Models;
 
@@ -30,19 +31,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                 .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date).ToList();
             return View(questions);
         }
-
-        private void Validation(Question question)
-        {
-            if (string.IsNullOrWhiteSpace(question.Answer))
-            {
-                ModelState.AddModelError("Answer", "Câu trả lời không được để trống hoặc nhập ký tự khoảng trắng");
-            }
-            if (string.IsNullOrWhiteSpace(question.AskQuestion))
-            {
-                ModelState.AddModelError("AskQuestion", "Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng");
-            }
-        }
-
         // GET: Admin/Questions/Details/5
         public ActionResult Details(int id)
         {
@@ -98,7 +86,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Question question)
         {
-            Validation(question);
+            ValidationEdit(question);
             if (ModelState.IsValid)
             {
                 question.Date = DateTime.Now;
@@ -128,7 +116,36 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public void Validation(Question question)
+        {
+            var condition = db.Questions.FirstOrDefault(m => m.AskQuestion == question.AskQuestion);
+            var result = HttpUtility.HtmlDecode(HttpUtility.HtmlDecode(question.Answer));
+            if (string.IsNullOrWhiteSpace(question.AskQuestion))
+            {
+                ModelState.AddModelError("AskQuestion", "Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng");
+            }
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                ModelState.AddModelError("Answer", "Câu trả lời không được để trống hoặc nhập ký tự khoảng trắng");
+            }
+            if (condition != null)
+            {
+                ModelState.AddModelError("AskQuestion", "Câu hỏi đã tồn tại");
+            }
+        }
 
+        public void ValidationEdit(Question question)
+        {
+            var result = HttpUtility.HtmlDecode(HttpUtility.HtmlDecode(question.Answer));
+            if (string.IsNullOrWhiteSpace(question.AskQuestion))
+            {
+                ModelState.AddModelError("AskQuestion", "Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng");
+            }
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                ModelState.AddModelError("Answer", "Câu trả lời không được để trống hoặc nhập ký tự khoảng trắng");
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

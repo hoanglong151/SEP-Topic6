@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 <style>
-    span {
+    #username {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -11,7 +11,7 @@
         white-space: nowrap;
         transition: 0.3s;
     }
-    span:hover {
+    #username:hover {
         color: #72c393
     }
 </style>
@@ -22,7 +22,7 @@
         @Html.AntiForgeryToken()
         <ul>
             <li class="dropdown">
-                <span>@User.Identity.GetUserName()</span>
+                <span id="username">@User.Identity.GetUserName()</span>
                 <ul class="dropdown" style="border-radius:5px">
                     @if (this.User.IsInRole("BCN") || this.User.IsInRole("Admin"))
                     {

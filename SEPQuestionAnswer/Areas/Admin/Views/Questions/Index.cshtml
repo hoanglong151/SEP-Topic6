@@ -75,7 +75,7 @@
                             @foreach (var count in ViewBag.CountTop6)
                             {
                                 <div class="col-md-2">
-                                    <div style="display:inline;width:125px;height:125px;"><input type="text" class="knob" value="@count.CountView" data-width="125" data-height="125" data-thickness="0.25" data-fgcolor="#ed2b40" readonly="readonly" style="width: 66px; height: 41px; position: absolute; vertical-align: middle; margin-top: 41px; margin-left: -95px; border: 0px; background: none; font: bold 25px Arial; text-align: center; color: rgb(244, 67, 54); padding: 0px;"></div>
+                                    <div style="display:inline;width:125px;height:125px;"><input type="text" class="knob" data-max="1000" value="@count.CountView" data-width="125" data-height="125" data-thickness="0.25" data-fgcolor="#ed2b40" readonly="readonly" style="width: 66px; height: 41px; position: absolute; vertical-align: middle; margin-top: 41px; margin-left: -95px; border: 0px; background: none; font: bold 25px Arial; text-align: center; color: rgb(244, 67, 54); padding: 0px;"></div>
                                     <p style="width:125px; text-align:center; word-break:break-word">@count.AskQuestion.ToString().Substring(0, (count.AskQuestion.Length > 30) ? 30 : count.AskQuestion.Length)</p>
                                 </div>
                             }

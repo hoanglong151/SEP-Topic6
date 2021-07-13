@@ -12,21 +12,21 @@ var view = {
                 check = id;
                 $.ajax({
                     type: "POST",
-                    url: "/Home/countView",
+                    url: "http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Home/countView",
                     data: { id: id },
                     dataType: "json",
                 });
             } else if (check == id) {
                 check = 0;
                 $.ajax({
-                    url: "/Home/countView2",
+                    url: "http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Home/countView2",
                     data: { id: id },
                     dataType: "json",
                     type: "POST",
                 });
             } else {
                 $.ajax({
-                    url: "/Home/countView",
+                    url: "http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Home/countView",
                     data: { id: id },
                     dataType: "json",
                     type: "POST",

@@ -83,8 +83,9 @@ namespace SEPQuestionAnswer.Controllers
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
                     {
-                        return RedirectToLocal(returnUrl);
-                    }else if(UserManager.IsInRole(userId, "BCN"))
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if(UserManager.IsInRole(userId, "BCN") || UserManager.IsInRole(userId, "Admin"))
                     {
                         return RedirectToLocal(returnUrl);
                     }
@@ -363,6 +364,10 @@ namespace SEPQuestionAnswer.Controllers
                         }
                     }
                     else if (UserManager.IsInRole(userId, "BCN"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if(UserManager.IsInRole(userId, "Admin"))
                     {
                         return RedirectToAction("Index", "Home");
                     }
