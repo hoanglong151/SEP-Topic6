@@ -20,20 +20,20 @@
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "signin-form", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })                      
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>                 
+                        </div>
                         <div class="form-group">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control ", @placeholder = "Password" })                         
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control ", @placeholder = "Password" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
-                        </div>                     
-                    }                   
-                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })                   
+                        </div>
+                    }
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                 </div>
             </div>
         </div>

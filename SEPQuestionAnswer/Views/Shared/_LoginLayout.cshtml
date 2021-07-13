@@ -24,10 +24,10 @@
             }
     </style>
     @RenderBody()
-    <script src="~/assets/login/js/jquery.min.js"></script>
-    <script src="~/assets/login/js/popper.js"></script>
-    <script src="~/assets/login/js/bootstrap.min.js"></script>
-    <script src="~/assets/login/js/main.js"></script>
+    <script src="@Url.Content("~/assets/login/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/assets/login/js/popper.js")"></script>
+    <script src="@Url.Content("~/assets/login/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/assets/login/js/main.js")"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

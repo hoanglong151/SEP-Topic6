@@ -1031,6 +1031,7 @@
     <Content Include="assetsAdmin\js\i18n\defaults-zh_TW.js.map" />
     <Content Include="assetsAdmin\css\bootstrap-select.css.map" />
     <Content Include="assetsAdmin\js\bootstrap-select.js.map" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom-scripts.js" />
     <Content Include="Scripts\easypiechart-data.js" />

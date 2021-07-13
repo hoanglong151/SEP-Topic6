@@ -1,4 +1,20 @@
 ﻿@using Microsoft.AspNet.Identity
+<style>
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0 10px 30px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        white-space: nowrap;
+        transition: 0.3s;
+    }
+    span:hover {
+        color: #72c393
+    }
+</style>
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,7 +22,7 @@
         @Html.AntiForgeryToken()
         <ul>
             <li class="dropdown">
-                @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                <span>@User.Identity.GetUserName()</span>
                 <ul class="dropdown" style="border-radius:5px">
                     @if (this.User.IsInRole("BCN") || this.User.IsInRole("Admin"))
                     {
