@@ -14,7 +14,7 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-lg-3 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-4 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
                     <div class="info-box bor zoom">
                         <a href="@Url.Action("IndexQByC","Home", new { id = item.ID})"><h3 style="margin-left: 0; text-align: center; word-break:break-word">@item.CategoryName</h3></a>
                     </div>
