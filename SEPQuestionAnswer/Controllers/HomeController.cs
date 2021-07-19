@@ -13,7 +13,7 @@ namespace SEPQuestionAnswer.Controllers
         private int compare = 0;
         public ActionResult Index()
         {
-            var question = db.Questions.OrderByDescending(x => x.CountView).Where(s => s.Status == "Accept").Take(10).ToList();
+            var question = db.Questions.OrderByDescending(x => x.CountView).Where(s => s.Status == "Accept").Where(c => c.Category.Status == true).Take(10).ToList();
             if (TempData["fail"] != null)
             {
                 ViewBag.fail = TempData["fail"];

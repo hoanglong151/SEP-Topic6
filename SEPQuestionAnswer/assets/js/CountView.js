@@ -25,6 +25,7 @@ var view = {
                     type: "POST",
                 });
             } else {
+                check = id;
                 $.ajax({
                     url: "http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Home/countView",
                     data: { id: id },

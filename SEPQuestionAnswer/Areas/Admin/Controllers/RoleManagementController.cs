@@ -70,6 +70,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string roleId, AspNetUser email)
         {
+            var count = 0;
+            var countNew = 0;
             for (var i = 0; i < email.Users.Length; i++)
             {
                 var UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -79,11 +81,11 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     {
                         if (UserManager.IsInRole(user.Id, role.Name))
                         {
-                            //return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
-                            return RedirectToAction("Create", "RoleManagement", new { id = roleId });
+                            count += 1;
                         }
                         else
                         {
+                            countNew += 1;
                             UserManager.AddToRole(user.Id, role.Name);
                         }
                     }
@@ -91,18 +93,24 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     {
                         if (UserManager.IsInRole(user.Id, role.Name))
                         {
-                        ModelState.AddModelError("Email", "toang");
-                        return RedirectToAction("Create", "RoleManagement", new { id = roleId });
-                        //return Content("<script language='javascript' type='text/javascript'>alert('Thành viên đã tồn tại ở vị trí " + role.Name + "');window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+                            count += 1;
                         }
                         else
                         {
+                            countNew += 1;
                             UserManager.AddToRole(user.Id, role.Name);
-                            //return Content("<script language='javascript' type='text/javascript'>alert('Thêm Thành Viên " + role.Name + " Thành Công');window.location.href='/Admin/AspNetRoles';</script>");
                         }
                     } 
             }
-            return RedirectToAction("Index", "AspNetRoles");
+            if(count > 0 && countNew > 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`"+ count +" thành viên đã tồn tại ở vị trí này \n"+countNew +" thành viên đã được thêm vào vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            else if(count > 0 && countNew == 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + count + " thành viên đã tồn tại ở vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            return Content("<script language='javascript' type='text/javascript'>alert(`"+countNew +" thành viên đã được thêm vào vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
         }
 
         // GET: Admin/AspNetRoles/Delete/5

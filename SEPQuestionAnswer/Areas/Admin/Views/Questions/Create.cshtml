@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                @Html.DropDownListFor(model => model.Category_ID, null, "-- Chọn Danh Mục --", htmlAttributes: new { @class = "dropdown bootstrap-select form-control bs3", @required = true })
+                                @Html.DropDownListFor(model => model.Category_ID, null, "-- Chọn Danh Mục --", htmlAttributes: new { @class = "btn-group bootstrap-select form-control show-tick", @required = true })
                                 @Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group form-float">
