@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using SEPQuestionAnswer.Models;
 
@@ -10,7 +8,6 @@ namespace SEPQuestionAnswer.Controllers
     public class HomeController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
-        private int compare = 0;
         public ActionResult Index()
         {
             var question = db.Questions.OrderByDescending(x => x.CountView).Where(s => s.Status == "Accept").Where(c => c.Category.Status == true).Take(10).ToList();
@@ -34,12 +31,6 @@ namespace SEPQuestionAnswer.Controllers
         {
             var question = db.Questions.Where(k => k.Category_ID == id).Where(s => s.Status == "Accept").ToList();
             return View(question);
-        }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
         }
 
         public Question countView1(int id)
