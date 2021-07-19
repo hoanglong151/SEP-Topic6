@@ -80,6 +80,9 @@ namespace SEPQuestionAnswer.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var db = new SEP24Team10Entities();
+                    var currentUser = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserName();
+                    var check = db.StudentOthers.FirstOrDefault(x => x.Email == currentUser);
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
                     {
@@ -88,6 +91,11 @@ namespace SEPQuestionAnswer.Controllers
                     else if(UserManager.IsInRole(userId, "BCN") || UserManager.IsInRole(userId, "Admin"))
                     {
                         return RedirectToLocal(returnUrl);
+                    }
+                    else if (check != null)
+                    {
+                        UserManager.AddToRole(userId, "Sinh Viên - Giảng Viên");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {

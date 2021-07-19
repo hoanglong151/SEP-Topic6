@@ -5,6 +5,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<script>
+    var check = $('iframe').contents().find('#tinymce').contents();
+    var textArea = document.querySelector('textarea');
+    textArea.innerText = check;
+</script>
+
 <section class="content">
     <div class="container-fluid">
 
@@ -56,16 +62,16 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line">
+                            <div class="form-line form-control focused">
                                 @if (Model.Answer == null)
                                 {
-                                    <textarea name="Answer" cols="30" rows="3" class="form-control no-resize" required="" aria-required="true" readonly>Không Có</textarea>
+                                    <textarea name="Answer" cols="5" rows="3" class="form-control no-resize">Không Có</textarea>
                                     <label class="form-label">Câu Trả Lời</label>
                                 }
                                 else
                                 {
-                                    <textarea name="Answer" cols="30" rows="3" class="form-control no-resize" required="" aria-required="true" readonly>@MvcHtmlString.Create(Model.Answer)</textarea>
                                     <label class="form-label">Câu Trả Lời</label>
+                                    <p>@Html.Raw(Model.Answer)</p>
                                 }
                             </div>
                         </div>
@@ -93,5 +99,17 @@
     </div>
 </section>
 <script>
-        document.querySelector('#item-2').setAttribute('class', 'active');
+    document.querySelector('#item-2').setAttribute('class', 'active');
+</script>
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/xi2o2589v6xhr0ors87yescdan1a4owcfdzrchvppxx5yik9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#Answer',
+        menubar: false,
+        toolbar: false,
+        forced_root_block: "",
+        readonly: 1
+    });
 </script>
