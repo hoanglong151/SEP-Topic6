@@ -18,10 +18,11 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportableno">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportablenosort1">
                                 <thead>
                                     <tr>
                                         <th>Tên Danh Mục</th>
+                                        <th>Số Câu Hỏi</th>
                                         <th>Trạng Thái</th>
                                         <th>Action</th>
                                     </tr>
@@ -29,27 +30,42 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
+                                        var count = 0;
                                     <tr>
                                         @using (Html.BeginForm("UpdateStatus", "Categories", new { id = item.ID }))
                                         {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CategoryName)
-                                        </td>
-                                        <td>
-                                            @if (item.Status == true)
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CategoryName)
+                                            </td>
+                                            foreach (var i in @ViewBag.list)
                                             {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-light-blue" checked="" onclick="submit(@item.ID);">
-                                                <label for="@item.ID"></label>
+                                                if (i.Category_ID == item.ID)
+                                                {
+                                                    count += 1;
+                                                }
+                                                else
+                                                {
+                                                    count += 0;
+                                                }
                                             }
-                                            else
-                                            {
-                                                <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-green" onclick="submit(@item.ID);">
-                                                <label for="@item.ID"></label>
-                                            }
-                                        </td>
-                                        <td>
-                                            <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-danger">Edit</a>
-                                        </td>
+                                            <td>
+                                                @count
+                                            </td>
+                                            <td>
+                                                @if (item.Status == true)
+                                                {
+                                                    <input type="checkbox" id="@item.ID" name="@item.ID" value="true" class="filled-in chk-col-light-blue" checked="" onclick="submit(@item.ID);">
+                                                    <label for="@item.ID"></label>
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" id="@item.ID" name="@item.ID" value="false" class="filled-in chk-col-green" onclick="submit(@item.ID);">
+                                                    <label for="@item.ID"></label>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.ID})" class="btn btn-danger">Edit</a>
+                                            </td>
                                         }
                                     </tr>              
                                     }

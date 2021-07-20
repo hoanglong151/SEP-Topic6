@@ -35,7 +35,7 @@
                                                 <i class="material-icons" style="width: 100%; margin: 0;">new_releases</i>
                                             </div>
                                             <div class="menu-info">
-                                                <h4 style="word-break:break-word">@item.AskQuestion.ToString().Substring(0, (item.AskQuestion.Length > 30) ? 30 : item.AskQuestion.Length)</h4>
+                                                <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; width:190px">@item.AskQuestion</h4>
                                                 <p>
                                                     <i class="material-icons">access_time</i>@item.Date
                                                 </p>

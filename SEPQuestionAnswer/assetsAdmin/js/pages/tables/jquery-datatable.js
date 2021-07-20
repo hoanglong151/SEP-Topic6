@@ -25,6 +25,18 @@ $(function () {
             { orderable: false, targets: '_all' }
         ]
     });
+    $('.js-exportablenosort1').DataTable({
+        dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "order": [],
+        columnDefs: [
+            { orderable: true, className: 'reorder', targets: 1 },
+            { orderable: false, targets: '_all' }
+        ]
+    });
     $('.js-exportableno').DataTable({
         dom: 'Bfrtip',
         responsive: true,

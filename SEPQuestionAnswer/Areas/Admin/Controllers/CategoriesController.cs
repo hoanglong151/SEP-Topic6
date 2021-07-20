@@ -17,6 +17,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/Categories
         public ActionResult Index()
         {
+            var question = db.Questions.ToList();
+            ViewBag.list = question;
             var cate = db.Categories.OrderByDescending(s => s.Status == true).ToList();
             return View(cate);
         }

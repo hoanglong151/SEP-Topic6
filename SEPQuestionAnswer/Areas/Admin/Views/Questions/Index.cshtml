@@ -115,7 +115,7 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@item.AskQuestion.ToString().Substring(0, (item.AskQuestion.Length > 40) ? 40 : item.AskQuestion.Length)</td>
+                                            <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">@item.AskQuestion</td>
                                             @*<td>@Html.Raw(!String.IsNullOrEmpty(item.Answer) ? item.Answer.Substring(0, Math.Min(item.Answer.Length, 40)) : item.Answer)</td>*@
                                             <td>@Html.DisplayFor(modelItem => item.Questioner)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Respondent)</td>
@@ -140,13 +140,13 @@
                                             }
                                             <td>@Html.DisplayFor(modelItem => item.CountView)</td>
                                             <td>
-                                                <a href="@Url.Action("Edit", new { id = item.ID})">
+                                                <a style="text-decoration:none" href="@Url.Action("Edit", new { id = item.ID})">
                                                     <i class="fas fa-pen"></i> |
                                                 </a>
-                                                <a href="@Url.Action("Details", new { id = item.ID})">
+                                                <a style="text-decoration:none" href="@Url.Action("Details", new { id = item.ID})">
                                                     <i class="fas fa-info"></i> |
                                                 </a>
-                                                <a href="@Url.Action("Delete", new { id = item.ID})">
+                                                <a style="text-decoration:none" href="@Url.Action("Delete", new { id = item.ID})">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
