@@ -28,11 +28,11 @@
                     {
 
                         <li><a href="@Url.Action("Index","AspNetRoles",new { Area = "Admin"})">Quản Lý</a></li>
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
                     }
                     else
                     {
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
                     }
 
                 </ul>
@@ -44,7 +44,7 @@ else
 {
     <ul class="site-menu js-clone-nav d-none d-lg-block">
         @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 
     </ul>
 }

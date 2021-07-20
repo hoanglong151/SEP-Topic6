@@ -47,7 +47,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             }
             var result = controller.CreateSVOther(student) as RedirectToRouteResult;
             Assert.IsNotNull(result);
-            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("IndexSV", result.RouteValues["action"]);
         }
 
         [TestMethod]
