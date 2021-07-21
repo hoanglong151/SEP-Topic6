@@ -9,48 +9,82 @@ using SEPQuestionAnswer.Models;
 
 namespace SEPQuestionAnswer.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "BCN,Admin")]
+    [Authorize(Roles = "Ban Chủ Nhiệm,Quản Trị Viên")]
     public class RoleManagementController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Quản Trị Viên")]
         public ActionResult CreateSVOther()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Quản Trị Viên")]
         [HttpPost]
         public ActionResult CreateSVOther(AspNetUser email)
         {
+            var countSuccess = 0;
+            var countFailE = 0;
+            var countExist = 0;
             string user1 = string.Join(",", email.Users);
             string[] userNew = user1.Split(',');
             for(var i = 0; i < userNew.Length; i++)
             {
+                var user = userNew[i];
+                var condition = db.StudentOthers.FirstOrDefault(s => s.Email == user);
                 string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
                                         @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
                 Regex re = new Regex(emailRegex);
-                if (re.IsMatch(userNew[i]))
+                if (re.IsMatch(userNew[i]) && condition == null)
                 {
+                    countSuccess += 1;
                     StudentOther student = new StudentOther();
                     student.Email = userNew[i];
                     db.StudentOthers.Add(student);
                     db.SaveChanges();
                 }
+                else if(!re.IsMatch(userNew[i]))
+                {
+                    countFailE += 1;
+                }
                 else
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Sai Định Dạng Email');window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+                    countExist += 1;
                 }
+            }
+            if(countFailE > 0 && countSuccess > 0 && countExist > 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + countFailE + " thành viên sai định dạng Email \n" + countExist + " thành viên đã tồn tại vị trí này \n" + countSuccess + " thành viên đã được thêm vào vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            else if (countFailE > 0 && countExist > 0 && countSuccess == 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + countFailE + " thành viên sai định dạng Email \n" + countExist + " thành viên đã tồn tại vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            else if (countFailE > 0 && countExist == 0 && countSuccess > 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + countFailE + " thành viên sai định dạng Email \n" + countSuccess + " thành viên đã được thêm vào vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            else if (countFailE == 0 && countExist > 0 && countSuccess > 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + countExist + " thành viên đã tồn tại vị trí này \n" + countSuccess + " thành viên đã được thêm vào vị trí này`);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            else if (countFailE == 0 && countExist > 0 && countSuccess == 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + countExist + " thành viên đã tồn tại vị trí này `);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
+            }
+            else if (countFailE > 0 && countExist == 0 && countSuccess == 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert(`" + countFailE + " thành viên sai định dạng Email `);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
             }
             return RedirectToAction("IndexSV", "AspNetRoles");
         }
 
 
         // GET: Admin/AspNetRoles/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Quản Trị Viên")]
         public ActionResult Create()
         {
             ViewBag.User = new SelectList(db.AspNetUsers, "ID", "Email");
@@ -60,7 +94,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // POST: Admin/AspNetRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Quản Trị Viên")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(string roleId, AspNetUser email)
@@ -109,7 +143,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // GET: Admin/AspNetRoles/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Quản Trị Viên")]
         public ActionResult Delete(string roleId, string userId)
         {
             if (roleId == null)
@@ -123,7 +157,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         }
 
         // POST: Admin/AspNetRoles/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Quản Trị Viên")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string roleId, string userId)
@@ -149,7 +183,6 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             }
 
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -12,7 +12,8 @@ function initCounters() {
 function initCharts() {
     //Chart Bar
     $.each($('.chart.chart-bar'), function (i, key) {
-        var chartColor = $.AdminBSB.options.colors[$(key).data('chartcolor')];
+        var chartColor = $.
+            BSB.options.colors[$(key).data('chartcolor')];
         $(key).sparkline(undefined, {
             type: 'bar',
             barColor: chartColor,

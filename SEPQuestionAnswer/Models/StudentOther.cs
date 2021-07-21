@@ -11,12 +11,10 @@ namespace SEPQuestionAnswer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class StudentOther
     {
         public int ID { get; set; }
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
     }
 }

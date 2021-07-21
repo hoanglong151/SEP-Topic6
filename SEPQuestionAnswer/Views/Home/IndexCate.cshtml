@@ -4,23 +4,27 @@
     ViewBag.Title = "IndexCate";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<section class="contact" id="cate">
-    <div class="container">
-        <div class="section-title" data-aos="fade-down">
-            <span>Danh mục</span>
-            <h2>Danh mục</h2>
-        </div>
+    <section class="contact" id="cate">
+        <div class="container">
+            <div class="section-title" data-aos="fade-down">
+                <span>CHỦ ĐỀ</span>
+                <h2>Chủ để câu hỏi</h2>
+            </div>
 
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-lg-4 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-box bor zoom" style="padding: 0">
-                        <a href="@Url.Action("IndexQByC","Home", new { id = item.ID})#qes"><h3 style="margin: 0; padding: 24px 8px; text-align: center; word-break:break-word">@item.CategoryName</h3></a>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-12 arr" data-aos="fade-up" data-aos-delay="100">
+                        <div class="info-box bor zoom" style="padding: 0">
+                            <a href="@Url.Action("IndexQByC","Home", new { id = item.ID})#qes"><h3 style="margin: 0; padding: 24px 8px; text-align: center; word-break:break-word">@item.CategoryName</h3></a>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+<script>
+    document.querySelector('#viewCate').setAttribute('class', 'active');
+</script>
 

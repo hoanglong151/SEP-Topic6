@@ -5,16 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Create</h2>
-
-
-<section class="content" style="margin-top:50px">
+<section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Tạo Danh Mục</h2>
+                        <h2>Tạo Chủ Đề</h2>
                     </div>
                     <div class="body">
                         @using (Html.BeginForm())
@@ -25,7 +22,7 @@
                                 <div class="form-line">
                                     @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
                                     @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
-                                    <label class="form-label">Tên Danh Mục</label>
+                                    <label class="form-label">Tên Chủ Đề</label>
                                 </div>
                             </div>
 
@@ -33,6 +30,14 @@
                                 <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-blue" checked="" name="Status" value="true" />
                                 <label for="md_checkbox_21" style="color:#AAA; font-size:14px">Tình trạng</label>
                                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group form-float" hidden>
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.CountQuestion, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.CountQuestion, "", new { @class = "text-danger" })
+                                    <label class="form-label">Số Lượng Câu Hỏi</label>
+                                </div>
                             </div>
 
                             <input type="submit" value="Tạo" class="btn btn-primary waves-effect" />

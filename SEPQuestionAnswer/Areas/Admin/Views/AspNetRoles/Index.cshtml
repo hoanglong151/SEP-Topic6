@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Danh Sách Thành Viên Admin
+                            Danh Sách Thành Viên Quản Trị Viên
                         </h2>
                     </div>
                     <div class="body">
@@ -31,7 +31,7 @@
                                     {
                                         foreach (var user in item.AspNetUsers)
                                         {
-                                            if (item.Name == "Admin")
+                                            if (item.Name == "Quản Trị Viên")
                                             {
                                                 <tr>
                                                     <td>@user.Email</td>
@@ -62,7 +62,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Danh Sách Thành Viên BCN Khoa
+                            Danh Sách Thành Viên Ban Chủ Nhiệm Khoa
                         </h2>
                     </div>
                     <div class="body">
@@ -79,7 +79,7 @@
                                     {
                                         foreach (var user in item.AspNetUsers)
                                         {
-                                            if (item.Name == "BCN")
+                                            if (item.Name == "Ban Chủ Nhiệm")
                                             {
                                                 <tr>
                                                     <td>@user.Email</td>

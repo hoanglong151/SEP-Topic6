@@ -19,6 +19,10 @@
             }
         })
     </script>
+    <script>
+        var show = document.querySelector('.collapse');
+        show.classList.add('show');
+    </script>
 }
 <main id="main">
     @if (ViewBag.fail != null)
@@ -47,15 +51,21 @@
                 <ul>
                     @foreach (var item in Model)
                     {
-                        <li data-aos="fade-down">
+                        var length = item.Respondent.IndexOf("@") + 1;
+                        <li data-aos="fade-down" class="item">
                             <i class="bx bx-help-circle icon-help"></i> <a data-id="@item.ID" data-bs-toggle="collapse" class="btn-active collapsed" data-bs-target="#faq-list-@item.ID" aria-expanded="false">@item.AskQuestion<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="faq-list-@item.ID" class="collapse" data-bs-parent=".faq-list">
                                 <p>
                                     @Html.Raw(item.Answer)
                                 </p>
                                 <p style="font-size:12px; text-align:right">
-                                    <i>Người Đăng: @item.Respondent</i><br />
-                                    <i>Ngày: @item.Date</i>
+
+                                    <i>Người Đăng: @item.Respondent.Remove(length)</i><br />
+                                    <i>Ngày Đăng: @item.DateCreate</i><br />
+                                    @if (item.DateUpdate != null)
+                                    {
+                                        <i>Ngày Cập Nhật: @item.DateUpdate</i>
+                                    }
                                 </p>
                             </div>
                         </li>
@@ -63,7 +73,7 @@
                 </ul>
             </div>
             <div style="text-align: center">
-                <button class="loadMore">Load More</button>
+                <button class="loadMore">Xem Thêm</button>
             </div>
 
         </div>
@@ -76,7 +86,7 @@
                 <h3>Frequently Asked Question - CNTT</h3>
                 <p>
                     Hỗ trợ trả lời, giải đáp thắc mắc cho sinh viên về những vấn đề liên quan đến ngành <strong>Công Nghệ Thông tin</strong>.
-                    Được chính các thầy cô trong <strong>BCN Khoa</strong> trả lời
+                    Được chính các thầy cô trong <strong>Ban Chủ Nhiệm Khoa</strong> trả lời
                 </p>
 
             </div>
@@ -105,7 +115,7 @@
                         <div class="card-body">
                             <i class="bx bx-file"></i>
                             <h5 class="card-title"><a href="" style="pointer-events:none">Hoạt động</a></h5>
-                            <p class="card-text" style="text-align:justify">Sinh viên dễ dàng xem các danh mục, tìm kiếm các câu hỏi mà mình muốn. Sinh viên có thể đặt câu hỏi trong trường hợp không tìm thấy câu hỏi mình muốn hỏi, BCN khoa sẽ trả lời câu hỏi của bạn trong thời gian ngắn nhất. </p>
+                            <p class="card-text" style="text-align:justify">Sinh viên dễ dàng xem các danh mục, tìm kiếm các câu hỏi mà mình muốn. Sinh viên có thể đặt câu hỏi trong trường hợp không tìm thấy câu hỏi mình muốn hỏi, Ban Chủ Nhiệm khoa sẽ trả lời câu hỏi của bạn trong thời gian ngắn nhất. </p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +125,7 @@
                         <div class="card-body">
                             <i class="bx bx-show"></i>
                             <h5 class="card-title"><a href="" style="pointer-events:none">Tầm nhìn</a></h5>
-                            <p class="card-text" style="text-align:justify">FAQ là một trang web giúp tăng độ tương tác giữa các bạn sinh viên với các thành viên trong BCN khoa. Từ đó việc trao đổi giữa sinh viên với BCN khoa sẽ dễ dàng và tiết kiệm được thời gian cho hai bên. </p>
+                            <p class="card-text" style="text-align:justify">FAQ là một trang web giúp tăng độ tương tác giữa các bạn sinh viên với các thành viên trong Ban Chủ Nhiệm khoa. Từ đó việc trao đổi giữa sinh viên với Ban Chủ Nhiệm khoa sẽ dễ dàng và tiết kiệm được thời gian cho hai bên. </p>
                         </div>
                     </div>
                 </div>
@@ -165,7 +175,7 @@
                             <img src="~/assets/img/icon-mess.png" class="testimonial-img" alt="">
                             <p>
                                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Câu hỏi mà bạn đã gửi sẽ phải chờ để được thầy cô BCN Khoa phê duyệt và trả lời nhé. Chờ đợi là hạnh phúc!
+                                Câu hỏi mà bạn đã gửi sẽ phải chờ để được thầy cô Ban Chủ Nhiệm Khoa phê duyệt và trả lời nhé. Chờ đợi là hạnh phúc!
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                         </div>

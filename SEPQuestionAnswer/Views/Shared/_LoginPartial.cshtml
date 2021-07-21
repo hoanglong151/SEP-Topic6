@@ -24,7 +24,7 @@
             <li class="dropdown">
                 <span id="username">@User.Identity.GetUserName()</span>
                 <ul class="dropdown" style="border-radius:5px">
-                    @if (this.User.IsInRole("BCN") || this.User.IsInRole("Admin"))
+                    @if (this.User.IsInRole("Ban Chủ Nhiệm") || this.User.IsInRole("Quản Trị Viên"))
                     {
 
                         <li><a href="@Url.Action("Index","AspNetRoles",new { Area = "Admin"})">Quản Lý</a></li>

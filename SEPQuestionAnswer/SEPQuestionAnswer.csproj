@@ -249,6 +249,7 @@
     <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoles\IndexSV.cshtml" />
     <Content Include="Areas\Admin\Views\RoleManagement\CreateSVOther.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Dashboard.cshtml" />
     <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assetsAdmin\css\bootstrap-select.css" />
     <Content Include="assetsAdmin\css\bootstrap-select.min.css" />

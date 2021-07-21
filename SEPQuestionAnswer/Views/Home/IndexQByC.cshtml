@@ -25,7 +25,11 @@
                                 </p>
                                 <p style="font-size:12px; text-align:right">
                                     <i>Người Đăng: @item.Respondent</i><br />
-                                    <i>Ngày: @item.Date</i>
+                                    <i>Ngày Đăng: @item.DateCreate</i><br />
+                                    @if (item.DateUpdate != null)
+                                    {
+                                        <i>Ngày Cập Nhật: @item.DateUpdate</i>
+                                    }
                                 </p>
                             </div>
                         </li>

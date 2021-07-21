@@ -8,7 +8,7 @@ using SEPQuestionAnswer.Models;
 
 namespace SEPQuestionAnswer.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "BCN,Admin")]
+    [Authorize(Roles = "Ban Chủ Nhiệm,Quản Trị Viên")]
     public class QuestionsController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
@@ -16,20 +16,25 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // GET: Admin/Questions
         public ActionResult Index()
         {
+            var questions = db.Questions.Include(q => q.Category)
+                .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.DateCreate).ToList();
+            return View(questions);
+        }
+
+        public ActionResult Dashboard(int? id)
+        {
             var countA = db.Questions.Where(s => s.Status == "Accept").ToList().Count();
             var countP = db.Questions.Where(s => s.Status == "Pending").ToList().Count();
             var countD = db.Questions.Where(s => s.Status == "Disable").ToList().Count();
             var count = db.Questions.ToList().Count();
-            var countTop6 = db.Questions.OrderByDescending(c => c.CountView).ToList().Take(6);
-            var date = DateTime.Now;
             ViewBag.Total = count;
             ViewBag.TotalA = countA;
             ViewBag.TotalP = countP;
             ViewBag.TotalD = countD;
-            ViewBag.CountTop6 = countTop6;
-            var questions = db.Questions.Include(q => q.Category)
-                .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date).ToList();
-            return View(questions);
+            var cate = db.Categories.OrderByDescending(c => c.CountQuestion).ToList().Take(5);
+            ViewBag.countQ = cate;
+            var question = db.Questions.Where(k => k.Category_ID == id).Where(c => c.Category_ID != null).OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.DateCreate).ToList();
+            return View(question);
         }
         // GET: Admin/Questions/Details/5
         public ActionResult Details(int id)
@@ -52,14 +57,18 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Question question)
         {
+            var check = db.Categories.FirstOrDefault(s => s.ID == question.Category_ID);
             Validation(question);
             if (ModelState.IsValid)
             {
-                question.Date = DateTime.Now;
+                question.DateCreate = DateTime.Now.ToString("dd/MM/yyyy");
                 question.CountView = 0;
                 question.Questioner = User.Identity.Name;
                 question.Respondent = User.Identity.Name;
                 db.Questions.Add(question);
+
+                check.CountQuestion = check.Questions.Count();
+                db.Entry(check).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -89,7 +98,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             ValidationEdit(question);
             if (ModelState.IsValid)
             {
-                question.Date = DateTime.Now;
+                question.DateUpdate = DateTime.Now.ToString("dd/MM/yyyy");
                 question.Respondent = User.Identity.Name;
                 db.Entry(question).State = EntityState.Modified;
                 db.SaveChanges();

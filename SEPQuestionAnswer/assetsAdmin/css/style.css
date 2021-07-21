@@ -2,6 +2,7 @@
 @import url(materialize.css);
 html {
     word-break: break-all;
+    scroll-behavior:smooth;
 }
 
 .background {

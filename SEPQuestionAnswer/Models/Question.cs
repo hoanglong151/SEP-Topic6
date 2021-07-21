@@ -22,7 +22,8 @@ namespace SEPQuestionAnswer.Models
         public string AskQuestion { get; set; }
         public string Answer { get; set; }
         public Nullable<int> CountView { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public string DateCreate { get; set; }
+        public string DateUpdate { get; set; }
     
         public virtual Category Category { get; set; }
     }

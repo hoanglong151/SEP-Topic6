@@ -23,6 +23,7 @@ namespace SEPQuestionAnswer.Models
         public int ID { get; set; }
         public bool Status { get; set; }
         public string CategoryName { get; set; }
+        public Nullable<int> CountQuestion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Questions { get; set; }

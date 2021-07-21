@@ -51,6 +51,14 @@
                                     <label class="form-label">Câu Trả Lời</label>
                                 </div>
                             </div>
+                            <div class="form-group form-float" hidden>
+                                <label class="form-label" style="color:#AAA; font-weight:100">Câu Trả Lời</label>
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+                                    <label class="form-label">Câu Trả Lời</label>
+                                </div>
+                            </div>
                             <div class="demo-radio-button">
                                 <label class="form-label" style="color:#AAA; font-weight:100">Tình Trạng</label>
                                 @Html.RadioButton("Status", "Accept", htmlAttributes: new { @class = "radio-col-light-green", @checked = "", @id = "Accept" })
@@ -136,17 +144,23 @@
         var cancel = document.querySelector('#cancel');
         var cate = document.querySelector('#Category_ID').value;
         var question = document.querySelector('#AskQuestion').value;
+        var countView = document.querySelector('#CountView').value;
         var radioA = document.querySelector('#Accept').checked;
         var radioP = document.querySelector('#Pending').checked;
         var radioD = document.querySelector('#Disable').checked;
         var answer = document.querySelector('#Answer').value;
+        function htmlDecode(value) {
+            return $('#Answer').html(value).text();
+        }
+        var encoding = htmlDecode(answer);
         cancel.addEventListener("click", function (e) {
             var cate1 = document.querySelector('#Category_ID').value;
             var question1 = document.querySelector('#AskQuestion').value;
+            var countView1 = document.querySelector('#CountView').value;
             var radioA1 = document.querySelector('#Accept').checked;
             var radioP1 = document.querySelector('#Pending').checked;
             var radioD1 = document.querySelector('#Disable').checked;
-            if (question != question1 || cate != cate1 || radioA !== radioA1 || radioP != radioP1 || radioD != radioD1 || answer != tinyMCE.get('Answer').getContent()) {
+            if (countView != countView1 || question != question1 || cate != cate1 || radioA !== radioA1 || radioP != radioP1 || radioD != radioD1 || encoding != tinyMCE.get('Answer').getContent()) {
                 var check = window.confirm('Bạn Có Muốn Rời Khỏi Form?');
                 if (check == false) {
                     e.preventDefault();

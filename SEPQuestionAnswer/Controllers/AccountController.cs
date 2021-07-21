@@ -85,7 +85,7 @@ namespace SEPQuestionAnswer.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    else if(UserManager.IsInRole(userId, "BCN") || UserManager.IsInRole(userId, "Admin"))
+                    else if(UserManager.IsInRole(userId, "Ban Chủ Nhiệm") || UserManager.IsInRole(userId, "Quản Trị Viên"))
                     {
                         return RedirectToLocal(returnUrl);
                     }
@@ -356,7 +356,7 @@ namespace SEPQuestionAnswer.Controllers
                     var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                     var currentUser = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserName();
                     var check = db.StudentOthers.FirstOrDefault(x => x.Email == currentUser);
-                    if (currentUser.ToLower().Contains("pm") || currentUser.ToLower().Contains("it") || currentUser.ToLower().Contains("vlu"))
+                    if (currentUser.ToLower().Contains("pm") || currentUser.ToLower().Contains("it") || currentUser.ToLower().Contains("vlu") || currentUser.ToLower().Contains("ct"))
                     {
                         if(UserManager.IsInRole(userId, "Sinh Viên - Giảng Viên"))
                         {
@@ -368,11 +368,11 @@ namespace SEPQuestionAnswer.Controllers
                             return RedirectToAction("Index", "Home");
                         }
                     }
-                    else if (UserManager.IsInRole(userId, "BCN"))
+                    else if (UserManager.IsInRole(userId, "Ban Chủ Nhiệm"))
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    else if(UserManager.IsInRole(userId, "Admin"))
+                    else if(UserManager.IsInRole(userId, "Quản Trị Viên"))
                     {
                         return RedirectToAction("Index", "Home");
                     }
