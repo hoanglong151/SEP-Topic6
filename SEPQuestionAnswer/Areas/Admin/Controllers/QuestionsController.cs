@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using SEPQuestionAnswer.Models;
 
@@ -12,10 +13,13 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
     public class QuestionsController : Controller
     {
         private SEP24Team10Entities db = new SEP24Team10Entities();
-
         // GET: Admin/Questions
         public ActionResult Index()
         {
+            if (TempData["success"] != null)
+            {
+                ViewBag.success = TempData["success"];
+            }
             var questions = db.Questions.Include(q => q.Category)
                 .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.DateCreate).ToList();
             return View(questions);
@@ -61,6 +65,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             Validation(question);
             if (ModelState.IsValid)
             {
+                question.SendMail = true;
                 question.Date = DateTime.Now;
                 question.DateCreate = DateTime.Now.ToString("dd/MM/yyyy");
                 question.CountView = 0;
@@ -94,15 +99,51 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Question question)
+        public ActionResult Edit(Question question, int? old)
         {
             ValidationEdit(question);
+            var checkCate_old = db.Categories.FirstOrDefault(s => s.ID == old);
+            var checkCate_new = db.Categories.FirstOrDefault(s => s.ID == question.Category_ID);
             if (ModelState.IsValid)
             {
-                question.Date = DateTime.Now;
-                question.DateUpdate = DateTime.Now.ToString("dd/MM/yyyy");
-                question.Respondent = User.Identity.Name;
+                if (question.Status == "Accept" && question.SendMail != true)
+                {
+                    question.SendMail = true;
+                    question.Date = DateTime.Now;
+                    question.DateUpdate = DateTime.Now.ToString("dd/MM/yyyy");
+                    question.Respondent = User.Identity.Name;
+                    string subject = "Câu hỏi của bạn đã được Khoa trả lời";
+                    string body = "Thân gửi bạn," + "<br/>" + "<br/>"
+                        + "Chúc mừng bạn, câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
+                        + "<br/>" + "Nội dung chi tiết câu hỏi:"
+                        + "<br/>" + "Câu hỏi: " + question.AskQuestion
+                        + "<br/>" + "Câu trả lời: " + question.Answer
+                        + "<br/>" + "Địa chỉ Website:"
+                        + "<a style='text-decoration: none;font-size: 16px;font-weight: 500;color: red' href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/'> Tại Đây<a/>"
+                        + "<br/><br/>" + "Trân trọng cảm ơn."
+                        + "<br/>" + "FAQ Website";
+                    WebMail.Send(question.Questioner, subject, body, from: "FAQ K24T <faqteam10@gmail.com>", null, null, true, null, null, null, null, null, null);
+                    TempData["success"] = "Gửi Mail Thành Công";
+                }
+                else
+                {
+                    question.Date = DateTime.Now;
+                    question.DateUpdate = DateTime.Now.ToString("dd/MM/yyyy");
+                    question.Respondent = User.Identity.Name;
+                }
                 db.Entry(question).State = EntityState.Modified;
+                if (checkCate_old != null && checkCate_new.ID != checkCate_old.ID)
+                {
+                    checkCate_old.CountQuestion -= 1;
+                    db.Entry(checkCate_old).State = EntityState.Modified;
+                    checkCate_new.CountQuestion = checkCate_new.Questions.Count();
+                    db.Entry(checkCate_new).State = EntityState.Modified;
+                }
+                else
+                {
+                    checkCate_new.CountQuestion = checkCate_new.Questions.Count();
+                    db.Entry(checkCate_new).State = EntityState.Modified;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -123,7 +164,10 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Question question = db.Questions.Find(id);
+            var check = db.Categories.FirstOrDefault(s => s.ID == question.Category_ID);
             db.Questions.Remove(question);
+            check.CountQuestion = check.Questions.Count();
+            db.Entry(check).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

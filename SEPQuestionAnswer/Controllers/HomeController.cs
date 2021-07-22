@@ -87,6 +87,7 @@ namespace SEPQuestionAnswer.Controllers
             Validation(question);
             if (ModelState.IsValid)
             {
+                question.SendMail = false;
                 question.Date = DateTime.Now;
                 question.DateCreate = DateTime.Now.ToString("dd/MM/yyyy");
                 question.CountView = 0;

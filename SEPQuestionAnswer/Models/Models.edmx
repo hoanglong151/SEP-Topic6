@@ -90,6 +90,7 @@
           <Property Name="DateCreate" Type="nvarchar(max)" />
           <Property Name="DateUpdate" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="SendMail" Type="bit" />
         </EntityType>
         <EntityType Name="StudentOther">
           <Key>
@@ -372,6 +373,7 @@
           <Property Name="DateCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="SendMail" Type="Boolean" />
           <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
         </EntityType>
         <Association Name="FK_Question_Category">
@@ -487,6 +489,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="SEP24Team10Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="SendMail" ColumnName="SendMail" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />

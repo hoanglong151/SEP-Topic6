@@ -154,20 +154,20 @@ namespace SEPQuestionAnswer.Tests.Controllers
 
             using (var scope = new TransactionScope())
             {
-                var result = controller.Edit(question) as RedirectToRouteResult;
+                var result = controller.Edit(question, 1) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
             }
 
             question.Answer = null;
             controller.ModelState.Clear();
-            var result1 = controller.Edit(question) as ViewResult;
+            var result1 = controller.Edit(question, 1) as ViewResult;
             Assert.IsNotNull(result1);
             Assert.AreEqual("Câu trả lời không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["Answer"].Errors[0].ErrorMessage);
 
             question.AskQuestion = null;
             controller.ModelState.Clear();
-            var result2 = controller.Edit(question) as ViewResult;
+            var result2 = controller.Edit(question, 1) as ViewResult;
             Assert.IsNotNull(result2);
             Assert.AreEqual("Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
         }

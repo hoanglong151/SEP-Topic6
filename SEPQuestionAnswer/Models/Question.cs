@@ -25,6 +25,7 @@ namespace SEPQuestionAnswer.Models
         public string DateCreate { get; set; }
         public string DateUpdate { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<bool> SendMail { get; set; }
     
         public virtual Category Category { get; set; }
     }
