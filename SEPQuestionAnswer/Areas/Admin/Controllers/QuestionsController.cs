@@ -165,9 +165,16 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         {
             Question question = db.Questions.Find(id);
             var check = db.Categories.FirstOrDefault(s => s.ID == question.Category_ID);
-            db.Questions.Remove(question);
-            check.CountQuestion = check.Questions.Count();
-            db.Entry(check).State = EntityState.Modified;
+            if(check == null)
+            {
+                db.Questions.Remove(question);
+            }
+            else
+            {
+                db.Questions.Remove(question);
+                check.CountQuestion = check.Questions.Count();
+                db.Entry(check).State = EntityState.Modified;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
