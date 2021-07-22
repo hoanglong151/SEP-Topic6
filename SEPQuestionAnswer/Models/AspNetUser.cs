@@ -34,7 +34,6 @@ namespace SEPQuestionAnswer.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-
         public List<AspNetUser> getUsersList { get; set; }
 
         public string[] Users { get; set; }

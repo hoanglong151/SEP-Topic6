@@ -89,6 +89,7 @@
           <Property Name="CountView" Type="int" />
           <Property Name="DateCreate" Type="nvarchar(max)" />
           <Property Name="DateUpdate" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="StudentOther">
           <Key>
@@ -231,8 +232,8 @@
             <End EntitySet="AspNetUsers" Role="AspNetUser" />
           </AssociationSet>
           <EntitySet Name="StudentOthers" EntityType="SEP24Team10Model.StudentOther" />
-          <EntitySet Name="Questions" EntityType="SEP24Team10Model.Question" />
           <EntitySet Name="Categories" EntityType="SEP24Team10Model.Category" />
+          <EntitySet Name="Questions" EntityType="SEP24Team10Model.Question" />
           <AssociationSet Name="FK_Question_Category" Association="SEP24Team10Model.FK_Question_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Question" EntitySet="Questions" />
@@ -346,6 +347,16 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountQuestion" Type="Int32" />
+          <NavigationProperty Name="Questions" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Category" ToRole="Question" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="ID" />
@@ -360,17 +371,8 @@
           <Property Name="CountView" Type="Int32" />
           <Property Name="DateCreate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateUpdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Category" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Question" ToRole="Category" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CountQuestion" Type="Int32" />
-          <NavigationProperty Name="Questions" Relationship="SEP24Team10Model.FK_Question_Category" FromRole="Category" ToRole="Question" />
         </EntityType>
         <Association Name="FK_Question_Category">
           <End Type="SEP24Team10Model.Category" Role="Category" Multiplicity="0..1" />
@@ -472,9 +474,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="SEP24Team10Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CountQuestion" ColumnName="CountQuestion" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="SEP24Team10Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
                 <ScalarProperty Name="CountView" ColumnName="CountView" />
@@ -483,16 +496,6 @@
                 <ScalarProperty Name="Respondent" ColumnName="Respondent" />
                 <ScalarProperty Name="Questioner" ColumnName="Questioner" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="SEP24Team10Model.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CountQuestion" ColumnName="CountQuestion" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

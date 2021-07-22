@@ -31,7 +31,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         public ActionResult RenderHeader()
         {
             var countP = db.Questions.Where(s => s.Status == "Pending").Count();
-            var listP = db.Questions.Where(s => s.Status == "Pending").OrderByDescending(d => d.DateCreate).ToList();
+            var listP = db.Questions.Where(s => s.Status == "Pending").OrderByDescending(d => d.Category_ID == null).ThenByDescending(d => d.Date).ToList();
             ViewBag.count = countP;
             ViewBag.listP = listP;
             return PartialView("_AdminNotification",listP);

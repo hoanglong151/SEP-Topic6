@@ -61,6 +61,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             Validation(question);
             if (ModelState.IsValid)
             {
+                question.Date = DateTime.Now;
                 question.DateCreate = DateTime.Now.ToString("dd/MM/yyyy");
                 question.CountView = 0;
                 question.Questioner = User.Identity.Name;
@@ -98,6 +99,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             ValidationEdit(question);
             if (ModelState.IsValid)
             {
+                question.Date = DateTime.Now;
                 question.DateUpdate = DateTime.Now.ToString("dd/MM/yyyy");
                 question.Respondent = User.Identity.Name;
                 db.Entry(question).State = EntityState.Modified;

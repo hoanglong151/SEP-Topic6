@@ -15,8 +15,8 @@
         <AssociationConnector Association="SEP24Team10Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="SEP24Team10Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="SEP24Team10Model.StudentOther" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="SEP24Team10Model.Question" Width="1.5" PointX="10.625" PointY="7" />
         <EntityTypeShape EntityType="SEP24Team10Model.Category" Width="1.5" PointX="8.375" PointY="7.625" />
+        <EntityTypeShape EntityType="SEP24Team10Model.Question" Width="1.5" PointX="10.625" PointY="7" />
         <AssociationConnector Association="SEP24Team10Model.FK_Question_Category" />
       </Diagram>
     </edmx:Diagrams>

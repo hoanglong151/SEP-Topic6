@@ -1,4 +1,5 @@
-﻿var check = 0;
+﻿var checkid = document.querySelector('.btn-active.collapsed')
+var check = checkid.id;
 var view = {
     init: function () {
         view.registerEvents();
