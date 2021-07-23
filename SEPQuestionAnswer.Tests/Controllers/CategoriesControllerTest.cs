@@ -66,13 +66,13 @@ namespace SEPQuestionAnswer.Tests.Controllers
 
             var result2 = controller.Create(cate) as ViewResult;
             Assert.IsNotNull(result2);
-            Assert.AreEqual("Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Tên chủ đề không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
 
             cate.CategoryName = "Học Phí";
             controller.ModelState.Clear();
             var result3 = controller.Create(cate) as ViewResult;
             Assert.IsNotNull(result3);
-            Assert.AreEqual("Tên danh mục đã tồn tại", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Tên chủ đề đã tồn tại", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -131,7 +131,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
 
             var result3 = controller.Edit(cate) as ViewResult;
             Assert.IsNotNull(result3);
-            Assert.AreEqual("Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Tên chủ đề không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["CategoryName"].Errors[0].ErrorMessage);
         }
 
         [TestMethod]

@@ -8,6 +8,10 @@ using System.Linq;
 using System.Transactions;
 using System.Web;
 using System.Security.Principal;
+using Microsoft.AspNet.Identity;
+using Moq;
+using Microsoft.Owin.Security;
+using System.IO;
 
 namespace SEPQuestionAnswer.Tests.Controllers
 {
@@ -45,9 +49,9 @@ namespace SEPQuestionAnswer.Tests.Controllers
                     db.SaveChanges();
                 }
             }
-            var result = controller.CreateSVOther(student) as RedirectToRouteResult;
+            var result = controller.CreateSVOther(student) as ContentResult;
             Assert.IsNotNull(result);
-            Assert.AreEqual("IndexSV", result.RouteValues["action"]);
+            Assert.AreEqual("<script language='javascript' type='text/javascript'>alert(`2 thành viên đã tồn tại vị trí này `);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>", result.Content);
         }
 
         [TestMethod]
@@ -57,6 +61,32 @@ namespace SEPQuestionAnswer.Tests.Controllers
 
             var result = controller.Create() as ViewResult;
             Assert.IsNotNull(result);
+        }
+
+        private static HttpContext CreateHttpContext(bool userLoggedIn)
+        {
+            var httpContext = new HttpContext(
+                new HttpRequest(string.Empty, "http://sample.com", string.Empty),
+                new HttpResponse(new StringWriter())
+            )
+            {
+                User = userLoggedIn
+                    ? new GenericPrincipal(new GenericIdentity("userName"), new string[0])
+                    : new GenericPrincipal(new GenericIdentity(string.Empty), new string[0])
+            };
+
+            return httpContext;
+        }
+
+        [TestMethod]
+        public void TestCreateP()
+        {
+            // Arrange
+            HttpContext.Current = CreateHttpContext(userLoggedIn: true);
+            var userStore = new Mock<IUserStore<ApplicationUser>>();
+            var userManager = new Mock<ApplicationUserManager>(userStore.Object);
+            var authenticationManager = new Mock<IAuthenticationManager>();
+            var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authenticationManager.Object);
         }
 
         [TestMethod]

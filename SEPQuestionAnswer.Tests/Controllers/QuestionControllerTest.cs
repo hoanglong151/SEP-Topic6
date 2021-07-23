@@ -127,6 +127,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.AreEqual("Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
 
             question.AskQuestion = "Học phí của các ngành khoa Công nghệ thông tin năm 2018";
+            question.Answer = "blabla";
             controller.ModelState.Clear();
             var result3 = controller.Create(question) as ViewResult;
             Assert.IsNotNull(result3);
@@ -270,6 +271,16 @@ namespace SEPQuestionAnswer.Tests.Controllers
                 var result = controller.DeleteConfirmed(question.ID) as RedirectToRouteResult;
                 Assert.IsNotNull(result);
                 Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+
+            var question1 = db.Questions.AsNoTracking().OrderByDescending(s => s.ID).FirstOrDefault();
+            var check = db.Categories.FirstOrDefault(s => s.ID == question1.Category_ID);
+            controller.ModelState.Clear();
+            using (var scope = new TransactionScope())
+            {
+                var result1 = controller.DeleteConfirmed(question1.ID) as RedirectToRouteResult;
+                Assert.IsNotNull(result1);
+                Assert.AreEqual("Index", result1.RouteValues["action"]);
             }
         }
 
