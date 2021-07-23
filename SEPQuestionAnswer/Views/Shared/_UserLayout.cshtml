@@ -3,8 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
     <title>FAQ - Fequently Asked Question</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -92,6 +90,27 @@
                         <li><a id="viewCate" class="nav-link scrollto" href="@Url.Action("IndexCate","Home")#cate">Chủ đề</a></li>
                         <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#post">Gửi câu hỏi</a></li>
                         <li><a class="nav-link scrollto" href="@Url.Action("Index", "Home")#contact">Liên hệ</a></li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                if (this.User.IsInRole("Ban Chủ Nhiệm") || this.User.IsInRole("Quản Trị Viên"))
+                                {
+
+                                    <li class="mobile-login"><a class="nav-link scrollto" href="@Url.Action("Index","AspNetRoles",new { Area = "Admin"})">Quản Lý</a></li>
+                                    <li class="mobile-login"><a class="nav-link scrollto" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+                                }
+                                else
+                                {
+                                    <li class="mobile-login"><a class="nav-link scrollto" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <li class="mobile-login">@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                     <i class="bi bi-list mobile-nav-toggle"></i>
@@ -107,7 +126,7 @@
                     <div class="row">
 
                         <div class="col-lg-4 col-md-6 footer-contact">
-                            <img class="imgsize"src="@Url.Content("~/assets/img/logoVLU.png")" />
+                            <img class="imgsize" src="@Url.Content("~/assets/img/logoVLU.png")" />
                         </div>
 
 
@@ -125,7 +144,7 @@
                         </div>
 
                         <div class="col-lg-4 col-md-6 footer-links dis-footer">
-                            <h4>Theo dõi chúng tôi</h4>    
+                            <h4>Theo dõi chúng tôi</h4>
                             <div class="social-links mt-3">
                                 <a href="https://twitter.com/universityvan?lang=en" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
                                 <a href="https://www.facebook.com/truongdaihocvanlang" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -137,7 +156,7 @@
                 </div>
             </div>
 
-            <div class="container py-4">
+            <div class="container py-4 safari">
                 <div class="copyright">
                     &copy; Copyright <strong><span>Plato</span></strong>. All Rights Reserved
                 </div>

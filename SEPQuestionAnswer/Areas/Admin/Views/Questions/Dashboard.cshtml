@@ -73,7 +73,7 @@
                         <div class="row clearfix">
                             @foreach (var count in ViewBag.countQ)
                             {
-                                <div class="col-md-2" style="width:229px; display:flex; align-items:center; flex-direction:column">
+                                <div class="col-md-2" style="width:20%; display:flex; align-items:center; flex-direction:column">
                                     <div style="display:inline;width:125px;height:125px;"><input type="text" class="knob" data-max="@ViewBag.Total" value="@count.CountQuestion" data-width="125" data-height="125" data-thickness="0.25" data-fgcolor="#ed2b40" readonly="readonly" style="width: 66px; height: 41px; position: absolute; vertical-align: middle; margin-top: 41px; margin-left: -95px; border: 0px; background: none; font: bold 25px Arial; text-align: center; color: rgb(244, 67, 54); padding: 0px;"></div>
                                     <a href="@Url.Action("Dashboard", "Questions", new { id = count.ID})#table" style="text-decoration:none"><p style="margin: 10px 0;width:150px; text-align:center; word-break:break-word; font-size:1.5rem">@count.CategoryName</p></a>
                                 </div>

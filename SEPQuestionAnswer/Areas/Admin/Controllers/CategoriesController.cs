@@ -88,11 +88,11 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             var condition = db.Categories.FirstOrDefault(m => m.CategoryName == category.CategoryName);
                 if (string.IsNullOrWhiteSpace(category.CategoryName))
                 {
-                    ModelState.AddModelError("CategoryName", "Tên danh mục không được để trống hoặc nhập ký tự khoảng trắng");
+                    ModelState.AddModelError("CategoryName", "Tên chủ đề không được để trống hoặc nhập ký tự khoảng trắng");
                 }
                 if (condition != null)
                 {
-                    ModelState.AddModelError("CategoryName", "Tên danh mục đã tồn tại");
+                    ModelState.AddModelError("CategoryName", "Tên chủ đề đã tồn tại");
                 }
         }
 

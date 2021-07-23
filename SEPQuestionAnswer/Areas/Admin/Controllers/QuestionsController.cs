@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -112,17 +114,26 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                     question.Date = DateTime.Now;
                     question.DateUpdate = DateTime.Now.ToString("dd/MM/yyyy");
                     question.Respondent = User.Identity.Name;
-                    string subject = "Câu hỏi của bạn đã được Khoa trả lời";
-                    string body = "Thân gửi bạn," + "<br/>" + "<br/>"
-                        + "Chúc mừng bạn, câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("FAQ K24T <faqteam10@gmail.com>");
+                    mail.To.Add(question.Questioner);
+                    mail.Subject = "Câu hỏi của bạn đã được Khoa trả lời";
+                    mail.Body = "Thân gửi bạn," + "<br/>" + "<br/>"
+                        + "Câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
                         + "<br/>" + "Nội dung chi tiết câu hỏi:"
-                        + "<br/>" + "Câu hỏi: " + question.AskQuestion
-                        + "<br/>" + "Câu trả lời: " + question.Answer
+                        + "<br/>" + "<span style='font-weight: 500;'>Câu hỏi: </span>" + question.AskQuestion
+                        + "<br/>" + "<span style='font-weight: 500;'>Câu trả lời: </span>" + question.Answer
                         + "<br/>" + "Địa chỉ Website:"
                         + "<a style='text-decoration: none;font-size: 16px;font-weight: 500;color: red' href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/'> Tại Đây<a/>"
                         + "<br/><br/>" + "Trân trọng cảm ơn."
                         + "<br/>" + "FAQ Website";
-                    WebMail.Send(question.Questioner, subject, body, from: "FAQ K24T <faqteam10@gmail.com>", null, null, true, null, null, null, null, null, null);
+                    mail.BodyEncoding = Encoding.GetEncoding("utf-8");
+                    mail.IsBodyHtml = true;
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("faqteam10@gmail.com", "Team10K24T");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
                     TempData["success"] = "Gửi Mail Thành Công";
                 }
                 else

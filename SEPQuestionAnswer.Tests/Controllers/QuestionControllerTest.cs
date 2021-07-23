@@ -8,6 +8,9 @@ using System.Linq;
 using System.Transactions;
 using System.Web;
 using System.Security.Principal;
+using System.Web.Helpers;
+using System.Net.Mail;
+using System.Text;
 
 namespace SEPQuestionAnswer.Tests.Controllers
 {
@@ -42,6 +45,24 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.AreEqual(question.Questioner, entity.Questioner);
             Assert.AreEqual(question.Respondent, entity.Respondent);
             Assert.AreEqual(question.Status, entity.Status);
+        }
+
+        [TestMethod]
+        public void TestDashboard()
+        {
+            var db = new SEP24Team10Entities();
+            var controller = new QuestionsController();
+            var result = controller.Dashboard(null) as ViewResult;
+            Assert.IsNotNull(result);
+            var entity = result.Model as List<Question>;
+            Assert.AreEqual(0, entity.Count);
+
+            controller.ModelState.Clear();
+            var cate = db.Categories.FirstOrDefault();
+            var result1 = controller.Dashboard(cate.ID) as ViewResult;
+            Assert.IsNotNull(result1);
+            var question = db.Questions.Where(q => q.Category_ID == cate.ID).ToList();
+            Assert.AreEqual(cate.CountQuestion, question.Count);
         }
 
         [TestMethod]
@@ -104,6 +125,12 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var result2 = controller.Create(question) as ViewResult;
             Assert.IsNotNull(result2);
             Assert.AreEqual("Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
+
+            question.AskQuestion = "Học phí của các ngành khoa Công nghệ thông tin năm 2018";
+            controller.ModelState.Clear();
+            var result3 = controller.Create(question) as ViewResult;
+            Assert.IsNotNull(result3);
+            Assert.AreEqual("Câu hỏi đã tồn tại", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -170,6 +197,47 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var result2 = controller.Edit(question, 1) as ViewResult;
             Assert.IsNotNull(result2);
             Assert.AreEqual("Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
+
+            question.AskQuestion = "Test011";
+            question.Answer = "Test022";
+            question.Status = "Accept";
+            question.SendMail = false;
+            controller.ModelState.Clear();
+            using (var scope = new TransactionScope())
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("faqteam10@gmail.com");
+                mail.To.Add(question.Questioner);
+                mail.Subject = "Câu hỏi của bạn đã được Khoa trả lời";
+                mail.Body = "Thân gửi bạn," + "<br/>" + "<br/>"
+                    + "Chúc mừng bạn, câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
+                    + "<br/>" + "Nội dung chi tiết câu hỏi:"
+                    + "<br/>" + "Câu hỏi: " + question.AskQuestion
+                    + "<br/>" + "Câu trả lời: " + question.Answer
+                    + "<br/>" + "Địa chỉ Website:"
+                    + "<a style='text-decoration: none;font-size: 16px;font-weight: 500;color: red' href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/'> Tại Đây<a/>"
+                    + "<br/><br/>" + "Trân trọng cảm ơn."
+                    + "<br/>" + "FAQ Website";
+                mail.BodyEncoding = Encoding.GetEncoding("utf-8");
+                mail.IsBodyHtml = true;
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("faqteam10@gmail.com", "Team10K24T");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                var result3 = controller.Edit(question, 1) as RedirectToRouteResult;
+                Assert.IsNotNull(result3);
+                Assert.AreEqual("Index", result3.RouteValues["action"]);
+            }
+
+            controller.ModelState.Clear();
+            var cate1 = db.Categories.OrderByDescending(s => s.ID).FirstOrDefault();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.Edit(question, cate1.ID) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
         }
 
         [TestMethod]
@@ -197,6 +265,20 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var db = new SEP24Team10Entities();
             var controller = new QuestionsController();
             var question = db.Questions.AsNoTracking().First();
+            using (var scope = new TransactionScope())
+            {
+                var result = controller.DeleteConfirmed(question.ID) as RedirectToRouteResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual("Index", result.RouteValues["action"]);
+            }
+        }
+
+        [TestMethod]
+        public void TestDeleteConfirmCateNull()
+        {
+            var db = new SEP24Team10Entities();
+            var controller = new QuestionsController();
+            var question = db.Questions.AsNoTracking().OrderByDescending(s => s.ID).First();
             using (var scope = new TransactionScope())
             {
                 var result = controller.DeleteConfirmed(question.ID) as RedirectToRouteResult;

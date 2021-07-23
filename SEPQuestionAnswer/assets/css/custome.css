@@ -75,3 +75,68 @@ btn-alter {
     height: 50px;
     width: 50px
 }
+.mobile-login{
+    display:none;
+}
+/* Responsive Mobile*/
+@media (max-device-width:740px) and (-webkit-min-device-pixel-ratio: 2) {
+    html {
+        word-break: break-word;
+        font-family: 'Noto Sans', sans-serif;
+    }
+
+    .cta h3 {
+        font-size: 1.4rem;
+    }
+
+    .dis-footer {
+        padding: 0 15px;
+    }
+
+    .mobile-login {
+        display: block;
+    }
+
+    .container.py-4 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .safari {
+        display: -webkit-flex;
+        -webkit-flex-direction: column;
+    }
+
+    #footer {
+        padding-bottom: 0;
+    }
+
+    .navbar-mobile ul li {
+        transform: translate3d(0, 0, 0);
+        position: relative;
+        z-index: 10;
+    }
+
+    .dropdown {
+        display: none;
+    }
+
+    .navbar-mobile .mobile-nav-toggle {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        padding: 12px;
+    }
+
+    .navbar-mobile a {
+        padding: 12px 20px;
+        font-size: 16px;
+        color: #444444;
+        font-weight: 600;
+    }
+
+    .navbar-right{
+        display:block;
+
+    }
+}

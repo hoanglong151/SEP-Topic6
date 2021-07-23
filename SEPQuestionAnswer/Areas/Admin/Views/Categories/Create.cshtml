@@ -34,9 +34,9 @@
 
                             <div class="form-group form-float" hidden>
                                 <div class="form-line">
-                                    @Html.EditorFor(model => model.CountQuestion, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.CountQuestion, "", new { @class = "text-danger" })
+                                    <input type="text" name="CountQuestion" value="0" readonly />
                                     <label class="form-label">Số Lượng Câu Hỏi</label>
+                                    @Html.ValidationMessageFor(model => model.CountQuestion, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
