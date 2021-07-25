@@ -23,7 +23,7 @@ namespace SEPQuestionAnswer.Controllers
         }
         public ActionResult IndexCate()
         {
-            var cate = db.Categories.Where(k => k.Status == true).ToList();
+            var cate = db.Categories.Where(k => k.Status == true).OrderBy(n => n.CategoryName).ToList();
             return View(cate);
         }
 
