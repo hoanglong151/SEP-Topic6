@@ -59,7 +59,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var result2 = controller.IndexQByC(1) as ViewResult;
             Assert.IsNotNull(result2);
             var result3 = result2.Model as List<Question>;
-            Assert.AreEqual(db.Questions.Where(x => x.Category_ID == 1).Where(s => s.Status == "Accept").Count(), result3.Count);
+            Assert.AreEqual(db.Questions.Where(x => x.Category_ID == 1).Where(s => s.Status == "Accept").OrderByDescending(c => c.CountView).Count(), result3.Count);
         }
 
         [TestMethod]

@@ -126,8 +126,9 @@ namespace SEPQuestionAnswer.Tests.Controllers
             Assert.IsNotNull(result2);
             Assert.AreEqual("Câu hỏi không được để trống hoặc nhập ký tự khoảng trắng", controller.ModelState["AskQuestion"].Errors[0].ErrorMessage);
 
-            question.AskQuestion = "Học phí của các ngành khoa Công nghệ thông tin năm 2018";
+            question.AskQuestion = "Học phí có được giảm trong khoảng thời gian COVID không ạ ?";
             question.Answer = "blabla";
+            question.Status = "Accept";
             controller.ModelState.Clear();
             var result3 = controller.Create(question) as ViewResult;
             Assert.IsNotNull(result3);
@@ -212,14 +213,14 @@ namespace SEPQuestionAnswer.Tests.Controllers
                 mail.To.Add(question.Questioner);
                 mail.Subject = "Câu hỏi của bạn đã được Khoa trả lời";
                 mail.Body = "Thân gửi bạn," + "<br/>" + "<br/>"
-                    + "Chúc mừng bạn, câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
-                    + "<br/>" + "Nội dung chi tiết câu hỏi:"
-                    + "<br/>" + "Câu hỏi: " + question.AskQuestion
-                    + "<br/>" + "Câu trả lời: " + question.Answer
-                    + "<br/>" + "Địa chỉ Website:"
-                    + "<a style='text-decoration: none;font-size: 16px;font-weight: 500;color: red' href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/'> Tại Đây<a/>"
-                    + "<br/><br/>" + "Trân trọng cảm ơn."
-                    + "<br/>" + "FAQ Website";
+                       + "Câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
+                       + "<br/>" + "Nội dung chi tiết câu hỏi:"
+                       + "<br/>" + "<span style='font-weight: 500;'>Câu hỏi: </span>" + question.AskQuestion
+                       + "<br/>" + "<span style='font-weight: 500;'>Câu trả lời: </span>" + "<p style='max-width:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap'>" + question.Answer + "</p>"
+                       + "<br/>" + "<span style='font-weight: 500;'>Để biết thêm chi tiết câu trả lời hãy truy cập vào trang web và tìm kiếm câu hỏi của bạn</span>"
+                       + "<a style='text-decoration: none;font-size: 16px;font-weight: 500;color: red' href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/'> Tại Đây<a/>"
+                       + "<br/><br/>" + "Trân trọng cảm ơn."
+                       + "<br/>" + "FAQ Website";
                 mail.BodyEncoding = Encoding.GetEncoding("utf-8");
                 mail.IsBodyHtml = true;
                 SmtpServer.Port = 587;

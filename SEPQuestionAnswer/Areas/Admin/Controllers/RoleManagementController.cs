@@ -79,7 +79,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
             {
                 return Content("<script language='javascript' type='text/javascript'>alert(`" + countFailE + " thành viên sai định dạng Email `);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
             }
-            return RedirectToAction("IndexSV", "AspNetRoles");
+            return Content("<script language='javascript' type='text/javascript'>alert(`" + countSuccess + " thành viên đã được thêm thành công vào vị trí này `);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>");
         }
 
 

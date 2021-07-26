@@ -123,8 +123,8 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                         + "Câu hỏi của bạn đã được Ban Chủ Nhiệm Khoa Trả lời."
                         + "<br/>" + "Nội dung chi tiết câu hỏi:"
                         + "<br/>" + "<span style='font-weight: 500;'>Câu hỏi: </span>" + question.AskQuestion
-                        + "<br/>" + "<span style='font-weight: 500;'>Câu trả lời: </span>" + question.Answer
-                        + "<br/>" + "Địa chỉ Website:"
+                        + "<br/>" + "<span style='font-weight: 500;'>Câu trả lời: </span>" + "<p style='max-width:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap'>" + question.Answer + "</p>"
+                        + "<br/>" + "<span style='font-weight: 500;'>Để biết thêm chi tiết câu trả lời hãy truy cập vào trang web và tìm kiếm câu hỏi của bạn</span>"
                         + "<a style='text-decoration: none;font-size: 16px;font-weight: 500;color: red' href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/'> Tại Đây<a/>"
                         + "<br/><br/>" + "Trân trọng cảm ơn."
                         + "<br/>" + "FAQ Website";

@@ -29,7 +29,7 @@ namespace SEPQuestionAnswer.Controllers
 
         public ActionResult IndexQByC(int id)
         {
-            var question = db.Questions.Where(k => k.Category_ID == id).Where(s => s.Status == "Accept").ToList();
+            var question = db.Questions.Where(k => k.Category_ID == id).Where(s => s.Status == "Accept").OrderByDescending(s => s.CountView).ToList();
             return View(question);
         }
 
