@@ -1,5 +1,4 @@
 ﻿@model SEPQuestionAnswer.Models.Question
-
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -55,53 +54,54 @@
                                 }
 
                             </div>
-                                <div class="form-group form-float" hidden>
-                                    <input value="@Model.Category_ID" name="old" />
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        @Html.EditorFor(model => model.AskQuestion, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
-                                        @Html.ValidationMessageFor(model => model.AskQuestion, "", new { @class = "text-danger" })
-                                        <label class="form-label">Câu Hỏi</label>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <label class="form-label" style="color:#AAA; font-weight:100">Câu Trả Lời</label>
-                                    <div class="form-line">
-                                        @Html.TextAreaFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
-                                        @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
-                                        <label class="form-label">Câu Trả Lời</label>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float" hidden>
-                                    <label class="form-label" style="color:#AAA; font-weight:100">Câu Trả Lời</label>
-                                    <div class="form-line">
-                                        @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
-                                        @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
-                                        <label class="form-label">Câu Trả Lời</label>
-                                    </div>
-                                </div>
-                                <div class="demo-radio-button">
-                                    <label class="form-label" style="color:#AAA; font-weight:100">Tình Trạng</label>
-                                    @Html.RadioButton("Status", "Accept", htmlAttributes: new { @class = "radio-col-light-green", @checked = "", @id = "Accept" })
-                                    <label for="Accept" class="m-l-20">Accept</label>
-                                    @Html.RadioButton("Status", "Pending", htmlAttributes: new { @class = "radio-col-red", @id = "Pending" })
-                                    <label for="Pending" class="m-l-20">Pending</label>
-                                    @Html.RadioButton("Status", "Disable", htmlAttributes: new { @class = "radio-col-grey", @id = "Disable" })
-                                    <label for="Disable" class="m-l-20">Disable</label>
-                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line" style="margin-top:20px">
-                                        @Html.EditorFor(model => model.CountView, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                        @Html.ValidationMessageFor(model => model.CountView, "", new { @class = "text-danger" })
-                                        <label class="form-label">Lượt Xem</label>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Cập nhật" class="btn btn-primary waves-effect" />
-                                <a id="cancel" href=@Url.Action("Index","Questions") class="btn btn-primary waves-effect">Hủy</a>
-                                }
+                            <div class="form-group form-float" hidden>
+                                <input value="@Model.Category_ID" name="old" />
                             </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.AskQuestion, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.AskQuestion, "", new { @class = "text-danger" })
+                                    <label class="form-label">Câu Hỏi</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label" style="color:#AAA; font-weight:100">Câu Trả Lời</label>
+                                <div class="form-line">
+                                    @Html.TextAreaFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
+                                    @*<textarea id="Answer" name="Answer" class="form-control" required>@Html.Raw(Model.Answer)</textarea>*@
+                                    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                                    <label class="form-label">Câu Trả Lời</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float" hidden>
+                                <label class="form-label" style="color:#AAA; font-weight:100">Câu Trả Lời</label>
+                                <div class="form-line">
+                                    @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control", @minLength = "1", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+                                    <label class="form-label">Câu Trả Lời</label>
+                                </div>
+                            </div>
+                            <div class="demo-radio-button">
+                                <label class="form-label" style="color:#AAA; font-weight:100">Tình Trạng</label>
+                                @Html.RadioButton("Status", "Accept", htmlAttributes: new { @class = "radio-col-light-green", @checked = "", @id = "Accept" })
+                                <label for="Accept" class="m-l-20">Accept</label>
+                                @Html.RadioButton("Status", "Pending", htmlAttributes: new { @class = "radio-col-red", @id = "Pending" })
+                                <label for="Pending" class="m-l-20">Pending</label>
+                                @Html.RadioButton("Status", "Disable", htmlAttributes: new { @class = "radio-col-grey", @id = "Disable" })
+                                <label for="Disable" class="m-l-20">Disable</label>
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line" style="margin-top:20px">
+                                    @Html.EditorFor(model => model.CountView, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.CountView, "", new { @class = "text-danger" })
+                                    <label class="form-label">Lượt Xem</label>
+                                </div>
+                            </div>
+                            <input type="submit" value="Cập nhật" class="btn btn-primary waves-effect" />
+                            <a id="cancel" href=@Url.Action("Index","Questions") class="btn btn-primary waves-effect">Hủy</a>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,17 +110,21 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://cdn.tiny.cloud/1/xi2o2589v6xhr0ors87yescdan1a4owcfdzrchvppxx5yik9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: 'textarea#Answer',
-            menubar: false,
-            plugins: "lists advlist link image",
-            advlist_bullet_styles: 'square',
-            toolbar: "numlist bullist undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image | code",
-            forced_root_block: "",
             entity_encoding: "raw",
+            images_upload_url: "http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/Questions/" + "TinyMceUpload",
+            menubar: true,
+            plugins: "lists advlist link image",
+            paste_data_images: false,
+            relative_urls: false,
+            content_css: "",
+            convert_urls: false,
+            advlist_bullet_styles: 'square',
+            toolbar: "numlist bullist undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image",
+            forced_root_block: "",
             style_formats: [
                 {
                     title: "Headers", items: [
@@ -159,8 +163,14 @@
                         { title: "Justify", icon: "alignjustify", format: "alignjustify" }
                     ]
                 }
-            ],
+            ]
         });
+        function upload(form) {
+            tinymce.activeEditor.uploadImages(function (success) {
+                form.submit();
+            });
+            return false;
+        }
     </script>
     <script>
         document.querySelector('#item-2').setAttribute('class', 'active');

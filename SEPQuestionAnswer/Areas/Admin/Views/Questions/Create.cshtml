@@ -12,7 +12,7 @@
                         <h2>Tạo Câu Hỏi</h2>
                     </div>
                     <div class="body">
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm("Create", "Questions", FormMethod.Post, new { onsubmit = "return upload(this);" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -78,15 +78,19 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://cdn.tiny.cloud/1/xi2o2589v6xhr0ors87yescdan1a4owcfdzrchvppxx5yik9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: 'textarea#Answer',
-            menubar: false,
+            images_upload_url: "http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/Questions/" + "TinyMceUpload",
+            menubar: true,
             plugins: "lists advlist link image",
+            paste_data_images: false,
+            relative_urls: false,
+            content_css: "",
+            convert_urls: false,
             advlist_bullet_styles: 'square',
-            toolbar: "numlist bullist undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image | code",
+            toolbar: "numlist bullist undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image",
             forced_root_block: "",
             style_formats: [
                 {
@@ -128,6 +132,12 @@
                 }
             ]
         });
+        function upload(form) {
+            tinymce.activeEditor.uploadImages(function (success) {
+                form.submit();
+            });
+            return false;
+        }
     </script>
     <script>
         document.querySelector('#item-2').setAttribute('class', 'active');

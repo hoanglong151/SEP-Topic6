@@ -1057,6 +1057,7 @@
     <Content Include="Scripts\morris.js" />
     <Content Include="Scripts\raphael-2.1.0.min.js" />
     <None Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="uploads\1b2d91ca-4420-4a7c-bf25-5bee3c45de13.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

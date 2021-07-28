@@ -2,24 +2,31 @@ html {
     word-break: break-word;
     font-family: 'Noto Sans', sans-serif;
 }
-.dis-footer{
-    padding-left:100px;
+
+.dis-footer {
+    padding-left: 100px;
 }
-.edit{
-    padding:10px;
+
+.edit {
+    padding: 10px;
 }
-.arr{
-    padding:10px;
+
+.arr {
+    padding: 10px;
 }
+
 .info-box h3:hover {
     color: #72c393
 }
-.bor{
+
+.bor {
     border-radius: 20px
 }
-.zoom:hover{
-    transform:scale(1.1);
+
+.zoom:hover {
+    transform: scale(1.1);
 }
+
 .button {
     background: #4eb478;
     border-radius: 5px;
@@ -28,45 +35,53 @@ html {
     margin-top: 10px;
     color: white;
 }
-.button:hover {
-    background-color: #45a36c
-}
+
+    .button:hover {
+        background-color: #45a36c
+    }
+
 btn-alter {
     background-color: #ff1c1c;
-    color:white;
-    width:100%;
+    color: white;
+    width: 100%;
 }
+
 .mydiv {
     position: fixed;
     top: 50%;
     left: 50%;
     width: 30em;
     height: 18em;
-    margin-top: -9em; 
+    margin-top: -9em;
     margin-left: -15em;
     border: 1px solid #ccc;
     background-color: #f3f3f3;
-    padding-top:10px;
-    border-radius:5px;
+    padding-top: 10px;
+    border-radius: 5px;
 }
-.word{
-    word-break:break-word;
+
+.word {
+    word-break: break-word;
 }
+
 .nut {
     width: 100%;
     display: inline-block;
     text-align: center;
     background-color: red;
     border-radius: 5px;
-    color:white;
-}
-.nut:hover {
     color: white;
-    background-color: #b51b1b;
 }
-.imgsize{
-    height:100px;
+
+    .nut:hover {
+        color: white;
+        background-color: #b51b1b;
+    }
+
+.imgsize {
+    height: 100px;
 }
+
 .exclamark {
     color: red;
     position: absolute;
@@ -75,8 +90,44 @@ btn-alter {
     height: 50px;
     width: 50px
 }
-.mobile-login{
-    display:none;
+
+li.aos-init.aos-animate {
+    list-style: none;
+}
+
+.collapse ol li,
+.collapse ul li {
+    padding: 0 !important;
+    margin-top: 15px;
+}
+
+.collapse ul {
+    padding-left: 32px !important;
+}
+
+.collapse > ul {
+    list-style: disc !important;
+}
+
+.collapse > ul > li > ul {
+    list-style: circle !important;
+}
+
+.collapse > ul > li > ul > li > ul {
+    list-style: square !important;
+}
+
+p img{
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.ht-container {
+    max-width: 100%;
+}
+
+.mobile-login {
+    display: none;
 }
 /* Responsive Mobile*/
 @media (max-device-width:740px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -143,8 +194,7 @@ btn-alter {
         font-weight: 600;
     }
 
-    .navbar-right{
-        display:block;
-
+    .navbar-right {
+        display: block;
     }
 }

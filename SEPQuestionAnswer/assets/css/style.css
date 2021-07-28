@@ -1257,7 +1257,7 @@ section {
 
         .faq .faq-list ul {
             padding: 0;
-            list-style: none;
+            list-style: inherit;
         }
 
         .faq .faq-list li + li {
