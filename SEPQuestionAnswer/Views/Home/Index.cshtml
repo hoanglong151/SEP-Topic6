@@ -10,11 +10,11 @@
         }, 5000)
     </script>
     <script>
-        $('.faq-list ul li').slice(0, 4).show();
+        $('.faq-list ul li.item').slice(0, 4).show();
 
         $('.loadMore').on("click", function () {
-            $('.faq-list ul li:hidden').slice(0, 3).slideDown();
-            if ($('.faq-list ul li:hidden').length == 0) {
+            $('.faq-list ul li.item:hidden').slice(0, 3).slideDown();
+            if ($('.faq-list ul li.item:hidden').length == 0) {
                 $('.loadMore').fadeOut();
             }
         })
