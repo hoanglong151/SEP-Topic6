@@ -122,6 +122,11 @@ p img{
     object-fit: contain;
 }
 
+.faq .faq-list div a {
+    display: inline-block;
+    padding: 0;
+}
+
 .ht-container {
     max-width: 100%;
 }

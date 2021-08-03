@@ -24,7 +24,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
                 ViewBag.success = TempData["success"];
             }
             var questions = db.Questions.Include(q => q.Category)
-                .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.DateCreate).ToList();
+                .OrderByDescending(s => s.Answer == null).ThenByDescending(s => s.Status == "Pending").ThenByDescending(s => s.Status == "Accept").ThenByDescending(s => s.Date).ToList();
             return View(questions);
         }
 

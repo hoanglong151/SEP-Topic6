@@ -19,7 +19,7 @@ namespace SEPQuestionAnswer.Areas.Admin.Controllers
         {
             var question = db.Questions.ToList();
             ViewBag.list = question;
-            var cate = db.Categories.OrderByDescending(s => s.Status == true).ToList();
+            var cate = db.Categories.OrderByDescending(s => s.Status == true).ThenByDescending(s => s.CountQuestion).ToList();
             return View(cate);
         }
        
