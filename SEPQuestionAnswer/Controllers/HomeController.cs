@@ -23,13 +23,14 @@ namespace SEPQuestionAnswer.Controllers
         }
         public ActionResult IndexCate()
         {
-            var cate = db.Categories.Where(k => k.Status == true).OrderBy(n => n.CategoryName).ToList();
+            var cate = db.Categories.Where(k => k.Status == true).Where(c => c.CountQuestion != 0).OrderBy(n => n.CategoryName).ToList();
             return View(cate);
         }
-
+         
         public ActionResult IndexQByC(int id)
         {
             var question = db.Questions.Where(k => k.Category_ID == id).Where(s => s.Status == "Accept").OrderByDescending(s => s.CountView).ToList();
+            ViewBag.count = question.Count();
             return View(question);
         }
 

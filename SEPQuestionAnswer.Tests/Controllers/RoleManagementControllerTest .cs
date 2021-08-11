@@ -52,6 +52,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var result = controller.CreateSVOther(student) as ContentResult;
             Assert.IsNotNull(result);
             Assert.AreEqual("<script language='javascript' type='text/javascript'>alert(`2 thành viên đã tồn tại vị trí này `);window.location.href='http://cntttest.vanlanguni.edu.vn:18080/SEP24Team10/Admin/AspNetRoles';</script>", result.Content);
+
         }
 
         [TestMethod]

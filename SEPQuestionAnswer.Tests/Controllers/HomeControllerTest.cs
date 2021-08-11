@@ -44,7 +44,7 @@ namespace SEPQuestionAnswer.Tests.Controllers
             var result = controller.IndexCate() as ViewResult;
             Assert.IsNotNull(result);
             var result1 = result.Model as List<Category>;
-            Assert.AreEqual(db.Categories.Where(x => x.Status == true).OrderBy(n => n.CategoryName).Count(), result1.Count);
+            Assert.AreEqual(db.Categories.Where(x => x.Status == true).Where(c => c.CountQuestion != 0).OrderBy(n => n.CategoryName).Count(), result1.Count);
         }
 
         [TestMethod]

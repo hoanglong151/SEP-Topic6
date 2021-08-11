@@ -15,26 +15,39 @@
 
             <div class="faq-list">
                 <ul>
-                    @foreach (var item in Model)
+                    @if (ViewBag.count != 0)
                     {
-                        var length = item.Respondent.IndexOf("@") + 1;
-                        <li data-aos="fade-up" style="display:list-item">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-id="@item.ID" data-bs-toggle="collapse" class="btn-active collapsed" data-bs-target="#faq-list-@item.ID" aria-expanded="false">@item.AskQuestion<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-@item.ID" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    @Html.Raw(item.Answer)
-                                </p>
-                                <p style="font-size:12px; text-align:right">
-                                    <i>Người Đăng: @item.Respondent.Remove(length)</i><br />
-                                    <i>Ngày Đăng: @item.DateCreate</i><br />
-                                    @if (item.DateUpdate != null)
-                                    {
-                                        <i>Ngày Cập Nhật: @item.DateUpdate</i>
-                                    }
-                                </p>
-                            </div>
+                        foreach (var item in Model)
+                        {
+
+                            var length = item.Respondent.IndexOf("@") + 1;
+                            <li data-aos="fade-up" style="display:list-item">
+                                <i class="bx bx-help-circle icon-help"></i> <a data-id="@item.ID" data-bs-toggle="collapse" class="btn-active collapsed" data-bs-target="#faq-list-@item.ID" aria-expanded="false">@item.AskQuestion<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                                <div id="faq-list-@item.ID" class="collapse" data-bs-parent=".faq-list">
+                                    <p>
+                                        @Html.Raw(item.Answer)
+                                    </p>
+                                    <p style="font-size:12px; text-align:right">
+                                        <i>Người Đăng: @item.Respondent.Remove(length)</i><br />
+                                        <i>Ngày Đăng: @item.DateCreate</i><br />
+                                        @if (item.DateUpdate != null)
+                                        {
+                                            <i>Ngày Cập Nhật: @item.DateUpdate</i>
+                                        }
+
+
+                                    </p>
+                                </div>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li data-aos="fade-up" style="display:list-item; text-align:center">
+                            Hiện chưa có câu hỏi nào trong chủ đề này
                         </li>
                     }
+
                 </ul>
             </div>
         </div>
