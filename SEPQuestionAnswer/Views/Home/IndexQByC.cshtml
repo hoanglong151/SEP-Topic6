@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<SEPQuestionAnswer.Models.Question>
 
 @{
-    ViewBag.Title = "IndexQByC";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <main id="main">
@@ -10,7 +9,7 @@
 
             <div class="section-title" data-aos="fade-down">
                 <span>Danh sách câu hỏi</span>
-                <h2>Danh sách câu hỏi</h2>
+                <h2>@ViewBag.title</h2>
             </div>
 
             <div class="faq-list">
@@ -54,5 +53,6 @@
     </section>
 </main>
 <script>
-    document.querySelector('#cate').setAttribute('class', 'active');
+    document.querySelector('#viewCate').setAttribute('class', 'active');
 </script>
+

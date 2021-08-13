@@ -31,6 +31,8 @@ namespace SEPQuestionAnswer.Controllers
         {
             var question = db.Questions.Where(k => k.Category_ID == id).Where(s => s.Status == "Accept").OrderByDescending(s => s.CountView).ToList();
             ViewBag.count = question.Count();
+            var title = db.Categories.FirstOrDefault(c => c.ID == id);
+            ViewBag.title = title.CategoryName;
             return View(question);
         }
 
